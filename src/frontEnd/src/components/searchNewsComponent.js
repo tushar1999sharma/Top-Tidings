@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import ShowNews from "./showNewsComponent";
-import { isLoadingAction } from "../actions/getNewsActions";
+import { isLoadingAction } from '../actions/spinnerAction';
 import { queryAction } from "../actions/getNewsActions";
 
 class searchNewsComponent extends Component {

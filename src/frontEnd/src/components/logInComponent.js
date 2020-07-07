@@ -21,6 +21,7 @@ class logInComponent extends Component {
 
     handleSubmit = (event) => {
         event.preventDefault();
+        this.props.isLoading();
         const data = {
             email: this.state.email,
             password: this.state.password
@@ -73,8 +74,11 @@ class logInComponent extends Component {
     }
 }
 
-const mapDispatchToProps = (dispatch) => ({
-    LogInPost: (props, userInfo) => dispatch(postLogIn(props, userInfo))
-})
+const mapDispatchToProps = (dispatch) => {
+    return {
+        isLoading: () => dispatch(isLoadingAction()),
+        LogInPost: (props, userInfo) => dispatch(postLogIn(props, userInfo))
+    }
+}
 
 export default connect(null, mapDispatchToProps)(withRouter(logInComponent));

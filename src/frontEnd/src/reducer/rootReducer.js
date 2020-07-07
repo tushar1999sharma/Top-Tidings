@@ -50,6 +50,12 @@ const rootReducer = (state = initState, action) => {
             currentUser: action.payload
         }
     }
+    else if(action.type === 'LOGOUT_USER'){
+        return {
+            ...state,
+            currentUser: {}
+        }
+    }
     
     return state
 }

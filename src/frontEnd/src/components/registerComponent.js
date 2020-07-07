@@ -23,6 +23,7 @@ class registerComponent extends Component {
 
     handleSubmit = (event) => {
         event.preventDefault();
+        this.props.isLoading();
         const data = {
             name: this.state.name,
             email: this.state.email,
@@ -97,8 +98,11 @@ class registerComponent extends Component {
     }
 }
 
-const mapDispatchToProps = (dispatch) => ({
-    registerPost: (userInfo, history) => dispatch(postRegister(userInfo, history))
-})
+const mapDispatchToProps = (dispatch) => {
+    return {
+        isLoading: () => dispatch(isLoadingAction()),
+        registerPost: (userInfo, history) => dispatch(postRegister(userInfo, history))
+    }
+}
 
 export default connect(null, mapDispatchToProps)(withRouter(registerComponent));

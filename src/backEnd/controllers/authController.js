@@ -103,10 +103,20 @@ module.exports = {
     },
 
     logout: (req, res) => {
-        req.logout();
-        return res.json({
-            status: 200,
-            message: "User successfully logged out"
-        })
+        try {
+            console.log("Log out ", req.user);
+            req.logout();
+            return res.json({
+                status: 200,
+                message: "User successfully logged out"
+            })
+        } 
+        catch (err) {
+            console.log(err);
+            return res.json({
+                status: 404,
+                message: "Something went wrong can't log out user"
+            })
+        }
     }
 }

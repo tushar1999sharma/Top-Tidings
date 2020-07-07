@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { isLoadingAction } from "../actions/getNewsActions";
+import { isLoadingAction } from '../actions/spinnerAction';
 import { categoryAction } from "../actions/getNewsActions";
 import ShowNews from "./showNewsComponent";
 
