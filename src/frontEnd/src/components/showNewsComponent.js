@@ -31,7 +31,7 @@ const showNewsComponent = (props) => {
 							/>
 						</div>
 						<div className="card-body d-flex flex-column">
-							<h4 className="card-title font-weight-bold">
+							<h4 className="card-title font-weight-bold text-dark">
 								{/* 
                                             target: _blank to open link new tab  
                                             rel="noopener noreferrer" to prevent newly opened tab 
@@ -40,7 +40,8 @@ const showNewsComponent = (props) => {
 								<a
 									href={headline.url}
 									target="_blank"
-									rel="noopener noreferrer"
+                                    rel="noopener noreferrer"
+                                    className="text-dark"
 								>
 									{headline.title}
 								</a>
@@ -52,7 +53,7 @@ const showNewsComponent = (props) => {
 								href={headline.url}
 								target="_blank"
 								rel="noopener noreferrer"
-								className="btn btn-primary mt-auto"
+								className="btn btn-dark mt-auto"
 							>
 								More info
 							</a>

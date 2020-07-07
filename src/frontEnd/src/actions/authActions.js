@@ -13,12 +13,12 @@ export const postRegister = (data, history) => {
                         title: "Success",
                         icon: "success",
                         closeOnClickOutside: true,
-                        timer: 3000
+                        timer: 1000
                     })
                     .then(() => {
                         history.push("/", true);
                         localStorage.setItem("token", res.data.jwt);
-                        dispatch(logInUser(res.data.user));
+                        dispatch({ type: 'REGISTER_USER' });
                     });
                 }
                 else {
@@ -30,7 +30,7 @@ export const postRegister = (data, history) => {
                         icon: "error",
                         className: "red-bg",
                         closeOnClickOutside: true,
-                        timer: 3000
+                        timer: 1000
                     }).then(() => {
                         history.push("/signup");
                     });
@@ -51,7 +51,7 @@ export const postLogIn = (data, history) => {
                         title: "Success",
                         icon: "success",
                         closeOnClickOutside: true,
-                        timer: 2000
+                        timer: 1000
                     })
                     .then(() => {
                         localStorage.setItem("token", res.data.jwt);
@@ -72,7 +72,7 @@ export const postLogIn = (data, history) => {
                         icon: "error",
                         className: "red-bg",
                         closeOnClickOutside: true,
-                        timer: 2000
+                        timer: 1000
                     })
                     .then(() => {
                         history.push("/signin");
@@ -83,39 +83,41 @@ export const postLogIn = (data, history) => {
 }
 
 export const postLogOut = (history) => {
-    axios.post("http://localhost:5000/signout")
-        .then(res => {
-            console.log(res);
-            if(res.data.status == 400){
-                const message = res.data.message;
+    return (dispatch) => {
+        axios.post("http://localhost:5000/signout")
+            .then(res => {
+                console.log(res);
+                if(res.data.response !== false && res.data.status !== 400){
+                    const message = res.data.message;
+                        swal({
+                            text: message,
+                            title: "Success",
+                            icon: "success",
+                            closeOnClickOutside: true,
+                            timer: 1000
+                        })
+                        .then(() => {
+                            history.push("/", true);
+                            dispatch({ type: 'LOGOUT_USER' })
+                        });
+                }
+                else {
+                    const message = res.data.message;
+                    console.log(message);
                     swal({
                         text: message,
-                        title: "Success",
-                        icon: "success",
+                        title: "Error",
+                        icon: "error",
+                        className: "red-bg",
                         closeOnClickOutside: true,
-                        timer: 2000
+                        timer: 1000
                     })
                     .then(() => {
-                        history.push("/", true);
-                        dispatch({ type: 'LOGOUT_USER' })
+                        history.push("/");
                     });
-            }
-            else {
-                const message = res.data.message;
-                console.log(message);
-                swal({
-                    text: message,
-                    title: "Error",
-                    icon: "error",
-                    className: "red-bg",
-                    closeOnClickOutside: true,
-                    timer: 2000
-                })
-                .then(() => {
-                    history.push("/");
-                });
-            }
-        })
+                }
+            })
+    }
 }
 
 const logInUser = (user) => ({

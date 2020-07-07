@@ -1,9 +1,7 @@
-import React from "react";
+import React, { Component } from 'react';
 import { Link, withRouter } from "react-router-dom";
 import SearchBar from "./searchBarComponent";
 import { connect } from "react-redux";
-
-import React, { Component } from 'react';
 import { isLoadingAction } from '../actions/spinnerAction';
 import { postLogOut } from "../actions/authActions";
 
@@ -39,12 +37,12 @@ class navBarComponent extends Component {
                     className="collapse navbar-collapse bg-dark navbar-custom-buttons"
                     id="navbarSupportedContent"
                 >
-                    {props.currentUser.email !== undefined ? (
+                    {this.props.currentUser.email !== undefined ? (
                         <ul className="nav navbar-nav ml-auto">
                             <li className="nav-item">
                                 <Link
                                     to="/user/:user_id/bookmarks"
-                                    className="nav-link"
+                                    className="nav-link active"
                                 >
                                     <i
                                         className="fa fa-bookmark"
@@ -52,40 +50,45 @@ class navBarComponent extends Component {
                                     ></i>
                                 </Link>
                             </li>
-                            <li className="nav-item">{props.currentUser.name}</li>
+                            <li className="nav-item">
+                                <Link
+                                    to=""
+                                    className="nav-link"
+                                >
+                                    {this.props.currentUser.name}
+                                </Link>
+                            </li>
                             <li className="nav-item"
                                 onClick={this.logOutSubmit}
                             >
+                                <Link
+                                    to=""
+                                    className="nav-link active"
+                                >
                                     Log Out
+                                </Link>
                             </li>
                         </ul>
                     ) : (
-                        <div className="pl-auto">
-                            <button type="button" className=" btn btn-primary mr-3">
+                        <ul className="nav navbar-nav ml-auto">
+                            <li className="nav-item">
                                 <Link
                                     to="/signin"
-                                    className="nav"
-                                    style={{
-                                        textDecoration: "none",
-                                        color: "white"
-                                    }}
+                                    className="nav-link active"
                                 >
-                                    Login
+                                    Log In
                                 </Link>
-                            </button>
-                            <button type="button" className="btn btn-primary">
+                            </li>
+                            <li className="nav-item">
                                 <Link
                                     to="/signup"
-                                    className="nav"
-                                    style={{
-                                        textDecoration: "none",
-                                        color: "white"
-                                    }}
+                                    className="nav-link active"
                                 >
                                     Register
                                 </Link>
-                            </button>
-                        </div>
+                            </li>
+                        </ul>
+                        
                     )}
                 </div>
             </nav>
@@ -105,8 +108,8 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
     return {
         isLoading: () => dispatch(isLoadingAction()),
-        LogOutPost: (history) => dispatch(postLogOut())
+        LogOutPost: (history) => dispatch(postLogOut(history))
     }
 }
 
-export default connect(mapStateToProps, null)(withRouter(navBarComponent));
+export default connect(mapStateToProps, mapDispatchToProps)(withRouter(navBarComponent));

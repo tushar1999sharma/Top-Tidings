@@ -17,7 +17,6 @@ class homeComponent extends Component {
 	// didMount first execute when component created
 	componentDidMount() {
 		this.props.isLoadingNews();
-		console.log(this.props.getHomeNews());
 		this.props.getHomeNews();
 	}
 

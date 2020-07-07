@@ -23,7 +23,6 @@ class registerComponent extends Component {
 
     handleSubmit = (event) => {
         event.preventDefault();
-        this.props.isLoading();
         const data = {
             name: this.state.name,
             email: this.state.email,
@@ -87,7 +86,7 @@ class registerComponent extends Component {
                                     />
                                 </div>
                                 <div className="col-md-12 text-center ">
-                                <button type="submit" className=" btn btn-block mybtn btn-primary tx-tfm">Register</button>
+                                <button type="submit" className=" btn btn-block mybtn btn-dark tx-tfm">Register</button>
                                 </div>
                             </form>
                         </div>
@@ -100,7 +99,6 @@ class registerComponent extends Component {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        isLoading: () => dispatch(isLoadingAction()),
         registerPost: (userInfo, history) => dispatch(postRegister(userInfo, history))
     }
 }

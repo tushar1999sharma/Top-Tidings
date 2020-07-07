@@ -43,17 +43,25 @@ const rootReducer = (state = initState, action) => {
             isLoading: false
         }
     }
+    else if(action.type === 'REGISTER_USER'){
+        console.log(action.payload);
+        return {
+            ...state,
+            isLoading: false        }
+    }
     else if(action.type === 'LOGIN_USER'){
         console.log(action.payload);
         return {
             ...state,
-            currentUser: action.payload
+            currentUser: action.payload,
+            isLoading: false
         }
     }
     else if(action.type === 'LOGOUT_USER'){
         return {
             ...state,
-            currentUser: {}
+            currentUser: {},
+            isLoading: false
         }
     }
     

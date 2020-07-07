@@ -14,7 +14,7 @@ const cookieParser      = require('cookie-parser')
 const cors              = require('cors'); //for cross-origin request
 const routes            = require("./src/backEnd/routes") //it will automatically take index name file
 const config            = require('./src/backEnd/config/index');
-const PORT              = config.port || "5000";
+const PORT              = config.port || 5000;
 
 // Express session to create session for the user.
 app.use(session(
@@ -25,7 +25,7 @@ app.use(session(
         resave: false, // avoid overwriting of data
         cookie:
         {
-            maxAge:(1000 * 60 * 60 * 24 * 30) // age for which the user will be logged in i.e. 30 days
+            maxAge: (1000 * 60 * 60 * 24 * 30) // age for which the user will be logged in i.e. 30 days
         },
         // mongo store is used to store the session cookie in the db
         store: new mongoStore(

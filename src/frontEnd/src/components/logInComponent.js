@@ -21,7 +21,6 @@ class logInComponent extends Component {
 
     handleSubmit = (event) => {
         event.preventDefault();
-        this.props.isLoading();
         const data = {
             email: this.state.email,
             password: this.state.password
@@ -63,7 +62,7 @@ class logInComponent extends Component {
                                     />
                                 </div>
                                 <div className="col-md-12 text-center ">
-                                <button type="submit" className=" btn btn-block mybtn btn-primary tx-tfm">Login</button>
+                                <button type="submit" className=" btn btn-block mybtn btn-dark tx-tfm">Login</button>
                                 </div>
                             </form>
                         </div>
@@ -76,7 +75,6 @@ class logInComponent extends Component {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        isLoading: () => dispatch(isLoadingAction()),
         LogInPost: (props, userInfo) => dispatch(postLogIn(props, userInfo))
     }
 }
