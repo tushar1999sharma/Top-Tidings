@@ -79,59 +79,34 @@ module.exports = {
             })
         }
 
-        //destructure req.body details
-        const { email, password } = req.body;
-
-        //check if email exist
-        const user = await User.findOne({email: email});
-        if (!user) {
-            //if no user found with given email
-            return res.json({
-                status: 404,
-                message: "email not exist" 
-            })
-        }
-
         try {
-            //compare password
-            const match = await bcrypt.compare(password, user.password);
-            //if match == true then password matches and user logged in
-            if (!match) {
-                return res.json({
-                    status: 404,
-                    message: "password not match" 
-                })
-            }   
-            try {
-                //assign jwt token to user
-                const token = jwt.sign({ id: user._id }, 
-                                        config.secretOrKey, 
-                                        { expiresIn: '24h' }
-                                    ); 
-                console.log("user logged in ", user, " with token ", token);
-                await passport.authenticate('jwt', {failureRedirect:'/signin'})
-                console.log("check logged in or not", req.user);
-                return res.json({
-                    status: 200,
-                    message: "user successfully logged in",
-                    user: user,
-                    jwt: token
-                })
-            } 
-            catch (err) {
-                console.log("error in assigning token ", err);
-                return res.json({
-                    status: 404,
-                    message: "error in assigning code" 
-                })
-            }
+            //assign jwt token to user
+            const token = jwt.sign({ id: req.user._id }, 
+                                    config.secretOrKey, 
+                                    { expiresIn: '24h' }
+                                ); 
+            console.log("user logged in ", req.user, " with token ", token);
+            return res.json({
+                status: 200,
+                message: "user successfully logged in",
+                user: req.user,
+                jwt: token
+            })
         } 
         catch (err) {
-            console.log("error in matching password ", err);
+            console.log("error in assigning token ", err);
             return res.json({
                 status: 404,
-                message: "error in matching password" 
+                message: "error in assigning code" 
             })
         }
-    } 
+    },
+
+    logout: (req, res) => {
+        req.logout();
+        return res.json({
+            status: 200,
+            message: "User successfully logged out"
+        })
+    }
 }
