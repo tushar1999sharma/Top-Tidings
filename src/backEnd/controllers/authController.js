@@ -21,8 +21,8 @@ module.exports = {
         const { name, email, password, confirmPass } = req.body;
         
         //check if email is unique or not
-        const isEmailExist = await User.find({email: email});
-        if (isEmailExist.length > 0) {
+        const isEmailExist = await User.findOne({email: email});
+        if (isEmailExist) {
             return res.json({
                 status: 404,
                 message: "email already exist" 
@@ -46,11 +46,40 @@ module.exports = {
             try {
                 //now save user into database
                 const newUser = await User.create({ name: name, email: email, password: hash });
-                console.log("New User Register", newUser);
-                return res.json({
-                    status: 200,
-                    message: "User successfully registered"
-                })               
+                console.log("New User Registered", newUser);
+
+                //log in user
+                req.login(newUser, function(err) {
+                    if(err) {
+                        console.log("error in log in ", err);
+                        return res.json({
+                            status: 404,
+                            message: "can't log in user" 
+                        })
+                    }
+                })
+
+                try {
+                    //assign jwt token to user
+                    const token = jwt.sign({ id: req.user._id }, 
+                                            config.secretOrKey, 
+                                            { expiresIn: '24h' }
+                                        ); 
+                    console.log("user regeistered and logged in ", req.user, " with token ", token);
+                    return res.json({
+                        status: 200,
+                        message: "user successfully Registered",
+                        user: req.user,
+                        jwt: token
+                    })
+                } 
+                catch (err) {
+                    console.log("error in assigning token ", err);
+                    return res.json({
+                        status: 404,
+                        message: "error in assigning code" 
+                    })
+                }
             } 
             catch (err) {
                 console.log("error in saving user to database ", err);
