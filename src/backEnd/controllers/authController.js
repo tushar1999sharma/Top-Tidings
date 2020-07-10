@@ -3,31 +3,12 @@ const bcrypt                = require('bcrypt');
 const passport              = require('passport');
 const jwt                   = require('jsonwebtoken');
 const config                = require('../config/index');
-const authValidation        = require('../validations/authValidation');
 const saltRound             = 10;
 
 module.exports = {
     register: async (req, res) => {
-        //validate user details
-        const errMsg = await authValidation.userRegisterValidation(req.body);
-        if (errMsg.error != null) {
-            return res.json({
-                status: 404,
-                message: errMsg.error.details[0].message 
-            })
-        }
-
         //destructure req.body data
         const { name, email, password, confirmPass } = req.body;
-        
-        //check if email is unique or not
-        const isEmailExist = await User.findOne({email: email});
-        if (isEmailExist) {
-            return res.json({
-                status: 404,
-                message: "email already exist" 
-            })
-        }
         
         //chk if both password same or not
         if (password != confirmPass) {
@@ -35,6 +16,15 @@ module.exports = {
             return res.json({
                 status: 404,
                 message: "password not match" 
+            })
+        }
+
+        //check if email is unique or not
+        const isEmailExist = await User.findOne({email: email});
+        if (isEmailExist) {
+            return res.json({
+                status: 404,
+                message: "email already exist"
             })
         }
         
@@ -54,22 +44,28 @@ module.exports = {
                         console.log("error in log in ", err);
                         return res.json({
                             status: 404,
-                            message: "can't log in user" 
+                            message: "can't log in user",
+                            error: err
                         })
                     }
                 })
 
                 try {
                     //assign jwt token to user
-                    const token = jwt.sign({ id: req.user._id }, 
-                                            config.secretOrKey, 
-                                            { expiresIn: '24h' }
-                                        ); 
+                    //assign jwt token to user
+                    const payload = {
+                        id: req.user._id,
+                        name: req.user.name
+                    };
+                    const token = jwt.sign(
+                        payload,
+                        config.secretOrKey,
+                        { expiresIn: '24h' }
+                    ); 
                     console.log("user regeistered and logged in ", req.user, " with token ", token);
                     return res.json({
                         status: 200,
                         message: "user successfully Registered",
-                        user: req.user,
                         jwt: token
                     })
                 } 
@@ -77,7 +73,8 @@ module.exports = {
                     console.log("error in assigning token ", err);
                     return res.json({
                         status: 404,
-                        message: "error in assigning code" 
+                        message: "error in assigning code",
+                        error: err 
                     })
                 }
             } 
@@ -93,32 +90,28 @@ module.exports = {
             console.log("can't hash password ", err);   
             return res.json({
                 status: 404,
-                message: "can't create hash of password" 
+                message: "can't create hash of password",
+                error: err 
             })
         }
     },
 
     login: async (req, res) => {
-        //validate user details
-        const errMsg = await authValidation.userLoginValidation(req.body);
-        if (errMsg.error != null) {
-            return res.json({
-                status: 404,
-                message: errMsg.error.details[0].message 
-            })
-        }
-
         try {
             //assign jwt token to user
-            const token = jwt.sign({ id: req.user._id }, 
-                                    config.secretOrKey, 
-                                    { expiresIn: '24h' }
-                                ); 
+            const payload = {
+                id: req.user._id,
+                name: req.user.name
+            };
+            const token = jwt.sign( 
+                payload, 
+                config.secretOrKey, 
+                { expiresIn: '24h' }
+            ); 
             console.log("user logged in ", req.user, " with token ", token);
             return res.json({
                 status: 200,
                 message: "user successfully logged in",
-                user: req.user,
                 jwt: token
             })
         } 
@@ -126,25 +119,35 @@ module.exports = {
             console.log("error in assigning token ", err);
             return res.json({
                 status: 404,
-                message: "error in assigning code" 
+                message: "error in assigning code",
+                error: err
             })
         }
     },
 
     logout: (req, res) => {
-        try {
-            console.log("Log out ", req.user);
-            req.logout();
-            return res.json({
-                status: 200,
-                message: "User successfully logged out"
-            })
-        } 
-        catch (err) {
-            console.log(err);
+        if(req.user) {
+            try {
+                console.log("Log out ", req.user);
+                req.logout();
+                return res.json({
+                    status: 200,
+                    message: "User successfully logged out"
+                })
+            } 
+            catch (err) {
+                console.log(err);
+                return res.json({
+                    status: 404,
+                    message: "Something went wrong can't log out user",
+                    error: err
+                })
+            }
+        }
+        else {
             return res.json({
                 status: 404,
-                message: "Something went wrong can't log out user"
+                message: "You need to log in first"
             })
         }
     }

@@ -18,7 +18,7 @@ passport.use(new LocalStrategy({
         if(!user || !match)//if the user is not found in the database or the password entered by the user does not match with that in the database
         {
             console.log('Invalid Username/password!');
-            return done(null, false); //no error, but the user not found.
+            return done(null, false, { message: "Invalid Username/password!" }); //no error, but the user not found.
         }
         return done(null, user); //return user
     });
