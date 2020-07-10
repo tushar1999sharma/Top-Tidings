@@ -52,7 +52,6 @@ module.exports = {
 
                 try {
                     //assign jwt token to user
-                    //assign jwt token to user
                     const payload = {
                         id: req.user._id,
                         name: req.user.name

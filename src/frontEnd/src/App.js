@@ -8,6 +8,7 @@ import jwtDecode from "jwt-decode";
 import store from './store';
 import setAuthToken from "./utils/setAuthToken";
 import { authenticateUser, postLogOut } from "./actions/authActions";
+import { isLoadingAction } from './actions/spinnerAction';
 
 import Navbar from "./components/navbarComponent";
 import Sources from "./components/sourcesComponent";
@@ -20,33 +21,23 @@ import CategoryNews from "./components/categoryNewsComponent";
 import SearchNews from "./components/searchNewsComponent";
 import DropDown from './components/catSourceDropdownComponent';
 
-// Check for token to keep user logged in
-if (localStorage.jwtToken) {
-    console.log("check for token", localStorage.getItem("token"))
-    // Set auth token header auth
-    const token = localStorage.getItem("token");
-    setAuthToken(token);
-    // Decode token and get user info and exp
-    const decoded = jwtDecode(token);
-    // Set user and isAuthenticated
-    store.dispatch(authenticateUser(decoded));// Check for expired token
-    const currentTime = Date.now() / 1000; // to get in milliseconds
-    if (decoded.exp < currentTime) {
-      // Logout user
-      store.dispatch(postLogOut());    // Redirect to login
-      window.location.href = "./login";
-    }
-}
-
 class App extends Component {
-    /* componentDidMount() {
-		this.props.dispatch(isLoading());
-		const token = localStorage.getItem('token');
+    componentDidMount() {
+		this.props.isLoading();
+        const token = localStorage.getItem('token');
+        console.log("Get token", token);
 		if (token) {
-			const user = jwtDecode(token);
-			this.props.dispatch(isAuthenticated(user));
-		}
-	} */
+            const decoded = jwtDecode(token);
+            console.log("Get data from token", decoded);
+            this.props.isAuthenticated(decoded);
+            const currentTime = Date.now() / 1000; // to get in milliseconds
+            if (decoded.exp < currentTime) {
+                // Logout user
+                this.props.isAuthenticated(decoded);    // Redirect to login
+            }
+        }
+    }
+    
 	render() {
         const defaultContainer = () => (
             <div>            
@@ -95,12 +86,12 @@ class App extends Component {
 	}
 }
 
-/* const mapDispatchToProps = (dispatch) => {
+const mapDispatchToProps = (dispatch) => {
 	return {
 		isLoading: () => dispatch(isLoadingAction()),
         isAuthenticated: (user) => dispatch(authenticateUser(user)),
         logOutPost: () => dispatch(postLogOut())
 	};
-}; */
+};
 
-export default /* connect(null, mapDispatchToProps) */(App);
+export default connect(null, mapDispatchToProps)(App);
