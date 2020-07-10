@@ -1,5 +1,7 @@
 import axios from 'axios';
 import swal from 'sweetalert';
+import jwtDecode from "jwt-decode";
+import setAuthToken from "../utils/setAuthToken";
 
 export const postRegister = (data, history) => {
     return (dispatch) => {
@@ -16,9 +18,15 @@ export const postRegister = (data, history) => {
                         timer: 1000
                     })
                     .then(() => {
-                        history.push("/", true);
                         localStorage.setItem("token", res.data.jwt);
-                        dispatch({ type: 'REGISTER_USER' });
+                        // Set token to Auth header
+                        setAuthToken(res.data.jwt);
+                        // Decode token to get user data
+                        const decoded = jwtDecode(res.data.jwt);
+                        //redirect to home
+                        history.push("/", true);
+                        //dispatch aciton
+                        dispatch(logInUser(decoded));
                     });
                 }
                 else {
@@ -55,12 +63,14 @@ export const postLogIn = (data, history) => {
                     })
                     .then(() => {
                         localStorage.setItem("token", res.data.jwt);
-                        /* // Set token to Auth header
-                        setAuthToken(token);
+                        // Set token to Auth header
+                        setAuthToken(res.data.jwt);
                         // Decode token to get user data
-                        const decoded = jwt_decode(token); */
+                        const decoded = jwtDecode(res.data.jwt);
+                        //redirect to home
                         history.push("/", true);
-                        dispatch(logInUser(res.data.user));
+                        //dispatch aciton
+                        dispatch(logInUser(decoded));
                     });
                 } 
                 else {
@@ -88,18 +98,19 @@ export const postLogOut = (history) => {
             .then(res => {
                 console.log(res);
                 if(res.data.response !== false && res.data.status !== 400){
+                    localStorage.removeItem("token");
                     const message = res.data.message;
-                        swal({
-                            text: message,
-                            title: "Success",
-                            icon: "success",
-                            closeOnClickOutside: true,
-                            timer: 1000
-                        })
-                        .then(() => {
-                            history.push("/", true);
-                            dispatch({ type: 'LOGOUT_USER' })
-                        });
+                    swal({
+                        text: message,
+                        title: "Success",
+                        icon: "success",
+                        closeOnClickOutside: true,
+                        timer: 1000
+                    })
+                    .then(() => {
+                        history.push("/", true);
+                        dispatch({ type: 'LOGOUT_USER' })
+                    });
                 }
                 else {
                     const message = res.data.message;
@@ -117,6 +128,12 @@ export const postLogOut = (history) => {
                     });
                 }
             })
+    }
+}
+
+export const authenticateUser = (user) => {
+    return (dispatch) => {
+        dispatch(logInUser(user));
     }
 }
 

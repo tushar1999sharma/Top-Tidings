@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
+import swal from 'sweetalert';
 import { postLogIn } from "../actions/authActions";
 
 class logInComponent extends Component {
@@ -9,6 +10,22 @@ class logInComponent extends Component {
         this.state = {
             email: '',
             password: ''
+        }
+    }
+
+    componentDidMount() {
+        // If logged in and user navigates to Login page, should redirect them to dashboard
+        if (this.props.isAuthenticated) {
+            swal({
+                text: "You are already logged in",
+                title: "Error",
+                icon: "error",
+                className: "red-bg",
+                closeOnClickOutside: true,
+                timer: 500
+            }).then(() => {
+                this.props.history.push("/signup");
+            });
         }
     }
 
@@ -73,10 +90,18 @@ class logInComponent extends Component {
     }
 }
 
+//take data from redux store to components prop
+const mapStateToProps = (state) => {
+	return {
+        isAuthenticated: state.isAuthenticated,
+        user: state.user
+	};
+};
+//take data to redux store
 const mapDispatchToProps = (dispatch) => {
     return {
         LogInPost: (props, userInfo) => dispatch(postLogIn(props, userInfo))
     }
 }
 
-export default connect(null, mapDispatchToProps)(withRouter(logInComponent));
+export default connect(mapStateToProps, mapDispatchToProps)(withRouter(logInComponent));

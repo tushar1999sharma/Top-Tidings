@@ -37,7 +37,7 @@ class navBarComponent extends Component {
                     className="collapse navbar-collapse bg-dark navbar-custom-buttons"
                     id="navbarSupportedContent"
                 >
-                    {this.props.currentUser.email !== undefined ? (
+                    {this.props.isAuthenticated ? (
                         <ul className="nav navbar-nav ml-auto">
                             <li className="nav-item">
                                 <Link
@@ -100,6 +100,7 @@ class navBarComponent extends Component {
 const mapStateToProps = (state) => {
 	console.log(state);
 	return {
+        isAuthenticated: state.isAuthenticated,
 		currentUser: state.currentUser
 	};
 };

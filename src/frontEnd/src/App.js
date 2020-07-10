@@ -1,11 +1,13 @@
 import React, { Component } from "react";
 import { Route, BrowserRouter, Switch } from "react-router-dom";
 import { Link } from "react-router-dom";
+import { connect } from "react-redux";
 import "./App.css";
 
-import jwt_decode from "jwt-decode";
+import jwtDecode from "jwt-decode";
+import store from './store';
 import setAuthToken from "./utils/setAuthToken";
-import { setCurrentUser, logoutUser } from "./actions/authActions";
+import { authenticateUser, postLogOut } from "./actions/authActions";
 
 import Navbar from "./components/navbarComponent";
 import Sources from "./components/sourcesComponent";
@@ -18,24 +20,33 @@ import CategoryNews from "./components/categoryNewsComponent";
 import SearchNews from "./components/searchNewsComponent";
 import DropDown from './components/catSourceDropdownComponent';
 
-/* // Check for token to keep user logged in
+// Check for token to keep user logged in
 if (localStorage.jwtToken) {
+    console.log("check for token", localStorage.getItem("token"))
     // Set auth token header auth
-    const token = localStorage.jwtToken;
+    const token = localStorage.getItem("token");
     setAuthToken(token);
     // Decode token and get user info and exp
-    const decoded = jwt_decode(token);
+    const decoded = jwtDecode(token);
     // Set user and isAuthenticated
-    store.dispatch(setCurrentUser(decoded));// Check for expired token
+    store.dispatch(authenticateUser(decoded));// Check for expired token
     const currentTime = Date.now() / 1000; // to get in milliseconds
     if (decoded.exp < currentTime) {
       // Logout user
-      store.dispatch(logoutUser());    // Redirect to login
+      store.dispatch(postLogOut());    // Redirect to login
       window.location.href = "./login";
     }
-} */
+}
 
 class App extends Component {
+    /* componentDidMount() {
+		this.props.dispatch(isLoading());
+		const token = localStorage.getItem('token');
+		if (token) {
+			const user = jwtDecode(token);
+			this.props.dispatch(isAuthenticated(user));
+		}
+	} */
 	render() {
         const defaultContainer = () => (
             <div>            
@@ -84,4 +95,12 @@ class App extends Component {
 	}
 }
 
-export default App;
+/* const mapDispatchToProps = (dispatch) => {
+	return {
+		isLoading: () => dispatch(isLoadingAction()),
+        isAuthenticated: (user) => dispatch(authenticateUser(user)),
+        logOutPost: () => dispatch(postLogOut())
+	};
+}; */
+
+export default /* connect(null, mapDispatchToProps) */(App);

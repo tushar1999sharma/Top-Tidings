@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
+import swal from 'sweetalert';
 import { postRegister } from '../actions/authActions';
 
 class registerComponent extends Component {
@@ -11,6 +12,22 @@ class registerComponent extends Component {
             email: '',
             password: '',
             confirmPass: ''
+        }
+    }
+
+    componentDidMount() {
+        // If logged in and user navigates to Login page, should redirect them to dashboard
+        if (this.props.isAuthenticated) {
+            swal({
+                text: "You are already registered",
+                title: "Error",
+                icon: "error",
+                className: "red-bg",
+                closeOnClickOutside: true,
+                timer: 500
+            }).then(() => {
+                this.props.history.push("/signup");
+            });
         }
     }
 
@@ -97,10 +114,18 @@ class registerComponent extends Component {
     }
 }
 
+//take data from redux store to components prop
+const mapStateToProps = (state) => {
+	return {
+        isAuthenticated: state.isAuthenticated,
+        user: state.user
+	};
+};
+//take data to redux store
 const mapDispatchToProps = (dispatch) => {
     return {
         registerPost: (userInfo, history) => dispatch(postRegister(userInfo, history))
     }
 }
 
-export default connect(null, mapDispatchToProps)(withRouter(registerComponent));
+export default connect(mapStateToProps, mapDispatchToProps)(withRouter(registerComponent));

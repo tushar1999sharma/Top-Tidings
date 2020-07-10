@@ -1,5 +1,6 @@
 const initState = {
     currentUser: {},
+    isAuthenticated: false,
     headlines: [],
     isLoading: false
 }
@@ -25,7 +26,6 @@ const rootReducer = (state = initState, action) => {
             headlines: action.payload,
             isLoading: false
         }
-        
     }
 
     else if(action.type === 'SEARCH_NEWS'){
@@ -43,17 +43,12 @@ const rootReducer = (state = initState, action) => {
             isLoading: false
         }
     }
-    else if(action.type === 'REGISTER_USER'){
-        console.log(action.payload);
-        return {
-            ...state,
-            isLoading: false        }
-    }
     else if(action.type === 'LOGIN_USER'){
         console.log(action.payload);
         return {
             ...state,
             currentUser: action.payload,
+            isAuthenticated: true,
             isLoading: false
         }
     }
@@ -61,6 +56,7 @@ const rootReducer = (state = initState, action) => {
         return {
             ...state,
             currentUser: {},
+            isAuthenticated: false,
             isLoading: false
         }
     }
