@@ -4,6 +4,6 @@ const authRoutes        = require('./authRoute');
 const bookmarkRoutes    = require('./bookmarkRoute'); 
 
 router.use('/', authRoutes);
-router.use('/user/:user_id/', bookmarkRoutes);
+router.use('/', bookmarkRoutes);
 
 module.exports = router;
