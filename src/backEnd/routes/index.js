@@ -1,9 +1,0 @@
-const express           = require('express');
-const router            = express.Router();
-const authRoutes        = require('./authRoute');
-const bookmarkRoutes    = require('./bookmarkRoute'); 
-
-router.use('/', authRoutes);
-router.use('/', bookmarkRoutes);
-
-module.exports = router;

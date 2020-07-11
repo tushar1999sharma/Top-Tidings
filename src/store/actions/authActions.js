@@ -97,7 +97,7 @@ export const postLogOut = (history) => {
         axios.post("http://localhost:5000/signout")
             .then(res => {
                 console.log(res);
-                if(res.data.response !== false && res.data.status !== 400){
+                if(res.data.response !== false && res.data.status !== 404){
                     localStorage.removeItem("token");
                     const message = res.data.message;
                     swal({
@@ -108,7 +108,6 @@ export const postLogOut = (history) => {
                         timer: 1000
                     })
                     .then(() => {
-                        history.push("/", true);
                         dispatch({ type: 'LOGOUT_USER' })
                     });
                 }
@@ -123,9 +122,6 @@ export const postLogOut = (history) => {
                         closeOnClickOutside: true,
                         timer: 1000
                     })
-                    .then(() => {
-                        history.push("/");
-                    });
                 }
             })
     }

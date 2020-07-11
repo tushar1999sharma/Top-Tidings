@@ -8,7 +8,7 @@ import { postLogOut } from "../actions/authActions";
 class navBarComponent extends Component {
     logOutSubmit = (event) => {
         event.preventDefault();
-        this.props.isLoading();
+        //this.props.isLoading();
         this.props.LogOutPost(this.props.history);
     }
 

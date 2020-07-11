@@ -1,43 +1,42 @@
 {
   "name": "top-tidings",
-  "version": "1.0.0",
-  "description": "News app using newsapi to practice MERN stack ",
-  "main": "app.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "f-install": "cd src && cd frontEnd && npm install",
-    "start": "nodemon app.js",
-    "frontEnd": "cd src && npm start --prefix frontEnd",
-    "app": "concurrently \"npm run start\" \"npm run frontEnd\""
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/tushar1999sharma/Top-Tidings.git"
-  },
-  "author": "Tushar Sharma",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/tushar1999sharma/Top-Tidings/issues"
-  },
-  "homepage": "https://github.com/tushar1999sharma/Top-Tidings#readme",
+  "version": "0.1.0",
+  "private": true,
   "dependencies": {
-    "@hapi/joi": "^17.1.1",
-    "bcrypt": "^5.0.0",
-    "concurrently": "^5.2.0",
-    "connect-mongo": "^3.2.0",
-    "cookie-parser": "^1.4.5",
-    "cors": "^2.8.5",
-    "dotenv": "^8.2.0",
-    "express": "^4.17.1",
-    "express-session": "^1.17.1",
-    "history": "^5.0.0",
-    "jsonwebtoken": "^8.5.1",
-    "method-override": "^3.0.0",
-    "mongoose": "^5.9.20",
-    "nodemon": "^2.0.4",
-    "passport": "^0.4.1",
-    "passport-jwt": "^4.0.0",
-    "passport-local": "^1.0.0"
+    "@testing-library/jest-dom": "^4.2.4",
+    "@testing-library/react": "^9.5.0",
+    "@testing-library/user-event": "^7.2.1",
+    "axios": "^0.19.2",
+    "firebase": "^7.16.0",
+    "jwt-decode": "^2.2.0",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
+    "react-redux": "^7.2.0",
+    "react-router-dom": "^5.2.0",
+    "react-scripts": "3.4.1",
+    "redux": "^4.0.5",
+    "redux-thunk": "^2.3.0",
+    "sweetalert": "^2.1.2"
   },
-  "devDependencies": {}
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
+  },
+  "eslintConfig": {
+    "extends": "react-app"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  }
 }
