@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import swal from 'sweetalert';
-import { postRegister } from '../actions/authActions';
+import { postRegister } from '../../store/actions/authActions';
 
 class registerComponent extends Component {
     constructor(props) {

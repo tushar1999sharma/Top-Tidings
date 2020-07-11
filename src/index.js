@@ -6,15 +6,13 @@ import * as serviceWorker from "./serviceWorker";
 import { Provider } from "react-redux"; //help to interact redux store with react app
 import jwtDecode from "jwt-decode";
 import store from './store';
-import setAuthToken from "./utils/setAuthToken";
-import { authenticateUser, postLogOut } from "./actions/authActions";
+import { authenticateUser, postLogOut } from "./store/actions/authActions";
 
 // Check for token to keep user logged in
 if (localStorage.jwtToken) {
     console.log("check for token", localStorage.token)
     // Set auth token header auth
     const token = localStorage.token;
-    setAuthToken(token);
     // Decode token and get user info and exp
     const decoded = jwtDecode(token);
     // Set user and isAuthenticated

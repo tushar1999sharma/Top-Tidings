@@ -1,6 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
-import Spinner from "./spinner";
+import Spinner from "../layout/Spinner";
 
 const showNewsComponent = (props) => {
 	console.log(props);

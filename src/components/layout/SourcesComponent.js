@@ -1,18 +1,14 @@
 import React from "react";
 import { Link, withRouter } from "react-router-dom";
-import BBClogo from "../media/bbc logo.png";
-import TIMElogo from "../media/Time_magazine_logo1.jpg";
-import CNNlogo from "../media/cnn logo.png";
-import FOXlogo from "../media/Fox-news-logo.png";
-import BBlogo from "../media/bloomberg-logo.jpg";
-import Gnewslogo from "../media/Google-news-logo.webp";
-import Hindulogo from "../media/the-hindu-newspaper-logo.jpg";
-import TOIlogo from "../media/TOI logo.png";
-import Fortunelogo from "../media/fortune-logo.png";
-import ESPNlogo from "../media/ESPN logo.jpg";
-import NGlogo from "../media/national-geographic-logo.jpg";
-import MTVlogo from "../media/mtv logo.webp";
-import Redditlogo from "../media/redditLogo.png";
+import BBClogo from "../../media/bbc logo.png";
+import FOXlogo from "../../media/Fox-news-logo.png";
+import Gnewslogo from "../../media/Google-news-logo.webp";
+import Hindulogo from "../../media/the-hindu-newspaper-logo.jpg";
+import TOIlogo from "../../media/TOI logo.png";
+import ESPNlogo from "../../media/ESPN logo.jpg";
+import NGlogo from "../../media/national-geographic-logo.jpg";
+import MTVlogo from "../../media/mtv logo.webp";
+import Redditlogo from "../../media/redditLogo.png";
 
 const sourceComponent = () => {
 	return (

@@ -1,7 +1,6 @@
 import axios from 'axios';
 import swal from 'sweetalert';
 import jwtDecode from "jwt-decode";
-import setAuthToken from "../utils/setAuthToken";
 
 export const postRegister = (data, history) => {
     return (dispatch) => {
@@ -19,8 +18,6 @@ export const postRegister = (data, history) => {
                     })
                     .then(() => {
                         localStorage.setItem("token", res.data.jwt);
-                        // Set token to Auth header
-                        setAuthToken(res.data.jwt);
                         // Decode token to get user data
                         const decoded = jwtDecode(res.data.jwt);
                         //redirect to home
@@ -63,8 +60,6 @@ export const postLogIn = (data, history) => {
                     })
                     .then(() => {
                         localStorage.setItem("token", res.data.jwt);
-                        // Set token to Auth header
-                        setAuthToken(res.data.jwt);
                         // Decode token to get user data
                         const decoded = jwtDecode(res.data.jwt);
                         //redirect to home

@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import ShowNews from "./showNewsComponent";
-import { isLoadingAction } from '../actions/spinnerAction';
-import { sourceAction } from "../actions/getNewsActions";
+import ShowNews from "./ShowNewsComponent";
+import { isLoadingAction } from '../../store/actions/spinnerAction';
+import { sourceAction } from "../../store/actions/getNewsActions";
 
 class sourceNewsComponent extends Component {
 	constructor(props) {

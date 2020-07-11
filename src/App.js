@@ -1,25 +1,22 @@
 import React, { Component } from "react";
 import { Route, BrowserRouter, Switch } from "react-router-dom";
-import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import "./App.css";
 
 import jwtDecode from "jwt-decode";
-import store from './store';
-import setAuthToken from "./utils/setAuthToken";
-import { authenticateUser, postLogOut } from "./actions/authActions";
-import { isLoadingAction } from './actions/spinnerAction';
+import { authenticateUser, postLogOut } from "./store/actions/authActions";
+import { isLoadingAction } from './store/actions/spinnerAction';
 
-import Navbar from "./components/navbarComponent";
-import Sources from "./components/sourcesComponent";
-import Categories from "./components/categoriesComponent";
-import Home from "./components/homeComponent";
-import Register from "./components/registerComponent";
-import LogIn from "./components/logInComponent";
-import SourceNews from "./components/sourceNewsComponent";
-import CategoryNews from "./components/categoryNewsComponent";
-import SearchNews from "./components/searchNewsComponent";
-import DropDown from './components/catSourceDropdownComponent';
+import Navbar from "./components/layout/NavbarComponent";
+import Sources from "./components/layout/SourcesComponent";
+import Categories from "./components/layout/CategoriesComponent";
+import Home from "./components/dashboard/HomeComponent";
+import Register from "./components/auth/RegisterComponent";
+import LogIn from "./components/auth/LogInComponent";
+import SourceNews from "./components/dashboard/SourceNewsComponent";
+import CategoryNews from "./components/dashboard/CategoryNewsComponent";
+import SearchNews from "./components/dashboard/SearchNewsComponent";
+import DropDown from './components/layout/CatSourceDropdownComponent';
 
 class App extends Component {
     componentDidMount() {
