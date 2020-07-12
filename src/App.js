@@ -3,9 +3,8 @@ import { Route, BrowserRouter, Switch } from "react-router-dom";
 import { connect } from "react-redux";
 import "./App.css";
 
-import jwtDecode from "jwt-decode";
 import { authenticateUser, postLogOut } from "./store/actions/authActions";
-import { isLoadingAction } from './store/actions/spinnerAction';
+import { startSpinnerAction } from './store/actions/spinnerAction';
 
 import Navbar from "./components/layout/NavbarComponent";
 import Sources from "./components/layout/SourcesComponent";
@@ -19,22 +18,6 @@ import SearchNews from "./components/dashboard/SearchNewsComponent";
 import DropDown from './components/layout/CatSourceDropdownComponent';
 
 class App extends Component {
-    componentDidMount() {
-		this.props.isLoading();
-        const token = localStorage.getItem('token');
-        console.log("Get token", token);
-		if (token) {
-            const decoded = jwtDecode(token);
-            console.log("Get data from token", decoded);
-            this.props.isAuthenticated(decoded);
-            const currentTime = Date.now() / 1000; // to get in milliseconds
-            if (decoded.exp < currentTime) {
-                // Logout user
-                this.props.isAuthenticated(decoded);    // Redirect to login
-            }
-        }
-    }
-    
 	render() {
         const defaultContainer = () => (
             <div>            
@@ -85,7 +68,7 @@ class App extends Component {
 
 const mapDispatchToProps = (dispatch) => {
 	return {
-		isLoading: () => dispatch(isLoadingAction()),
+		isLoading: () => dispatch(startSpinnerAction()),
         isAuthenticated: (user) => dispatch(authenticateUser(user)),
         logOutPost: () => dispatch(postLogOut())
 	};

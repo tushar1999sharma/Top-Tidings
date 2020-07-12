@@ -117,8 +117,8 @@ class registerComponent extends Component {
 //take data from redux store to components prop
 const mapStateToProps = (state) => {
 	return {
-        isAuthenticated: state.isAuthenticated,
-        user: state.user
+        isAuthenticated: state.auth.isAuthenticated,
+        user: state.auth.user
 	};
 };
 //take data to redux store

@@ -4,7 +4,7 @@ import SearchBar from "./SearchBarComponent";
 import SignIn from './SignInComponent';
 import SignOut from './SignOutComponent';
 import { connect } from "react-redux";
-import { isLoadingAction } from '../../store/actions/spinnerAction';
+import { startSpinnerAction } from '../../store/actions/spinnerAction';
 import { postLogOut } from "../../store/actions/authActions";
 
 class navBarComponent extends Component {
@@ -54,15 +54,15 @@ class navBarComponent extends Component {
 const mapStateToProps = (state) => {
 	console.log(state);
 	return {
-        isAuthenticated: state.isAuthenticated,
-		currentUser: state.currentUser
+        isAuthenticated: state.auth.isAuthenticated,
+		currentUser: state.auth.currentUser
 	};
 };
 
 //take data to redux store
 const mapDispatchToProps = (dispatch) => {
     return {
-        isLoading: () => dispatch(isLoadingAction()),
+        isLoading: () => dispatch(startSpinnerAction()),
         LogOutPost: (history) => dispatch(postLogOut(history))
     }
 }

@@ -5,6 +5,7 @@ export const homeAction = () => {
         axios.get(`https://newsapi.org/v2/top-headlines?country=in&apiKey=2f18a46c3eea4f1fb7380121f6d42f55`)
             .then(res => { //handle promise
                 dispatch({ type: 'HOME_NEWS', payload: res.data.articles })
+                dispatch({ type: 'STOP_SPINNER' })
             })
     }
 }
@@ -14,6 +15,7 @@ export const queryAction = (query) => {
         axios.get(`https://newsapi.org/v2/top-headlines?q=${query}&language=en&apiKey=2f18a46c3eea4f1fb7380121f6d42f55`)
             .then(res => { //handle promise
                 dispatch({ type: 'SEARCH_NEWS', payload: res.data.articles })
+                dispatch({ type: 'STOP_SPINNER' })
             })
     }
 }
@@ -23,6 +25,7 @@ export const sourceAction = (srcID) => {
         axios.get(`https://newsapi.org/v2/top-headlines?sources=${srcID}&apiKey=2f18a46c3eea4f1fb7380121f6d42f55`)
             .then(res => { //handle promise
                 dispatch({ type: 'SOURCE_NEWS', payload: res.data.articles })
+                dispatch({ type: 'STOP_SPINNER' })
             })
     }
 }
@@ -32,6 +35,7 @@ export const categoryAction = (ctgName) => {
         axios.get(`https://newsapi.org/v2/top-headlines?country=in&category=${ctgName}&language=en&apiKey=2f18a46c3eea4f1fb7380121f6d42f55`)
             .then(res => { //handle promise
                 dispatch({ type: 'CATEGORY_NEWS', payload: res.data.articles })
+                dispatch({ type: 'STOP_SPINNER' })
             })
     }
 }

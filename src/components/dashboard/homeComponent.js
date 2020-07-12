@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import ShowNews from "./ShowNewsComponent";
-import { isLoadingAction } from '../../store/actions/spinnerAction';
+import { startSpinnerAction } from '../../store/actions/spinnerAction';
 import { homeAction } from "../../store/actions/getNewsActions";
 
 class homeComponent extends Component {
@@ -35,7 +35,7 @@ class homeComponent extends Component {
 
 const mapDispatchToProps = (dispatch) => {
 	return {
-		isLoadingNews: () => dispatch(isLoadingAction()),
+		isLoadingNews: () => dispatch(startSpinnerAction()),
 		getHomeNews: () => dispatch(homeAction())
 	};
 };

@@ -1,5 +1,5 @@
-export const isLoadingAction = () => {
+export const startSpinnerAction = () => {
     return (dispatch) => {
-        dispatch({ type: 'IS_LOADING' })
+        dispatch({ type: 'START_SPINNER' })
     }
 }

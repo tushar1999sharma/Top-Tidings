@@ -72,9 +72,9 @@ const showNewsComponent = (props) => {
 //take data from redux store to components prop
 const mapStateToProps = (state) => {
 	return {
-		headlines: state.headlines,
-		isLoading: state.isLoading
+		headlines: state.news.headlines,
+		isLoading: state.spinner.isLoading
 	};
 };
 
-export default connect(mapStateToProps)(showNewsComponent);
+export default connect(mapStateToProps, null)(showNewsComponent);
