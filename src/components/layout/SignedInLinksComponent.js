@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from "react-router-dom";
 import { connect } from 'react-redux';
 
-const SignInComponent = () => {
+const SignInComponent = (props) => {
     return (
         <ul className="nav navbar-nav ml-auto">
             <li className="nav-item">
@@ -21,11 +21,11 @@ const SignInComponent = () => {
                     to=""
                     className="nav-link"
                 >
-                    {this.props.currentUserEmail}
+                    {props.currentUserEmail}
                 </Link>
             </li>
             <li className="nav-item"
-                /* onClick={this.logOutSubmit} */
+                /* onClick={logOutSubmit} */
             >
                 <Link
                     to=""

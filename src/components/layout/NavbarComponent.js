@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import { Link, withRouter } from "react-router-dom";
 import { connect } from 'react-redux';
 import SearchBar from "./SearchBarComponent";
-import SignInLinks from './SignInLinksComponent';
-import SignOutLinks from './SignOutLinksComponent';
+import SignedInLinks from './SignedInLinksComponent';
+import SignedOutLinks from './SignedOutLinksComponent';
 import { startSpinnerAction } from '../../store/actions/spinnerAction';
 import { postLogOut } from "../../store/actions/authActions";
 
@@ -40,9 +40,9 @@ class navBarComponent extends Component {
                     <SearchBar />
 
                     {this.props.isAuthenticated ? (
-                        <SignOutLinks />
+                        <SignedOutLinks />
                     ) : (
-                        <SignInLinks />
+                        <SignedInLinks />
                     )}
                 </div>
             </nav>

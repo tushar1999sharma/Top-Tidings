@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import swal from 'sweetalert';
-import { postRegister } from '../../store/actions/authActions';
+import { registerAction } from '../../store/actions/authActions';
 
 class registerComponent extends Component {
     constructor(props) {
@@ -118,13 +118,12 @@ class registerComponent extends Component {
 const mapStateToProps = (state) => {
 	return {
         isAuthenticated: state.auth.isAuthenticated,
-        user: state.auth.user
 	};
 };
 //take data to redux store
 const mapDispatchToProps = (dispatch) => {
     return {
-        registerPost: (userInfo, history) => dispatch(postRegister(userInfo, history))
+        registerPost: (userInfo, history) => dispatch(registerAction(userInfo, history))
     }
 }
 

@@ -1,46 +1,56 @@
 import axios from 'axios';
 import swal from 'sweetalert';
+import { useFirebase, isLoaded, isEmpty } from 'react-redux-firebase';
 
-export const postRegister = (data, history) => {
-    return (dispatch, {getFirebase}) => {
+export const registerAction = (data, history) => {
+    return (dispatch, getState, { getFirebase }) => {
         const firebase = getFirebase();
-        firebase.auth().signInWithEmailAndPassword(
-            data.email,
-            data.password
-        ).then(() => {
-            dispatch({type: "LOGIN_USER"})
-        }).catch((err) => {
-            swal({
-                text: 'Somethis went wrong in logging user',
-                title: "Error",
-                icon: "error",
-                className: "red-bg",
-                closeOnClickOutside: true,
-                timer: 1000
+        console.log(process.env.REACT_APP_FB_API);
+        console.log(firebase);
+        firebase
+            .auth()
+            .signInWithEmailAndPassword(data.email, data.password)
+            .then(() => {
+                history.push("/");
+                dispatch({type: "LOGIN_USER"})          
             })
-        });
+            .catch(err => {
+                console.log(err);
+                swal({
+                    text: err.message,
+                    title: "Error",
+                    icon: "error",
+                    className: "red-bg",
+                    closeOnClickOutside: true,
+                    timer: 1000
+                })          
+            });
     }
 }
 
-export const postLogIn = (data, history) => {
-    return (dispatch, {getFirebase}) => {
+export const logInAction = (data, history) => {
+    return (dispatch, getState, { getFirebase }) => {
         const firebase = getFirebase();
-
-        firebase.auth().signInWithEmailAndPassword(
-            data.email,
-            data.password
-        ).then(() => {
-            dispatch({type: "LOGIN_USER"})
-        }).catch((err) => {
-            swal({
-                text: 'Somethis went wrong in logging user',
-                title: "Error",
-                icon: "error",
-                className: "red-bg",
-                closeOnClickOutside: true,
-                timer: 1000
+        console.log(process.env.REACT_APP_FB_API);
+        console.log(firebase);
+        firebase
+            .auth()
+            .signInWithEmailAndPassword(data.email, data.password)
+            .then(() => {
+                history.push("/");
+                dispatch({type: "LOGIN_USER"})          
             })
-        });
+            .catch(err => {
+                console.log(err);
+                swal({
+                    text: err.message,
+                    title: "Error",
+                    icon: "error",
+                    className: "red-bg",
+                    closeOnClickOutside: true,
+                    timer: 1000
+                })          
+            });
     }
 }
 

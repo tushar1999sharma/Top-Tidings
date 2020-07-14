@@ -9,8 +9,7 @@ const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
 const store = createStore(reducer, 
     compose(
-        composeEnhancers(applyMiddleware(thunk.withExtraArgument({ getFirestore, getFirebase }))),
-        reduxFirestore(config)
+        composeEnhancers(applyMiddleware(thunk.withExtraArgument({ getFirebase, getFirestore })))
     )
 );
 

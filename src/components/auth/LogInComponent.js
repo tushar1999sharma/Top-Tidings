@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 import swal from 'sweetalert';
-import { postLogIn } from "../../store/actions/authActions";
+import { logInAction } from "../../store/actions/authActions";
 
 class logInComponent extends Component {
     constructor(props) {
@@ -100,7 +100,7 @@ const mapStateToProps = (state) => {
 //take data to redux store
 const mapDispatchToProps = (dispatch) => {
     return {
-        LogInPost: (props, userInfo) => dispatch(postLogIn(props, userInfo))
+        LogInPost: (props, userInfo) => dispatch(logInAction(props, userInfo))
     }
 }
 
