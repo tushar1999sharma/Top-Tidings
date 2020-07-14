@@ -11,10 +11,16 @@ import 'firebase/database'
 import 'firebase/firestore'
 import { ReactReduxFirebaseProvider } from 'react-redux-firebase' //syncing data in firestore to our storehe f
 import { createFirestoreInstance } from 'redux-firestore' //connecting the whole application to the firestore database
-
+import { useSelector } from "react-redux";
+import { isLoaded } from "react-redux-firebase";
 import store from './store/store';
 import { config } from './config/fbConfig';
-const rrfConfig = { userProfile: 'users' } // react-redux-firebase config
+
+const rrfConfig = {
+    userProfile: "users",
+    useFirestoreForProfile: true,
+};
+
 
 // Initialize firebase instance
 firebase.initializeApp(config);
@@ -26,6 +32,23 @@ const rrfProps = {
     config: rrfConfig,
     dispatch: store.dispatch,
     createFirestoreInstance: createFirestoreInstance
+}
+
+function AuthIsLoaded({ children }) {
+    const auth = useSelector(state => state.firebase.auth);
+    if (!isLoaded(auth))
+      return (
+        <div className="text-center">
+          <div
+            className="spinner-grow text-primary"
+            style={{ width: "7rem", height: "7rem" }}
+            role="status"
+          >
+            <span className="sr-only">Loading...</span>
+          </div>
+        </div>
+      );
+    return children;
 }
 
 ReactDOM.render(

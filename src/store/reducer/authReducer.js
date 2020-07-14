@@ -7,8 +7,12 @@ const authReducer = (state = initState, action) => {
     switch (action.type) {
         case 'LOGIN_USER':
             return {
-                ...state,
+                ...state
             }    
+        case 'LOGOUT_USER':
+            return {
+                ...state
+            }
         default:
             return state            
     }

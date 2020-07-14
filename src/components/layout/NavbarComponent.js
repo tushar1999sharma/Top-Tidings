@@ -5,15 +5,9 @@ import SearchBar from "./SearchBarComponent";
 import SignedInLinks from './SignedInLinksComponent';
 import SignedOutLinks from './SignedOutLinksComponent';
 import { startSpinnerAction } from '../../store/actions/spinnerAction';
-import { postLogOut } from "../../store/actions/authActions";
+import { logOutAction } from "../../store/actions/authActions";
 
 class navBarComponent extends Component {
-    logOutSubmit = (event) => {
-        event.preventDefault();
-        //this.props.isLoading();
-        this.props.LogOutPost(this.props.history);
-    }
-
     render() {
         return (
             <nav className="navbar navbar-expand-sm navbar-dark bg-dark">
@@ -62,7 +56,6 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
     return {
         isLoading: () => dispatch(startSpinnerAction()),
-        LogOutPost: (history) => dispatch(postLogOut(history))
     }
 }
 

@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { Link } from "react-router-dom";
 import { connect } from 'react-redux';
+import { logOutAction } from '../../store/actions/authActions';
 
-const SignInComponent = (props) => {
+const SignedInLinksComponent = (props) => {
     return (
         <ul className="nav navbar-nav ml-auto">
             <li className="nav-item">
@@ -25,7 +26,7 @@ const SignInComponent = (props) => {
                 </Link>
             </li>
             <li className="nav-item"
-                /* onClick={logOutSubmit} */
+                    onClick={props.logOutSubmit()}
             >
                 <Link
                     to=""
@@ -43,6 +44,12 @@ const mapStateToProps = (state) => {
 	return {
         currentUserEmail: state.firebase.auth.email,
 	};
-};
+}
 
-export default connect(mapStateToProps, null)(SignInComponent);
+const mapDispatchToProps = (dispatch) => {
+    return {
+        logOutSubmit: () => dispatch(logOutAction())
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(SignedInLinksComponent);
