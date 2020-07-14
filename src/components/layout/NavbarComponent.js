@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import { Link, withRouter } from "react-router-dom";
+import { connect } from 'react-redux';
 import SearchBar from "./SearchBarComponent";
-import SignIn from './SignInComponent';
-import SignOut from './SignOutComponent';
-import { connect } from "react-redux";
+import SignInLinks from './SignInLinksComponent';
+import SignOutLinks from './SignOutLinksComponent';
 import { startSpinnerAction } from '../../store/actions/spinnerAction';
 import { postLogOut } from "../../store/actions/authActions";
 
@@ -16,12 +16,10 @@ class navBarComponent extends Component {
 
     render() {
         return (
-            <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
+            <nav className="navbar navbar-expand-sm navbar-dark bg-dark">
                 <Link to="/">
-                    <span className="navbar-brand m-1">TopTidings</span>
+                    <span className="navbar-brand">TopTidings</span>
                 </Link>
-
-                <SearchBar />
 
                 <button
                     className="navbar-toggler"
@@ -39,10 +37,12 @@ class navBarComponent extends Component {
                     className="collapse navbar-collapse bg-dark navbar-custom-buttons"
                     id="navbarSupportedContent"
                 >
+                    <SearchBar />
+
                     {this.props.isAuthenticated ? (
-                        <SignIn />
+                        <SignOutLinks />
                     ) : (
-                        <SignOut />
+                        <SignInLinks />
                     )}
                 </div>
             </nav>
@@ -50,16 +50,15 @@ class navBarComponent extends Component {
     }
 }
 
-//take data from redux store to components prop
+//take data from store to components prop
 const mapStateToProps = (state) => {
 	console.log(state);
 	return {
-        isAuthenticated: state.auth.isAuthenticated,
-		currentUser: state.auth.currentUser
+        isAuthenticated: state.firebase.auth.isEmpty,
 	};
 };
 
-//take data to redux store
+//take data to store
 const mapDispatchToProps = (dispatch) => {
     return {
         isLoading: () => dispatch(startSpinnerAction()),

@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from "react-router-dom";
+import { connect } from 'react-redux';
 
 const SignInComponent = () => {
     return (
@@ -20,11 +21,11 @@ const SignInComponent = () => {
                     to=""
                     className="nav-link"
                 >
-                    {this.props.currentUser.name}
+                    {this.props.currentUserEmail}
                 </Link>
             </li>
             <li className="nav-item"
-                onClick={this.logOutSubmit}
+                /* onClick={this.logOutSubmit} */
             >
                 <Link
                     to=""
@@ -37,4 +38,11 @@ const SignInComponent = () => {
     );
 }
 
-export default SignInComponent;
+const mapStateToProps = (state) => {
+	console.log(state);
+	return {
+        currentUserEmail: state.firebase.auth.email,
+	};
+};
+
+export default connect(mapStateToProps, null)(SignInComponent);

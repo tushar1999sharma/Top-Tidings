@@ -1,8 +1,5 @@
 const initState = {
-    currentUser: {},
-    isAuthenticated: false,
-    headlines: [],
-    isLoading: false
+    bookmark: {}
 }
 
 const bookmarkReducer = (state = initState, action) => {

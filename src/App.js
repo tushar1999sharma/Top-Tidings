@@ -3,7 +3,7 @@ import { Route, BrowserRouter, Switch } from "react-router-dom";
 import { connect } from "react-redux";
 import "./App.css";
 
-import { authenticateUser, postLogOut } from "./store/actions/authActions";
+import { postLogOut } from "./store/actions/authActions";
 import { startSpinnerAction } from './store/actions/spinnerAction';
 
 import Navbar from "./components/layout/NavbarComponent";
@@ -69,7 +69,6 @@ class App extends Component {
 const mapDispatchToProps = (dispatch) => {
 	return {
 		isLoading: () => dispatch(startSpinnerAction()),
-        isAuthenticated: (user) => dispatch(authenticateUser(user)),
         logOutPost: () => dispatch(postLogOut())
 	};
 };

@@ -60,14 +60,30 @@
 }
 
 /************* Search bar **************/
+.form-inline {
+    width: 35vw;
+}
+.form-inline .form-control {
+    width: 79%;
+}
 .searchBar {
-    width: 40%;
     border-radius: 20px;
+    text-align: center;
 }
 .search-icon {
     color: white;
-	position: relative;
 }
+.search-icon:hover {
+    color: #fbc531;
+}
+/* @media (max-width: 479px) {
+    .form-inline {
+        width: 100vw;
+    }
+    .searchBar {
+        width: 79%;
+    }
+} */
 
 /* card-container, share-icon, bookmark-icon */
 .card-container {
