@@ -1,4 +1,9 @@
-export const fbConfig = {
+import firebase from 'firebase/app'
+import 'firebase/firestore'
+import 'firebase/auth'
+import 'firebase/storage'
+
+const fbConfig = {
     apiKey: process.env.REACT_APP_FB_API,
     authDomain: process.env.REACT_APP_FB_AUTH_DOMAIN,
     databaseURL: process.env.REACT_APP_FB_DATABASE_URL,
@@ -9,8 +14,12 @@ export const fbConfig = {
     measurementId: process.env.REACT_APP_FB_MEASUREMENT_ID
 };
 
-export const rrfConfig = {
-    userProfile: "users",
-    useFirestoreForProfile: true,
-    attachAuthIsReady: true
-};
+// Initialize firebase instance
+firebase.initializeApp(fbConfig);
+
+const firestore = firebase.firestore()
+const auth = firebase.auth()
+const storage = firebase.storage()
+const googleProvider = new firebase.auth.GoogleAuthProvider()
+
+export { firebase, firestore, auth, googleProvider, storage }

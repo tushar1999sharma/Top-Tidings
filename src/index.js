@@ -6,10 +6,7 @@ import * as serviceWorker from "./serviceWorker";
 import { Provider } from "react-redux"; //help to interact redux store with react app
 
 //import firebase 
-import firebase from 'firebase/app';
-import 'firebase/auth'
-import 'firebase/database'
-import 'firebase/firestore'
+import { firebase } from './config/fbConfig';
 
 //import redux
 import { ReactReduxFirebaseProvider } from 'react-redux-firebase' //syncing data in firestore to our storehe f
@@ -18,13 +15,11 @@ import { useSelector } from "react-redux";
 import { isLoaded } from "react-redux-firebase";
 import store from './store/store';
 
-//firebase config
-import { fbConfig, rrfConfig } from './config/fbConfig';
-
-// Initialize firebase instance
-firebase.initializeApp(fbConfig);
-//Initialize firestore
-firebase.firestore();
+//react redux configuration
+export const rrfConfig = {
+    userProfile: "users",
+    useFirestoreForProfile: true
+}
 
 //react redux firebae properties
 const rrfProps = {

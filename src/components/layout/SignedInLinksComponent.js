@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
-import { Link } from "react-router-dom";
+import { Link, withRouter } from "react-router-dom";
 import { connect } from 'react-redux';
 import { logOutAction } from '../../store/actions/authActions';
 
 const SignedInLinksComponent = (props) => {
+    console.log(props);
     return (
         <ul className="nav navbar-nav ml-auto">
             <li className="nav-item">
@@ -26,7 +27,7 @@ const SignedInLinksComponent = (props) => {
                 </Link>
             </li>
             <li className="nav-item"
-                    onClick={props.logOutSubmit()}
+                onClick={props.logOutSubmit(props.history)}
             >
                 <Link
                     to=""
@@ -48,8 +49,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        logOutSubmit: () => dispatch(logOutAction())
+        logOutSubmit: (history) => dispatch(logOutAction(history))
     }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(SignedInLinksComponent);
+export default connect(mapStateToProps, mapDispatchToProps)(withRouter(SignedInLinksComponent));

@@ -90,6 +90,11 @@
 	position: relative;
 	z-index: 0;
 }
+.card-img-top {
+    width: 100%;
+    height: 15vw;
+    object-fit: cover;
+}
 .bookmark-icon {
 	position: absolute;
 	z-index: 1;

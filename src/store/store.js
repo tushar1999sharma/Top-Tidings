@@ -7,11 +7,6 @@ import { fbConfig } from "../config/fbConfig";
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose; //use redux dev tool
 
-const store = createStore(reducer, 
-    compose(
-        composeEnhancers(applyMiddleware(thunk.withExtraArgument({ getFirebase, getFirestore }))),
-        reduxFirestore(fbConfig) // redux bindings for firestore
-    )
-);
+const store = createStore(reducer, composeEnhancers(applyMiddleware(thunk)));
 
 export default store
