@@ -5,28 +5,28 @@ import App from "./App";
 import * as serviceWorker from "./serviceWorker";
 import { Provider } from "react-redux"; //help to interact redux store with react app
 
+//import firebase 
 import firebase from 'firebase/app';
 import 'firebase/auth'
 import 'firebase/database'
 import 'firebase/firestore'
+
+//import redux
 import { ReactReduxFirebaseProvider } from 'react-redux-firebase' //syncing data in firestore to our storehe f
 import { createFirestoreInstance } from 'redux-firestore' //connecting the whole application to the firestore database
 import { useSelector } from "react-redux";
 import { isLoaded } from "react-redux-firebase";
 import store from './store/store';
-import { config } from './config/fbConfig';
 
-const rrfConfig = {
-    userProfile: "users",
-    useFirestoreForProfile: true,
-};
-
+//firebase config
+import { fbConfig, rrfConfig } from './config/fbConfig';
 
 // Initialize firebase instance
-firebase.initializeApp(config);
+firebase.initializeApp(fbConfig);
 //Initialize firestore
 firebase.firestore();
 
+//react redux firebae properties
 const rrfProps = {
     firebase: firebase,
     config: rrfConfig,
@@ -34,7 +34,7 @@ const rrfProps = {
     createFirestoreInstance: createFirestoreInstance
 }
 
-function AuthIsLoaded({ children }) {
+/* function AuthIsLoaded({ children }) {
     const auth = useSelector(state => state.firebase.auth);
     if (!isLoaded(auth))
       return (
@@ -50,7 +50,7 @@ function AuthIsLoaded({ children }) {
       );
     return children;
 }
-
+ */
 ReactDOM.render(
 	<React.StrictMode>
 		<Provider store={store}>

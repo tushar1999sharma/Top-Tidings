@@ -3,14 +3,21 @@ import swal from 'sweetalert';
 import { useFirebase, isLoaded, isEmpty } from 'react-redux-firebase';
 
 export const registerAction = (data, history) => {
-    return (dispatch, getState, { getFirebase }) => {
+    return (dispatch, getState, { getFirebase, getFirestore }) => {
         const firebase = getFirebase();
-        console.log(process.env.REACT_APP_FB_API);
-        console.log(firebase);
+        const firestore = getFirestore();
         firebase
             .auth()
-            .signInWithEmailAndPassword(data.email, data.password)
-            .then(() => {
+            .createUserWithEmailAndPassword(data.email, data.password)
+            .then((resp) => {
+                //store other user detail in firestore with collection name "user"
+                return firestore
+                        .collection("user")
+                        .doc(resp.user.uid)
+                        .set({
+                            name: data.name
+                        })
+            }).then(() => {
                 history.push("/");
                 dispatch({type: "LOGIN_USER"})          
             })
@@ -31,8 +38,6 @@ export const registerAction = (data, history) => {
 export const logInAction = (data, history) => {
     return (dispatch, getState, { getFirebase }) => {
         const firebase = getFirebase();
-        console.log(process.env.REACT_APP_FB_API);
-        console.log(firebase);
         firebase
             .auth()
             .signInWithEmailAndPassword(data.email, data.password)
