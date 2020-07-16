@@ -28,7 +28,7 @@ class showNewsComponent extends Component {
             this.props.headlines.map((headline, index) => {
                 return (
                     <div
-                        className="col-xl-4 col-sm-6 d-flex align-items-stretch"
+                        className="col-xl-4 col-md-6 col-sm-12 d-flex align-items-stretch"
                         key={index}
                     >
                         <div className="card booking-card">

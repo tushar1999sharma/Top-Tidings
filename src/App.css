@@ -3,12 +3,12 @@
 }
 
 /********* NAVBAR COMPONENT *************/
-@media (min-width: 992px) {
+/* @media (min-width: 992px) {
 	.navbar-expand-lg .navbar-collapse {
 		display: -ms-flexbox !important;
 		display: contents !important;
 	}
-}
+} */
 
 /************* Source News ***************/
 .sources-button {
@@ -76,7 +76,7 @@
 .search-icon:hover {
     color: #fbc531;
 }
-/* @media (max-width: 479px) {
+/* @media (max-width: 992px) {
     .form-inline {
         width: 100vw;
     }
@@ -89,11 +89,6 @@
 .card-container {
 	position: relative;
 	z-index: 0;
-}
-.card-img-top {
-    width: 100%;
-    height: 15vw;
-    object-fit: cover;
 }
 .bookmark-icon {
 	position: absolute;
@@ -108,9 +103,38 @@
 	z-index: 1;
 	left: 5%;
 	font-size: 30px;
-
 	background-color: rgba(255, 255, 255, 0.5);
 	padding: 5px;
+}
+/* card image size */
+/* max width */
+@media (min-width: 1200px ) {
+    .card-img-top {
+        width: 100%;
+        height: 20vw;
+        object-fit: fill;
+    }
+}
+@media (max-width: 1200px) {
+    .card-img-top {
+        width: 100%;
+        height: 25vw;
+        object-fit: fill;
+    }
+}
+@media (max-width: 992px) {
+    .card-img-top {
+        width: 100%;
+        height: 30vw;
+        object-fit: fill;
+    }
+}
+@media (max-width: 768px) {
+    .card-img-top {
+        width: 100%;
+        height: 35vw;
+        object-fit: fill;
+    }
 }
 
 /* for spinner */

@@ -4,8 +4,6 @@ import { connect } from 'react-redux';
 import SearchBar from "./SearchBarComponent";
 import SignedInLinks from './SignedInLinksComponent';
 import SignedOutLinks from './SignedOutLinksComponent';
-import { startSpinnerAction } from '../../store/actions/spinnerAction';
-import { logOutAction } from "../../store/actions/authActions";
 
 class navBarComponent extends Component {
     render() {
@@ -52,11 +50,4 @@ const mapStateToProps = (state) => {
 	};
 };
 
-//take data to store
-const mapDispatchToProps = (dispatch) => {
-    return {
-        isLoading: () => dispatch(startSpinnerAction()),
-    }
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(withRouter(navBarComponent));
+export default connect(mapStateToProps)(withRouter(navBarComponent));

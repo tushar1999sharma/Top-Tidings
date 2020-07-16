@@ -124,7 +124,7 @@ class registerComponent extends Component {
                                 </a> */}
                                 <Link to="" onClick={this.props.signInWithGoogle(this.props.history)}>
                                     <p class="text-center">
-                                        <img src="https://img.icons8.com/color/48/000000/google-logo.png" height="20px" width="20px"/>
+                                        <img src="https://img.icons8.com/color/48/000000/google-logo.png" alt="G" height="20px" width="20px"/>
                                     </p>
                                 </Link>
                             </div>

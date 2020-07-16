@@ -29,7 +29,7 @@ const rrfProps = {
     createFirestoreInstance: createFirestoreInstance
 }
 
-/* function AuthIsLoaded({ children }) {
+function AuthIsLoaded({ children }) {
     const auth = useSelector(state => state.firebase.auth);
     if (!isLoaded(auth))
       return (
@@ -45,13 +45,15 @@ const rrfProps = {
       );
     return children;
 }
- */
+
 ReactDOM.render(
 	<React.StrictMode>
 		<Provider store={store}>
             <ReactReduxFirebaseProvider {...rrfProps}>
-                {/* use store in app.js */}
-                <App />
+                <AuthIsLoaded>
+                    {/* use store in app.js */}
+                    <App />
+                </AuthIsLoaded>
             </ReactReduxFirebaseProvider>
 		</Provider>
 	</React.StrictMode>,

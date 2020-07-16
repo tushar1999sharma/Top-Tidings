@@ -111,7 +111,7 @@ export const logOutAction = (history) => {
                     icon: "success",
                     closeOnClickOutside: true,
                     timer: 1000
-                })         
+                })
             })
             .catch(err => {  
                 console.log(err);
