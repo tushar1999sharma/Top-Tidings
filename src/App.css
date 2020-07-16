@@ -111,21 +111,21 @@
 @media (min-width: 1200px ) {
     .card-img-top {
         width: 100%;
-        height: 20vw;
+        height: 17vw;
         object-fit: fill;
     }
 }
 @media (max-width: 1200px) {
     .card-img-top {
         width: 100%;
-        height: 25vw;
+        height: 22vw;
         object-fit: fill;
     }
 }
 @media (max-width: 992px) {
     .card-img-top {
         width: 100%;
-        height: 30vw;
+        height: 26vw;
         object-fit: fill;
     }
 }

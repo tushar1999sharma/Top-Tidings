@@ -13,7 +13,7 @@ const authReducer = (state = initState, action) => {
         case 'REGISTER_ERROR':
             return {
                 ...state,
-                authError: action.payload
+                authError: action.payload.message
             }
 
         case 'LOGIN_SUCCESS':
@@ -25,7 +25,7 @@ const authReducer = (state = initState, action) => {
         case 'LOGIN_ERROR':
             return {
                 ...state,  
-                authError: action.payload
+                authError: action.payload.message
             }  
 
         case 'LOGOUT_SUCCESS':
@@ -37,7 +37,7 @@ const authReducer = (state = initState, action) => {
         case 'LOGOUT_ERROR':
             return {
                 ...state,
-                authError: action.payload
+                authError: action.payload.message
             }
 
         default:

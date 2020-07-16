@@ -108,7 +108,7 @@ class registerComponent extends Component {
                                     />
                                 </div>
                                 <div className="center text-danger">
-                                    { this.props.authError ? <p>something went wrong</p> : null }
+                                    { this.props.authError ? <p>! { this.props.authError }</p> : null }
                                 </div>
                                 <div className="col-md-12 text-center ">
                                     <button type="submit" className=" btn btn-block mybtn btn-dark tx-tfm">Register</button>
@@ -138,6 +138,7 @@ class registerComponent extends Component {
 
 //take data from redux store to components prop
 const mapStateToProps = (state) => {
+    console.log(state.auth.authError)
 	return {
         authError: state.auth.authError,
 	};

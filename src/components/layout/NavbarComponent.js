@@ -44,7 +44,7 @@ class navBarComponent extends Component {
 
 //take data from store to components prop
 const mapStateToProps = (state) => {
-	console.log(state);
+    console.log(state);
 	return {
         isAuthenticated: state.firebase.auth.isEmpty,
 	};

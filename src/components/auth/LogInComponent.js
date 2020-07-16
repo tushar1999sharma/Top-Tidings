@@ -25,7 +25,7 @@ class logInComponent extends Component {
                 closeOnClickOutside: true,
                 timer: 500
             }).then(() => {
-                this.props.history.push("/signup");
+                this.props.history.push("/");
             });
         }
     }
@@ -81,13 +81,13 @@ class logInComponent extends Component {
                                     />
                                 </div>
                                 <div className="center text-danger">
-                                    { this.props.authError ? <p>wrong id or password</p> : null }
+                                    { this.props.authError ? <p>! { this.props.authError }</p> : null }
                                 </div>
                                 <div className="col-md-12 text-center ">
                                     <button type="submit" className=" btn btn-block mybtn btn-dark tx-tfm">Login</button>
                                 </div>
                             </form>
-                            <p class="text-center">Wanna create new account? <Link to="/signup"> Sign in </Link></p>
+                            <p class="text-center">Wanna create new account? <Link to="/signup"> Sign up </Link></p>
                             <p class="text-center">OR</p>
                             <div class="icons-position">
                                 {/* <a onClick={}>

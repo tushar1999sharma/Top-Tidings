@@ -11,30 +11,34 @@ export const registerAction = (data, history) => {
         auth
             .createUserWithEmailAndPassword(data.email, data.password)
             .then((res) => {
+                console.log("Register kr gya");
                 //store other user detail in firestore with collection name "user"
-                return firestore
-                        .collection("user")
-                        .doc(res.user.uid)
-                        .set({
-                            name: data.name,
-                            email: data.email,
-                            createdAt: Date.now()
-                        })
-            }).then(() => {
-                history.push("/");
+                firestore
+                    .collection("user")
+                    .doc(res.user.uid)
+                    .set({
+                        name: data.name,
+                        email: data.email,
+                        createdAt: Date.now()
+                    })
+                    return res.user.uid
+            })
+            .then(() => {
+                console.log("regoiter krne aaya");
                 dispatch({type: "REGISTER_SUCCESS"});   
                 swal({
-                    text: "Successfully register to Top tidings",
+                    text: "Successfully registered to Top tidings",
                     title: "Success",
                     icon: "success",
                     closeOnClickOutside: true,
                     timer: 1000
                 })
+                history.push("/");
             })
             .catch(err => {
                 console.log(err);
                 dispatch({type: "REGISTER_ERROR", payload: err});                 
-            });
+            })
     }
 }
 
@@ -43,7 +47,6 @@ export const logInAction = (data, history) => {
         auth
             .signInWithEmailAndPassword(data.email, data.password)
             .then(() => {
-                history.push("/");
                 dispatch({type: "LOGIN_SUCCESS"}); 
                 swal({
                     text: "Successfully logged in to Top tidings",
@@ -51,7 +54,8 @@ export const logInAction = (data, history) => {
                     icon: "success",
                     closeOnClickOutside: true,
                     timer: 1000
-                })    
+                })   
+                history.push("/"); 
             })
             .catch(err => {
                 console.log(err);
@@ -102,8 +106,6 @@ export const logOutAction = (history) => {
         auth
             .signOut()
             .then(() => {
-                console.log(history);
-                history.push("/");
                 dispatch({type: "LOGOUT_SUCCESS"});
                 swal({
                     text: "Successfully logged out from Top tidings",
@@ -112,6 +114,7 @@ export const logOutAction = (history) => {
                     closeOnClickOutside: true,
                     timer: 1000
                 })
+                history.push("/");
             })
             .catch(err => {  
                 console.log(err);
@@ -122,6 +125,6 @@ export const logOutAction = (history) => {
 
 export const unMatchedPassAction = () => {
     return (dispatch) => {
-        dispatch({type: "LOGOUT_ERROR", payload: "Password not match"});                   
+        dispatch({type: "LOGOUT_ERROR", payload: {message: "Password not match"}});                   
     }
 }

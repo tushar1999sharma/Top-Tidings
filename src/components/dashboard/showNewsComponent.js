@@ -13,7 +13,7 @@ class showNewsComponent extends Component {
     }
 
     handleBookmarkClick = () => {
-        if(this.props.auth.isAuthenticated) {
+        if(this.props.firebase.isEmpty) {
 
         }
         else {
@@ -22,7 +22,7 @@ class showNewsComponent extends Component {
     }
     
     render() {
-        return this.props.isLoading ? (
+        return ( this.props.isLoading/*  || !this.props.isFirebaseLoaded */) ? (
             <Spinner />
         ) : this.props.headlines.length ? (
             this.props.headlines.map((headline, index) => {
@@ -90,9 +90,11 @@ class showNewsComponent extends Component {
 
 //take data from redux store to components prop
 const mapStateToProps = (state) => {
+    console.log(state);
 	return {
 		headlines: state.news.headlines,
-		isLoading: state.spinner.isLoading
+        isLoading: state.spinner.isLoading,
+        isFirebaseLoaded: state.firebase.auth.isLoaded
 	};
 };
 
