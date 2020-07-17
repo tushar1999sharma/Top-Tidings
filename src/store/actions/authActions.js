@@ -4,6 +4,7 @@ import {
     firebase,
     firestore,
     googleProvider,
+    facebookProvider
 } from '../../config/fbConfig'
 
 export const registerAction = (data, history) => {
@@ -64,9 +65,9 @@ export const logInAction = (data, history) => {
     }
 }
 
-export const signInWithGoogle = (history) => {
+export const signInWithGoogleAction = (history) => {
     return (dispatch) => {
-        /* firebase
+        firebase
             .auth()
             .signInWithPopup(googleProvider)
             .then((res) => {
@@ -84,20 +85,59 @@ export const signInWithGoogle = (history) => {
                 }
             })
             .then(() => {
+                dispatch({ type: 'LOGIN_SUCCESS' });
+                swal({
+                    text: "Successfully logged in to Top tidings",
+                    title: "Success",
+                    icon: "success",
+                    closeOnClickOutside: true,
+                    timer: 1000
+                })
                 history.push('/')
-                dispatch({ type: 'LOGIN_SUCCESS' })
             })
             .catch(err => {
                 console.log(err);
+                dispatch({type: "LOGIN_ERROR", payload: err});         
+            });
+    }
+}
+
+export const signInWithFacebookAction = (history) => {
+    //ISSUE:- first create facebook acc then using facebook dev get app id and code
+    //then paste it in firebase facebook auth and enable faecbook auth (watch Utube vdo)
+    return (dispatch) => {
+        firebase
+            .auth()
+            .signInWithPopup(facebookProvider)
+            .then((res) => {
+                var user = res.additionalUserInfo
+                if (user.isNewUser) {
+                    firestore
+                        .collection('users')
+                        .doc(res.user.uid)
+                        .set({
+                            name: user.profile.name,
+                            email: user.profile.email,
+                            createdAt: Date.now(),
+                            provider: 'facebook',
+                        })
+                }
+            })
+            .then(() => {
+                dispatch({ type: 'LOGIN_SUCCESS' });
                 swal({
-                    text: err.message,
-                    title: "Error",
-                    icon: "error",
-                    className: "red-bg",
+                    text: "Successfully logged in to Top tidings",
+                    title: "Success",
+                    icon: "success",
                     closeOnClickOutside: true,
                     timer: 1000
-                })          
-            }); */
+                })
+                history.push('/')
+            })
+            .catch(err => {
+                console.log(err);
+                dispatch({type: "LOGIN_ERROR", payload: err});         
+            });
     }
 }
 

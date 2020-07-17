@@ -3,7 +3,12 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import swal from 'sweetalert';
-import { registerAction, unMatchedPassAction, signInWithGoogle } from '../../store/actions/authActions';
+import { 
+    registerAction, 
+    unMatchedPassAction, 
+    signInWithGoogleAction, 
+    signInWithFacebookAction 
+} from '../../store/actions/authActions';
 
 class registerComponent extends Component {
     constructor(props) {
@@ -54,13 +59,20 @@ class registerComponent extends Component {
             this.props.registerPost(data, this.props.history);
         }
     }
+
+    handleGoogleSignInSubmit = () => {
+        this.props.signInWithGoogle(this.props.history)
+    }
+    handleFacebookSignInSubmit = () => {
+        this.props.signInWithFacebook(this.props.history);
+    }
     
     render() {
         return (
             <div className="container">
                 <div className="row">
-                    <div className="col-md-5 mx-auto">
-                        <div className="myform form ">
+                    <div className="col-xl-5 col-lg-6 col-md-7 col-sm-8 col-9 mx-auto">
+                        <div className="myform form">
                             <div className="logo mb-3">
                                 <div className="col-md-12 text-center">
                                     <h1>Register</h1>
@@ -116,16 +128,13 @@ class registerComponent extends Component {
                             </form>
                             <p class="text-center">Alredy have an Account? <Link to="/signin"> Sign in </Link> </p>
                             <p class="text-center">OR</p>
-                            <div class="icons-position">
-                                {/* <a onClick={}>
-                                    <p class="text-center">
-                                        <i class="fab fa-facebook-f fa-lg" style="color:#3e11e4;"></i>
-                                    </p>
-                                </a> */}
-                                <Link to="" onClick={this.props.signInWithGoogle(this.props.history)}>
-                                    <p class="text-center">
-                                        <img src="https://img.icons8.com/color/48/000000/google-logo.png" alt="G" height="20px" width="20px"/>
-                                    </p>
+                            <div class="icons-position text-center">
+                                <Link onClick={this.handleFacebookSignInSubmit}>
+                                    <i className="fab fa-facebook-f fa-lg" style={{color: "#3e11e4"}}></i>
+                                </Link>
+                                {' '}
+                                <Link onClick={this.handleGoogleSignInSubmit}>
+                                    <img src="https://img.icons8.com/color/48/000000/google-logo.png" alt="G" height="23px" width="23px"/>
                                 </Link>
                             </div>
                         </div>
@@ -148,7 +157,8 @@ const mapDispatchToProps = (dispatch) => {
     return {
         registerPost: (userInfo, history) => dispatch(registerAction(userInfo, history)),
         unMatchedPassword: () => dispatch(unMatchedPassAction()),
-        signInWithGoogle: (history) => dispatch(signInWithGoogle(history))
+        signInWithFacebook: (history) => dispatch(signInWithFacebookAction(history)),
+        signInWithGoogle: (history) => dispatch(signInWithGoogleAction(history))
     }
 }
 

@@ -17,9 +17,10 @@ const fbConfig = {
 // Initialize firebase instance
 firebase.initializeApp(fbConfig);
 
-const firestore = firebase.firestore()
-const auth = firebase.auth()
-const storage = firebase.storage()
-const googleProvider = new firebase.auth.GoogleAuthProvider()
+const firestore = firebase.firestore();
+const auth = firebase.auth();
+const storage = firebase.storage();
+const googleProvider = new firebase.auth.GoogleAuthProvider();
+const facebookProvider = new firebase.auth.FacebookAuthProvider();
 
-export { firebase, firestore, auth, googleProvider, storage }
+export { firebase, firestore, auth, googleProvider, facebookProvider, storage }
