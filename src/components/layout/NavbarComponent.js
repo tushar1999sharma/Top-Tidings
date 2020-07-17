@@ -13,6 +13,8 @@ class navBarComponent extends Component {
                     <span className="navbar-brand">TopTidings</span>
                 </Link>
 
+                <SearchBar />
+
                 <button
                     className="navbar-toggler"
                     type="button"
@@ -24,13 +26,10 @@ class navBarComponent extends Component {
                 >
                     <span className="navbar-toggler-icon"></span>
                 </button>
-
                 <div
                     className="collapse navbar-collapse bg-dark navbar-custom-buttons"
                     id="navbarSupportedContent"
                 >
-                    <SearchBar />
-
                     {this.props.isAuthenticated ? (
                         <SignedOutLinks />
                     ) : (
