@@ -12,20 +12,19 @@ export const registerAction = (data, history) => {
         auth
             .createUserWithEmailAndPassword(data.email, data.password)
             .then((res) => {
-                console.log("Register kr gya");
+                console.log(res);
                 //store other user detail in firestore with collection name "user"
                 firestore
-                    .collection("user")
+                    .collection("users")
                     .doc(res.user.uid)
                     .set({
                         name: data.name,
                         email: data.email,
-                        createdAt: Date.now()
+                        createdAt: Date.now(),
+                        bookmark: []
                     })
-                    return res.user.uid
             })
             .then(() => {
-                console.log("regoiter krne aaya");
                 dispatch({type: "REGISTER_SUCCESS"});   
                 swal({
                     text: "Successfully registered to Top tidings",
@@ -72,6 +71,8 @@ export const signInWithGoogleAction = (history) => {
             .signInWithPopup(googleProvider)
             .then((res) => {
                 var user = res.additionalUserInfo
+                console.log(user);
+                console.log(res);
                 if (user.isNewUser) {
                     firestore
                         .collection('users')

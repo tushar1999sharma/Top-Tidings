@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from "react-redux";
 import Spinner from "../layout/Spinner";
+import swal from 'sweetalert';
 
 class showNewsComponent extends Component {
     checkBookmark = () => {
@@ -12,13 +13,25 @@ class showNewsComponent extends Component {
         }
     }
 
-    handleBookmarkClick = () => {
+    handleBookmark = (link, event) => {
         if(this.props.firebase.isEmpty) {
 
         }
         else {
             this.props.history.push('/signin');
         }
+    }
+
+    handleShare = (link) => {
+        console.log("copy link to clipboard");
+        navigator.clipboard.writeText(link); 
+        swal({
+            text: 'News link copied to clipboard',
+            title: 'Success',
+            icon: 'success',
+            closeOnClickOutside: true,
+            timer: 700
+        })
     }
     
     render() {
@@ -34,7 +47,7 @@ class showNewsComponent extends Component {
                         <div className="card booking-card">
                             <div className="view overlay card-container">
                                 {/* SHARE ICON */}
-                                <div className="share-icon">
+                                <div className="share-icon" onClick={() => { this.handleShare(headline.url) }}>
                                     <i className="fas fa-share-alt"></i>
                                 </div>
                                 {/* BOOKMARK ICON */}

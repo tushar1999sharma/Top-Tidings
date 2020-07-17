@@ -27,7 +27,7 @@ class SignedInLinksComponent extends Component {
                         to=""
                         className="nav-link"
                     >
-                        {this.props.currentUserEmail}
+                        {this.props.name}
                     </Link>
                 </li>
                 <li className="nav-item"
@@ -48,14 +48,13 @@ class SignedInLinksComponent extends Component {
 const mapStateToProps = (state) => {
 	console.log(state);
 	return {
-        currentUserEmail: state.firebase.auth.email,
+        name: state.firebase.profile.name,
 	};
 }
 
 const mapDispatchToProps = (dispatch) => {
     return {
         logOutSubmit: (history) => { 
-            console.log("**********Abhi dbaya log OUT ********") 
             dispatch(logOutAction(history))
         }
     }

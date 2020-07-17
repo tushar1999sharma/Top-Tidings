@@ -18,7 +18,9 @@ import store from './store/store';
 //react redux configuration
 export const rrfConfig = {
     userProfile: "users",
-    useFirestoreForProfile: true
+    useFirestoreForProfile: true,
+    enableRedirectHandling: false,
+    resetBeforeLogin: false
 }
 
 //react redux firebae properties
