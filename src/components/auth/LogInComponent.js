@@ -87,7 +87,7 @@ class logInComponent extends Component {
                                             onChange={this.handleInputChange}
                                     />
                                 </div>
-                                <div className="center text-danger">
+                                <div className="center errorMsg">
                                     { this.props.authError ? <p>! { this.props.authError }</p> : null }
                                 </div>
                                 <div className="col-md-12 text-center ">

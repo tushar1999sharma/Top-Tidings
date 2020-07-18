@@ -116,6 +116,16 @@
     }
 }
 
+/* Flash message */
+.errorMsg {
+    background-color: #ca1212;;
+    color: white;
+}
+.successMsg {
+    background-color: green;
+    color: white;
+}
+
 /* card-container, share-icon, bookmark-icon */
 .card-container {
 	position: relative;

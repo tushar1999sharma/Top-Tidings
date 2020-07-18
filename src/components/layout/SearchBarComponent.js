@@ -37,7 +37,7 @@ class searchBarComponent extends Component {
 					value={this.state.query}
 				/>
 				<div class="input-group-btn">
-                    <button class="btn btn-default" type="submit"><span class="fas fa-search search-icon"></span></button>
+                    <button className="btn btn-default" type="submit"><span className="fas fa-search search-icon"></span></button>
                 </div>
 			</form>
 		);

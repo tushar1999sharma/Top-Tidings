@@ -1,5 +1,3 @@
-import axios from 'axios';
-
-export const addBookmark = (data, { getFirebase, getFirestore }) => {
+export const addBookmark = (news) => {
     
 }

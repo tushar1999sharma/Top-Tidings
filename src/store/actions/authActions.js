@@ -70,9 +70,8 @@ export const signInWithGoogleAction = (history) => {
             .auth()
             .signInWithPopup(googleProvider)
             .then((res) => {
-                var user = res.additionalUserInfo
-                console.log(user);
                 console.log(res);
+                var user = res.additionalUserInfo
                 if (user.isNewUser) {
                     firestore
                         .collection('users')
