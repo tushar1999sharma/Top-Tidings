@@ -29,20 +29,17 @@
 ```
 git clone 
 cd Top-Tidings
-
 ```
 - Create database
 
 ```
 > Log into https://firebase.google.com and create database
-
 ```
 
 - Use npm to install dependencies for the project.
 
 ```
 > npm install
-
 ```
 
 - Create .env file in root folder and add necessary credentials with variables given below.
