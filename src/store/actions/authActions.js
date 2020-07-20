@@ -37,7 +37,10 @@ export const registerAction = (data, history) => {
             })
             .catch(err => {
                 console.log(err);
-                dispatch({type: "REGISTER_ERROR", payload: err});                 
+                dispatch({type: "REGISTER_ERROR", payload: err}); 
+                setTimeout(() => {
+                    dispatch({type: "CLEAR_AUTH_MSG"});    
+                }, 3000);                 
             })
     }
 }
@@ -59,7 +62,10 @@ export const logInAction = (data, history) => {
             })
             .catch(err => {
                 console.log(err);
-                dispatch({type: "LOGIN_ERROR", payload: err});     
+                dispatch({type: "LOGIN_ERROR", payload: err});  
+                setTimeout(() => {
+                    dispatch({type: "CLEAR_AUTH_MSG"});    
+                }, 3000);    
             });
     }
 }
@@ -97,7 +103,10 @@ export const signInWithGoogleAction = (history) => {
             })
             .catch(err => {
                 console.log(err);
-                dispatch({type: "LOGIN_ERROR", payload: err});         
+                dispatch({type: "LOGIN_ERROR", payload: err});
+                setTimeout(() => {
+                    dispatch({type: "CLEAR_AUTH_MSG"});    
+                }, 3000);         
             });
     }
 }
@@ -136,7 +145,10 @@ export const signInWithFacebookAction = (history) => {
             })
             .catch(err => {
                 console.log(err);
-                dispatch({type: "LOGIN_ERROR", payload: err});         
+                dispatch({type: "LOGIN_ERROR", payload: err});     
+                setTimeout(() => {
+                    dispatch({type: "CLEAR_AUTH_MSG"});    
+                }, 3000);    
             });
     }
 }
@@ -158,7 +170,10 @@ export const logOutAction = (history) => {
             })
             .catch(err => {  
                 console.log(err);
-                dispatch({type: "LOGOUT_ERROR", payload: err});                   
+                dispatch({type: "LOGOUT_ERROR", payload: err});  
+                setTimeout(() => {
+                    dispatch({type: "CLEAR_AUTH_MSG"});    
+                }, 3000);                 
             });
     }
 }

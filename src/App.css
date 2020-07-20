@@ -116,7 +116,12 @@
     }
 }
 
-/* Flash message */
+/****************** Flash message ******************/
+.flash-msg {
+}
+.auth-msg {
+
+}
 .errorMsg {
     background-color: #ca1212;;
     color: white;
@@ -126,7 +131,7 @@
     color: white;
 }
 
-/* card-container, share-icon, bookmark-icon */
+/**** card-container, share-icon, bookmark-icon ****/
 .card-container {
 	position: relative;
 	z-index: 0;
@@ -160,7 +165,7 @@
     padding: 5px;
     cursor: pointer;
 }
-/* card image size */
+/*********** card image size **************/
 /* max width */
 @media (min-width: 1200px ) {
     .card-img-top {
@@ -191,7 +196,7 @@
     }
 }
 
-/* for spinner */
+/************ spinner ****************/
 .loader {
 	color: #60707b;
 	font-size: 90px;

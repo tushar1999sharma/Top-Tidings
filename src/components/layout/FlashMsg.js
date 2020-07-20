@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 
 const flashMsg = (props) => {
     return (
-        <div className="sticky-top">
+        <div className="sticky-top flash-msg my-auto">
             <div className="errorMsg">
                 { props.bookmarkError ? <p> ! { props.bookmarkError } </p> : null }        
                 { props.shareError ? <p> ! { props.shareError } </p> : null }        

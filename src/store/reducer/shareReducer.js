@@ -9,7 +9,7 @@ const shareReducer = (state = initState, action) => {
             return {
                 ...state,
                 shareError: null,
-                shareSuccess: "link copied to clipboard"
+                shareSuccess: action.payload
             }
         case 'SHARE_ERROR':
             return {

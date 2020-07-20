@@ -9,7 +9,7 @@ const bookmarkReducer = (state = initState, action) => {
             return {
                 ...state,
                 bookmarkError: null,
-                bookmarkSuccess: "Successfully bookmarked new news card"
+                bookmarkSuccess: action.payload
             }
         case 'BOOKMARK_ERROR':
             return {

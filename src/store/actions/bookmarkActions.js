@@ -26,6 +26,9 @@ export const handleBookmarkAction = (currentUser, news) => {
                         bookmark: firebase.firestore.FieldValue.arrayRemove(news)
                     })
                     dispatch({type: "BOOKMARK_SUCCESS", payload: "Bookmark successfully removed"});
+                    setTimeout(() => {
+                        dispatch({type: "CLEAR_BOOKMARK_MSG"});    
+                    }, 3000);
                 }
                 else {
                     //since not present then add into bookmark array
@@ -33,6 +36,9 @@ export const handleBookmarkAction = (currentUser, news) => {
                         bookmark: firebase.firestore.FieldValue.arrayUnion(news)
                     })
                     dispatch({type: "BOOKMARK_SUCCESS", payload: "Bookmark successfully added"});
+                    setTimeout(() => {
+                        dispatch({type: "CLEAR_BOOKMARK_MSG"});    
+                    }, 3000);
                 }
             }).catch((err) => {
                 dispatch({type: "BOOKMARK_ERROR", payload: err});

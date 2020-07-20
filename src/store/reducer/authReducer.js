@@ -39,6 +39,12 @@ const authReducer = (state = initState, action) => {
                 ...state,
                 authError: action.payload.message
             }
+        
+        case 'CLEAR_AUTH_MSG':
+            return {
+                ...state,
+                authError: null
+            } 
 
         default:
             return state            

@@ -18,7 +18,7 @@ class bookmarks extends Component {
                 title: 'Error',
                 icon: 'error',
                 closeOnClickOutside: true,
-                timer: 700
+                timer: 1000
             })
         }
     }

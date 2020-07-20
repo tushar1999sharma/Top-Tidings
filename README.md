@@ -1,68 +1,111 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Available Scripts
+# Top Tidings
 
-In the project directory, you can run:
+> Web app where user can get glimpse of some latest headlines with features like latest news from a particular source or category and from search. User can also bookmark and share news
 
-### `npm start`
+  
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## Table of contents
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+*  [Installation](#installation)
 
-### `npm test`
+*  [Tech Stack](#tech-stack)
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+*  [Features](#feature)
 
-### `npm run build`
+*  [Routes](#server-routes)
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+*  [Screenshots](#screenshots)
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+  
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Installation
 
-### `npm run eject`
+  
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+- Clone the repository using `git clone` and then change the directory to root of the project
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+```
+git clone 
+cd Top-Tidings
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+```
+- Create database
 
-## Learn More
+```
+> Log into https://firebase.google.com and create database
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+```
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+- Use npm to install dependencies for the project.
 
-### Code Splitting
+```
+> npm install
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
+```
 
-### Analyzing the Bundle Size
+- Create .env file in root folder and add necessary credentials with variables given below.
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
+```bash
 
-### Making a Progressive Web App
+REACT_APP_GOOGLE_API_KEY = "google-api-key"
+REACT_APP_FB_API = "from-firebase-config-fb-api"
+REACT_APP_FB_AUTH_DOMAIN = "from-firebase-config-fb-auth-domain"
+REACT_APP_FB_DATABASE_URL = "from-firebase-config-fb-db-url"
+REACT_APP_FB_PROJECT_ID = "from-firebase-config-fb-proj-id"
+REACT_APP_FB_STORAGE_BUCKET = "from-firebase-config-fb-strg-bkt"
+REACT_APP_FB_MESSAGING_SENDER_ID = "from-firebase-config-fb-sender-id"
+REACT_APP_FB_APP_ID = "from-firebase-config-fb-app-id"
+REACT_APP_FB_MEASUREMENT_ID = "from-firebase-config-fb-measurement-id"
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
+```
+- For firebase auth service
 
-### Advanced Configuration
+```
+ > for google, enable google auth sevice from firebase in authentication methods
+ > for facebook, log into https://developers.facebook.com and create app then copy app id  and app secret to firebase auth service then enable facebook auth service from firebase
+ in authentication method
+```
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
+- Run the program 
 
-### Deployment
+```
+> npm start
+```
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
+- Now navigate to http://localhost:3000
 
-### `npm run build` fails to minify
+***
+  
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+## Tech Stack
+
+
+| ![ReactJs](https://res.cloudinary.com/prvnbist/image/upload/c_scale,h_80/v1564054850/React.js_logo-512_bvpygm.png "ReactJs")        | ![Redux](https://res.cloudinary.com/prvnbist/image/upload/c_scale,h_65/v1564054926/logo_a1hglt.png "Redux")           | ![Firebase](https://res.cloudinary.com/prvnbist/image/upload/c_scale,h_80/v1564055091/firebase_logo_k3wraf.png "Firebase")  |
+| ------------- |:-------------:| -----:|
+| ReactJs | Redux(Thunk) | Firebase |
+
+
+## Features
+
+* Latest news from newsapi.
+
+* Latest news from a particular source.
+
+* Latest news from a particular category.
+
+* Latest news related to your search.
+
+* Flash messages and sweetalert.
+
+* Firebase auth service
+
+* User can add and remove news card as bookmark.
+
+* User can share news link on single click. 
+
+
+## ScreenShots
+
+
