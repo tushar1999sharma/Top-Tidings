@@ -91,7 +91,7 @@ class logInComponent extends Component {
                                     { this.props.authError ? <p>! { this.props.authError }</p> : null }
                                 </div>
                                 <div className="col-md-12 text-center ">
-                                    <button type="submit" className=" btn btn-block mybtn btn-dark tx-tfm">Login</button>
+                                    <button type="submit" className=" btn btn-block mybtn auth-btn tx-tfm">Login</button>
                                 </div>
                             </form>
                             <p className="text-center">Wanna create new account? <Link to="/signup"> Sign up </Link></p>

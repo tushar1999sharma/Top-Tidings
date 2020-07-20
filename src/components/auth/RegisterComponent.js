@@ -123,7 +123,7 @@ class registerComponent extends Component {
                                     { this.props.authError ? <p>! { this.props.authError }</p> : null }
                                 </div>
                                 <div className="col-md-12 text-center ">
-                                    <button type="submit" className=" btn btn-block mybtn btn-dark tx-tfm">Register</button>
+                                    <button type="submit" className=" btn btn-block mybtn auth-btn tx-tfm">Register</button>
                                 </div>
                             </form>
                             <p class="text-center">Alredy have an Account? <Link to="/signin"> Sign in </Link> </p>

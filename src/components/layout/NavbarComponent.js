@@ -10,7 +10,8 @@ class navBarComponent extends Component {
         return (
             <nav className="navbar navbar-expand-md nav-myClass">
                 <Link to="/">
-                    <span className="navbar-brand nav-brand-link">TopTidings</span>
+                    <i class="fa fa-newspaper-o news-icon" aria-hidden="true"></i>
+                    <span className="navbar-brand nav-brand-link"> TopTidings</span>
                 </Link>
 
                 <SearchBar />
