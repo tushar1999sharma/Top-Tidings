@@ -8,15 +8,15 @@ import SignedOutLinks from './SignedOutLinksComponent';
 class navBarComponent extends Component {
     render() {
         return (
-            <nav className="navbar navbar-expand-sm navbar-dark bg-dark">
+            <nav className="navbar navbar-expand-md nav-myClass">
                 <Link to="/">
-                    <span className="navbar-brand">TopTidings</span>
+                    <span className="navbar-brand nav-brand-link">TopTidings</span>
                 </Link>
 
                 <SearchBar />
 
                 <button
-                    className="navbar-toggler"
+                    className="navbar-toggler mx-auto"
                     type="button"
                     data-toggle="collapse"
                     data-target="#navbarSupportedContent"
@@ -27,7 +27,7 @@ class navBarComponent extends Component {
                     <span className="navbar-toggler-icon"></span>
                 </button>
                 <div
-                    className="collapse navbar-collapse bg-dark navbar-custom-buttons"
+                    className="collapse navbar-collapse navbar-custom-buttons ml-auto"
                     id="navbarSupportedContent"
                 >
                     {this.props.isAuthenticated ? (
@@ -35,7 +35,7 @@ class navBarComponent extends Component {
                     ) : (
                         <SignedInLinks />
                     )}
-                </div>
+                </div> 
             </nav>
         );
     }

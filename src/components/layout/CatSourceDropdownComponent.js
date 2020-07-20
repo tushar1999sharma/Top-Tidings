@@ -7,7 +7,7 @@ const catSourceDropdownComponent = () => {
             {/* sources */}
             <div className="container float-left dropdown d-md-none d-block w-100">
                 <button
-                    className="btn btn-dark dropdown-toggle mr-4 sources-button mt-3 w-100"
+                    className="btn btn-toggle dropdown-toggle mr-4 sources-button mt-3 w-100"
                     type="button"
                     data-toggle="dropdown"
                     aria-haspopup="true"
@@ -15,7 +15,7 @@ const catSourceDropdownComponent = () => {
                 >
                     Sources
 				</button>
-                <div className="dropdown-menu bg-dark hidden-md-up w-100">
+                <div className="dropdown-menu hidden-md-up w-100">
                     <Link
                         to="/source/bbc-news"
                         className="dropdown-item"
@@ -103,7 +103,7 @@ const catSourceDropdownComponent = () => {
             {/* categories */}
             <div className="container float-right dropdown show d-md-none w-100">
                 <button
-                    className="btn btn-dark dropdown-toggle categories-button mt-3 w-100"
+                    className="btn dropdown-toggle btn-toggle categories-button mt-3 w-100"
                     type="button"
                     data-toggle="dropdown"
                     aria-haspopup="true"

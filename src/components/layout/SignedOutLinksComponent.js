@@ -7,7 +7,7 @@ const SignOutComponent = () => {
             <li className="nav-item">
                 <Link
                     to="/signin"
-                    className="nav-link active"
+                    className="nav-link active nav-auth-link"
                 >
                     Log In
                 </Link>
@@ -15,7 +15,7 @@ const SignOutComponent = () => {
             <li className="nav-item">
                 <Link
                     to="/signup"
-                    className="nav-link active"
+                    className="nav-link active nav-auth-link"
                 >
                     Register
                 </Link>

@@ -73,7 +73,7 @@ class showNewsComponent extends Component {
                         className="col-xl-4 col-md-6 col-sm-12 d-flex align-items-stretch"
                         key={index}
                     >
-                        <div className="card booking-card">
+                        <div className="card booking-card news-card">
                             <div className="view overlay card-container">
                                 {/* SHARE ICON */}
                                 <div className="share-icon" onClick={ () => this.handleShare(headline.url) }>
@@ -120,7 +120,7 @@ class showNewsComponent extends Component {
                                     href={headline.url}
                                     target="_blank"
                                     rel="noopener noreferrer"
-                                    className="btn btn-dark mt-auto"
+                                    className="btn mt-auto card-btn"
                                 >
                                     More info
                                 </a>

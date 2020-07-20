@@ -14,7 +14,7 @@ class SignedInLinksComponent extends Component {
                 <li className="nav-item">
                     <Link
                         to="/bookmarks"
-                        className="nav-link active"
+                        className="nav-link active nav-auth-link"
                     >
                         <i
                             className="fa fa-bookmark"
@@ -25,7 +25,7 @@ class SignedInLinksComponent extends Component {
                 <li className="nav-item">
                     <Link
                         to=""
-                        className="nav-link"
+                        className="nav-link nav-auth-link"
                     >
                         {this.props.name}
                     </Link>
@@ -35,7 +35,7 @@ class SignedInLinksComponent extends Component {
                 >
                     <Link
                         to=""
-                        className="nav-link active"
+                        className="nav-link active nav-auth-link"
                     >
                         Log Out
                     </Link>

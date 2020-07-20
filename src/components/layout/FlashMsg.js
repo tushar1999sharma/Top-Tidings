@@ -3,14 +3,14 @@ import { connect } from "react-redux";
 
 const flashMsg = (props) => {
     return (
-        <div className="sticky-top flash-msg my-auto">
+        <div className="container sticky-top flash-msg my-auto">
             <div className="errorMsg">
-                { props.bookmarkError ? <p> ! { props.bookmarkError } </p> : null }        
-                { props.shareError ? <p> ! { props.shareError } </p> : null }        
+                { props.bookmarkError ? <p className="container flash-msg-text"> ! { props.bookmarkError } </p> : null }        
+                { props.shareError ? <p className="container flash-msg-text"> ! { props.shareError } </p> : null }        
             </div>
             <div className="successMsg">
-                { props.bookmarkSuccess ? <p> ! { props.bookmarkSuccess } </p> : null }        
-                { props.shareSuccess ? <p> ! { props.shareSuccess } </p> : null }        
+                { props.bookmarkSuccess ? <p className="container flash-msg-text"> ! { props.bookmarkSuccess } </p> : null }        
+                { props.shareSuccess ? <p className="container flash-msg-text"> ! { props.shareSuccess } </p> : null }        
             </div>
         </div>
     );

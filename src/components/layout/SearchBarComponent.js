@@ -26,7 +26,7 @@ class searchBarComponent extends Component {
 	render() {
 		return (
 			<form
-				className="form-inline ml-auto"
+				className="form-inline mx-auto"
                 onSubmit={this.handleSubmit}
 			>
 				<input
