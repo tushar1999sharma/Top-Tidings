@@ -15,6 +15,8 @@ import SourceNews from "./components/dashboard/SourceNewsComponent";
 import CategoryNews from "./components/dashboard/CategoryNewsComponent";
 import SearchNews from "./components/dashboard/SearchNewsComponent";
 import DropDown from './components/layout/CatSourceDropdownComponent';
+import FlashMsg from './components/layout/FlashMsg';
+import Bookmark from './components/dashboard/BookmarksComponent'
 
 class App extends Component {
 	render() {
@@ -49,6 +51,7 @@ class App extends Component {
 			<BrowserRouter>
 				<div className="App">
                     <Navbar />
+                    <FlashMsg />
 
 					{/* Switch tag check route one by one and if matches 
                         then show that component and will not check other route */}
@@ -57,6 +60,7 @@ class App extends Component {
                         so it can redirect the user with this.props.history.push. */}
 						<Route exact path="/signup" component={authContainer} />
 						<Route exact path="/signin" component={authContainer} />
+						<Route exact path="/bookmarks" component={Bookmark} />
                         <Route component={defaultContainer} />
 					</Switch>
 				</div>

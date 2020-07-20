@@ -1,14 +1,42 @@
 import React, { Component } from 'react';
 import { connect } from "react-redux";
 import { withRouter } from 'react-router-dom';
-import { firestore } from '../../config/fbConfig';
 import Spinner from "../layout/Spinner";
 import swal from 'sweetalert';
+import { firestore } from '../../config/fbConfig';
+import { handleBookmarkAction } from '../../store/actions/bookmarkActions';
+import { handleShareAction } from '../../store/actions/shareAction';
+import {} from '../../store/actions/shareAction';
 
 class showNewsComponent extends Component {
-    checkBookmark = () => {
-        if(this.props.auth.isAuthenticated) {
+    checkBookmark = (news) => {
+        if(this.props.currentUser.auth.isEmpty === false) {
             //find in bookmarks of user if it find in the bookmark or not
+            const userID = this.props.currentUser.auth.uid;
+            let flag = 0;
+            firestore
+                .collection("users")
+                .doc(`/${userID}`)
+                /* .where("bookmark", "array-contains", news) */
+                .get()
+                .then((res) => {
+                    res.data().bookmark.forEach(element => {
+                        console.log(element.url, news.url);
+                        if(element.url === news.url) {
+                            flag = 1;
+                            console.log("found same so bookmarked")
+                        }
+                    });
+                })
+            
+            if(flag) {
+                console.log("Yes found");
+                return true;
+            }
+            else {
+                console.log("Not found");
+                return false;
+            }
         }
         else {
             return false;
@@ -16,28 +44,8 @@ class showNewsComponent extends Component {
     }
 
     handleBookmark = (news) => {
-        console.log(this.props.currentUser.auth.uid);
         if(this.props.currentUser.auth.isEmpty === false) {
-            //first find if news with url is already present in this
-            //if it present then remove ir else add it to bookmark
-            firestore
-                .collection("users")
-                .doc(this.props.currentUser.auth.uid)
-                .where("bookmark", "array-contains", news)
-                .get()
-                .then((res) => {
-                    console.log(res);
-                    console.log(res.data());
-                    if(res.size() === 0) {
-                        //since not present then add into bookmark array
-                        console.log("add bookmark");
-                    }
-                    else {
-                        console.log("delete bookmark");
-                    }
-                }).catch((err) => {
-                    console.log(err);
-                });
+            this.props.bookmarkAction(this.props.currentUser, news);
         }
         else {
             this.props.history.push("/signin");
@@ -52,16 +60,7 @@ class showNewsComponent extends Component {
     }
 
     handleShare = (link) => {
-        console.log("copy link to clipboard");
-        console.log(this.props.currentUser);
-        navigator.clipboard.writeText(link); 
-        swal({
-            text: 'News link copied to clipboard',
-            title: 'Success',
-            icon: 'success',
-            closeOnClickOutside: true,
-            timer: 700
-        })
+        this.props.shareAction(link);
     }
     
     render() {
@@ -81,9 +80,16 @@ class showNewsComponent extends Component {
                                     <i className="fas fa-share-alt"></i>
                                 </div>
                                 {/* BOOKMARK ICON */}
-                                <div className="bookmark-icon" onClick = { () => this.handleBookmark(headline) }>
-                                    <i className="far fa-bookmark"></i>
-                                </div>
+                                {this.checkBookmark(headline) ? (
+                                    <div className="bookmarked-icon" onClick = { () => this.handleBookmark(headline) }>
+                                        <i className="fa fa-bookmark"></i>
+                                    </div>
+                                ) : (
+                                    <div className="bookmark-icon" onClick = { () => this.handleBookmark(headline) }>
+                                        <i className="fa fa-bookmark"></i>
+                                    </div>
+                                )}
+                                
                                 <img
                                     id="indexcardimage"
                                     className="card-img-top"
@@ -94,10 +100,10 @@ class showNewsComponent extends Component {
                             <div className="card-body d-flex flex-column">
                                 <h4 className="card-title font-weight-bold text-dark">
                                     {/* 
-                                                target: _blank to open link new tab  
-                                                rel="noopener noreferrer" to prevent newly opened tab 
-                                                from being able to modify the original tab maliciously 
-                                            */}
+                                        target: _blank to open link new tab  
+                                        rel="noopener noreferrer" to prevent newly opened tab 
+                                        from being able to modify the original tab maliciously 
+                                    */}
                                     <a
                                         href={headline.url}
                                         target="_blank"
@@ -121,7 +127,6 @@ class showNewsComponent extends Component {
                             </div>
                         </div>
                     </div>
-                    
                 );
             })
         ) : (
@@ -141,5 +146,12 @@ const mapStateToProps = (state) => {
         currentUser: state.firebase
 	};
 };
+//take data from props to store
+const mapDispatchToProps = (dispatch) => {
+    return {
+        bookmarkAction: (currentUser, news) => dispatch(handleBookmarkAction(currentUser, news)),
+        shareAction: (link) => dispatch(handleShareAction(link)),
+    }
+}
 
-export default connect(mapStateToProps, null)(withRouter(showNewsComponent));
+export default connect(mapStateToProps, mapDispatchToProps)(withRouter(showNewsComponent));

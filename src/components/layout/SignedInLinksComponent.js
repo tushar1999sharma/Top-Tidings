@@ -13,7 +13,7 @@ class SignedInLinksComponent extends Component {
             <ul className="nav navbar-nav ml-auto">
                 <li className="nav-item">
                     <Link
-                        to="/user/:user_id/bookmarks"
+                        to="/bookmarks"
                         className="nav-link active"
                     >
                         <i

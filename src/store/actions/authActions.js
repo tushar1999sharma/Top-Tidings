@@ -25,7 +25,7 @@ export const registerAction = (data, history) => {
                     })
             })
             .then(() => {
-                dispatch({type: "REGISTER_SUCCESS"});   
+                dispatch({type: "REGISTER_SUCCESS"});
                 swal({
                     text: "Successfully registered to Top tidings",
                     title: "Success",

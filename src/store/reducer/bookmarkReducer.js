@@ -1,23 +1,27 @@
 const initState = {
-    bookmarkError: null
+    bookmarkError: null,
+    bookmarkSuccess: null
 }
 
 const bookmarkReducer = (state = initState, action) => {
     switch (action.type) {
-        case 'bookmarkSuccess':
+        case 'BOOKMARK_SUCCESS':
             return {
                 ...state,
-                bookmarkError: null
+                bookmarkError: null,
+                bookmarkSuccess: "Successfully bookmarked new news card"
             }
-        case 'bookmarkError':
+        case 'BOOKMARK_ERROR':
             return {
                 ...state,
-                bookmarkError: action.payload
+                bookmarkError: action.payload,
+                bookmarkSuccess: null
             }
-        case 'clearBookmarkError':
+        case 'CLEAR_BOOKMARK_MSG':
                 return {
                     ...state,
-                    bookmarkError: null
+                    bookmarkError: null,
+                    bookmarkSuccess: null
                 } 
         default:
             return state

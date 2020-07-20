@@ -80,7 +80,7 @@
         width: 30vw;
     }
     .form-inline .form-control {
-        width: 90%;
+        width: 79%;
     }
 }
 @media (max-width: 1200px) {
@@ -137,8 +137,20 @@
 	right: 5%;
 	font-size: 30px;
 	background-color: rgba(255, 255, 255, 0.5);
-	padding: 5px;
+    padding: 5px;
+    cursor: pointer;
 }
+.bookmarked-icon {
+    position: absolute;
+    z-index: 1;
+    color: #f2b31e;
+	right: 5%;
+    font-size: 30px;
+	background-color: rgba(255, 255, 255, 0.5);
+    padding: 5px;
+    cursor: pointer;
+}
+
 .share-icon {
 	position: absolute;
 	z-index: 1;
@@ -153,28 +165,28 @@
 @media (min-width: 1200px ) {
     .card-img-top {
         width: 100%;
-        height: 17vw;
+        height: 16vw;
         object-fit: fill;
     }
 }
 @media (max-width: 1200px) {
     .card-img-top {
         width: 100%;
-        height: 22vw;
+        height: 20vw;
         object-fit: fill;
     }
 }
 @media (max-width: 992px) {
     .card-img-top {
         width: 100%;
-        height: 26vw;
+        height: 23vw;
         object-fit: fill;
     }
 }
 @media (max-width: 768px) {
     .card-img-top {
         width: 100%;
-        height: 35vw;
+        height: 30vw;
         object-fit: fill;
     }
 }
