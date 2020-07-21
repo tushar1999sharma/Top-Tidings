@@ -36,9 +36,7 @@ class searchBarComponent extends Component {
 					onChange={this.handleChange}
 					value={this.state.query}
 				/>
-				<div class="input-group-btn">
-                    <button className="btn btn-default" type="submit"><span className="fas fa-search search-icon"></span></button>
-                </div>
+                <button className="btn btn-default btn-search" type="submit"><span className="fas fa-search search-icon"></span></button>
 			</form>
 		);
 	}

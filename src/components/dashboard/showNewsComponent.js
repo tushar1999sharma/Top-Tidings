@@ -98,7 +98,7 @@ class showNewsComponent extends Component {
                                 />
                             </div>
                             <div className="card-body d-flex flex-column">
-                                <h4 className="card-title font-weight-bold text-dark">
+                                <h4 className="card-title font-weight-bold">
                                     {/* 
                                         target: _blank to open link new tab  
                                         rel="noopener noreferrer" to prevent newly opened tab 
@@ -108,7 +108,7 @@ class showNewsComponent extends Component {
                                         href={headline.url}
                                         target="_blank"
                                         rel="noopener noreferrer"
-                                        className="text-dark"
+                                        className="card-link"
                                     >
                                         {headline.title}
                                     </a>

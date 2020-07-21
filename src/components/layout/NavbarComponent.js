@@ -10,14 +10,14 @@ class navBarComponent extends Component {
         return (
             <nav className="navbar navbar-expand-md nav-myClass">
                 <Link to="/">
-                    <i class="fa fa-newspaper-o news-icon" aria-hidden="true"></i>
+                    <i class="fa fa-newspaper-o news-icon my-auto" aria-hidden="true"></i>
                     <span className="navbar-brand nav-brand-link"> TopTidings</span>
                 </Link>
 
                 <SearchBar />
 
                 <button
-                    className="navbar-toggler mx-auto"
+                    className="navbar-toggler"
                     type="button"
                     data-toggle="collapse"
                     data-target="#navbarSupportedContent"
@@ -25,10 +25,10 @@ class navBarComponent extends Component {
                     aria-expanded="false"
                     aria-label="Toggle navigation"
                 >
-                    <span className="navbar-toggler-icon"></span>
+                    <span><i class="fa fa-bars my-auto toggle-icon" aria-hidden="true"></i></span>
                 </button>
                 <div
-                    className="collapse navbar-collapse navbar-custom-buttons ml-auto"
+                    className="collapse navbar-collapse navbar-custom-buttons"
                     id="navbarSupportedContent"
                 >
                     {this.props.isAuthenticated ? (

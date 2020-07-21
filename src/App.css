@@ -45,10 +45,6 @@
 .nav-brand-link {
     color: white;
 }
-.nav-brand-link:hover {
-    color: white;
-    background-color: #1e335e;
-}
 .nav-auth-link {
     color: white;
 }
@@ -56,29 +52,52 @@
     color: white;
     background-color: #1e335e;
 }
-
-/********* NAVBAR COMPONENT *************/
-/* @media (min-width: 992px) {
-	.navbar-expand-lg .navbar-collapse {
-		display: -ms-flexbox !important;
-		display: contents !important;
-	}
-} */
-/* @media (max-width: 556.8) {
-    .navbar-brand {
-       margin-left: 7px;
-    }
-} */
-
-.news-icon {
-    color: white;
-    font-size: 22px;
-    margin-right: 5px;
+.dropdown-in {
+    color: black;
+    background-color: #f7f7f7;
 }
-@media (max-width: 256.8) {
+.dropdown-link:hover {
+    border-left: #3b5998;
+    background-color: #c0cef7;
+    border-style: solid;
+}
+.card-link {
+    color: #3b5998;
+}
+.card-link:hover {
+    color: #1e335e;
+    text-decoration: underline;
+}
+/********* NAVBAR COMPONENT *************/
+.navbar-collapse {
+    flex-grow: unset;
+}
+.news-icon.svg-inline--fa.fa-w-18 {
+    width: auto;
+}
+.news-icon {
+    color: #f7f7f7;
+    height: 23px !important;
+    padding: auto .75rem;
+    margin-right: 7px;
+}
+.navbar-toggler {
+    padding-left: 7px;
+    padding-right: 0px;
+}
+.toggle-icon {
+    color: #f7f7f7;
+}
+@media (max-width: 766px) {
     .nav-brand-link {
         display: none;
     }
+}
+@media (min-width: 766px) {
+    .news-icon {
+        display: none;
+    }
+     
 }
 
 /************* Source News ***************/
@@ -100,7 +119,7 @@
 	padding-right: 5px;
 	border-radius: 20%;
 }
-.logo-img:hover {
+.logo-img:hover { /* not working */
     border: black;
 }
 
@@ -128,21 +147,38 @@
 
 /************* Search bar **************/
 .searchBar {
-    border-radius: 20px;
+    color: #f7f7f7;
+    border-top-left-radius: 20px;
+    border-bottom-left-radius: 20px;
     text-align: center;
+    border: none;
 }
 .search-icon {
-    color: white;
+    color: #1e335e;
 }
 .search-icon:hover {
-    color: #fbc531;
+    color: #f2b31e;
+}
+.btn-search {
+    background-color: white;
+    padding-left: 3px;
+    padding-right: 7px;
+    margin-left: -7px;
+    border: none;
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+    height: calc(1.5em + .75rem + 2px);
+}
+.btn-search.btn.focus, .btn:focus {
+    outline: 0;
+    box-shadow: none!important;
 }
 @media (min-width: 1200px ) {
     .form-inline {
         width: 30vw;
     }
     .form-inline .form-control {
-        width: 79%;
+        width: 92%;
     }
 }
 @media (max-width: 1200px) {
@@ -150,7 +186,7 @@
         width: 40vw;
     } 
     .form-inline .form-control {
-        width: 79%;
+        width: 92%;
     }
 }
 @media (max-width: 992px) {
@@ -158,7 +194,7 @@
         width: 45vw;
     }
     .form-inline .form-control {
-        width: 79%;
+        width: 92%;
     }
 }
 @media (max-width: 768px) {
@@ -166,16 +202,17 @@
         width: 50vw;
     }
     .form-inline .form-control {
-        width: 79%;
+        width: 92%;
     }
 }
 @media (max-width: 556.8px) {
     .form-inline {
-        width: 50vw;
+        width: 60vw;
     }
     .form-inline .form-control {
-        width: 79%;
+        width: 88%;
     }
+    
 }
 
 /****************** Flash message ******************/
@@ -206,7 +243,7 @@
 	position: absolute;
 	right: 5px;
     font-size: 30px;
-    color: #e7dff7;
+    color: #ebeffc;
     padding-right: 5px;
     cursor: pointer;
 }
@@ -222,7 +259,7 @@
 	position: absolute;
 	left: 5px;
     font-size: 30px;
-    color: #e7dff7;
+    color: #ebeffc;
     padding-left: 5px;
     cursor: pointer;
 }
@@ -258,7 +295,7 @@
 @media (max-width: 768px) {
     .card-img-top {
         width: 100%;
-        height: 30vw;
+        height: 40vw;
         object-fit: fill;
     }
 }

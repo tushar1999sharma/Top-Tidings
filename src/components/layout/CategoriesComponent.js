@@ -7,9 +7,7 @@ const categoriesComponent = (props) => {
 			<h4 className="text-center d-none d-md-block mt-3 mb-0">
 				Top headlines from your favourite category
 			</h4>
-			<div className="container">
-				<br />
-
+			<div className="container mt-2">
 				<div className="d-none d-md-flex justify-content-between sources-expanded-container ml-5 mr-5">
 					<Link to="/category/general" className="category-link">
 						<button type="button" className="btn ctg-btn hoverer">

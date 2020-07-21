@@ -29,12 +29,11 @@ class bookmarks extends Component {
 
     render() {
         return ( 
-            <div className="container Bmark center">
-                <br />
+            <div className="container Bmark center mt-3">
                 <h5 className="text-center">
                     Your Bookmarks
                 </h5>
-                <div className="row">
+                <div className="row mt-1">
                     {(this.props.currentUser.isLoaded === false) ? (
                         <Spinner />
                     ) : this.props.currentUser.profile.bookmark.length ? (
@@ -73,7 +72,7 @@ class bookmarks extends Component {
                                                     href={headline.url}
                                                     target="_blank"
                                                     rel="noopener noreferrer"
-                                                    className="text-dark"
+                                                    className="card-link"
                                                 >
                                                     {headline.title}
                                                 </a>

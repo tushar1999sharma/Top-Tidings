@@ -22,10 +22,9 @@ class homeComponent extends Component {
 
 	render() {
 		return (
-			<div className="container home center mt-4">
-				<br />
+			<div className="container home center mt-3">
 				<h5 className="text-center">Todays Headlines</h5>
-				<div className="row">
+				<div className="row mt-1">
 					<ShowNews />
 				</div>
 			</div>
