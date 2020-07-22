@@ -62,10 +62,10 @@
     border-style: solid;
 }
 .card-link {
-    color: #3b5998;
+    color: #272341;
 }
 .card-link:hover {
-    color: #1e335e;
+    color: #0e092e;
     text-decoration: underline;
 }
 /********* NAVBAR COMPONENT *************/
