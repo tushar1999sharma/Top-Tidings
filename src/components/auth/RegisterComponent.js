@@ -7,7 +7,7 @@ import {
     registerAction, 
     unMatchedPassAction, 
     signInWithGoogleAction, 
-    signInWithFacebookAction 
+    signInWithGithubAction 
 } from '../../store/actions/authActions';
 
 class registerComponent extends Component {
@@ -63,8 +63,8 @@ class registerComponent extends Component {
     handleGoogleSignInSubmit = () => {
         this.props.signInWithGoogle(this.props.history)
     }
-    handleFacebookSignInSubmit = () => {
-        this.props.signInWithFacebook(this.props.history);
+    handleGithubSignInSubmit = () => {
+        this.props.signInWithGithub(this.props.history);
     }
     
     render() {
@@ -129,8 +129,8 @@ class registerComponent extends Component {
                             <p class="text-center">Alredy have an Account? <Link to="/signin"> Sign in </Link> </p>
                             <p class="text-center">OR</p>
                             <div class="icons-position text-center">
-                                <Link onClick={this.handleFacebookSignInSubmit}>
-                                    <i className="fab fa-facebook-f fa-lg" style={{color: "#3e11e4"}}></i>
+                                <Link onClick={this.handleGithubSignInSubmit}>
+                                    <i className="fa fa-github fa-lg"></i>
                                 </Link>
                                 {' '}
                                 <Link onClick={this.handleGoogleSignInSubmit}>
@@ -157,7 +157,7 @@ const mapDispatchToProps = (dispatch) => {
     return {
         registerPost: (userInfo, history) => dispatch(registerAction(userInfo, history)),
         unMatchedPassword: () => dispatch(unMatchedPassAction()),
-        signInWithFacebook: (history) => dispatch(signInWithFacebookAction(history)),
+        signInWithGithub: (history) => dispatch(signInWithGithubAction(history)),
         signInWithGoogle: (history) => dispatch(signInWithGoogleAction(history))
     }
 }

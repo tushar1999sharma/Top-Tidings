@@ -4,7 +4,7 @@ import {
     firebase,
     firestore,
     googleProvider,
-    facebookProvider
+    githubProvider
 } from '../../config/fbConfig'
 
 export const registerAction = (data, history) => {
@@ -85,6 +85,7 @@ export const signInWithGoogleAction = (history) => {
                         .set({
                             name: user.profile.name,
                             email: user.profile.email,
+                            bookmark: [],
                             createdAt: Date.now(),
                             provider: 'google',
                         })
@@ -111,14 +112,13 @@ export const signInWithGoogleAction = (history) => {
     }
 }
 
-export const signInWithFacebookAction = (history) => {
-    //ISSUE:- first create facebook acc then using facebook dev get app id and code
-    //then paste it in firebase facebook auth and enable faecbook auth (watch Utube vdo)
+export const signInWithGithubAction = (history) => {
     return (dispatch) => {
         firebase
             .auth()
-            .signInWithPopup(facebookProvider)
+            .signInWithPopup(githubProvider)
             .then((res) => {
+                console.log(res);
                 var user = res.additionalUserInfo
                 if (user.isNewUser) {
                     firestore
@@ -127,8 +127,9 @@ export const signInWithFacebookAction = (history) => {
                         .set({
                             name: user.profile.name,
                             email: user.profile.email,
+                            bookmark: [],
                             createdAt: Date.now(),
-                            provider: 'facebook',
+                            provider: 'github',
                         })
                 }
             })

@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 import swal from 'sweetalert';
-import { logInAction, signInWithGoogleAction, signInWithFacebookAction } from "../../store/actions/authActions";
+import { logInAction, signInWithGoogleAction, signInWithGithubAction } from "../../store/actions/authActions";
 
 class logInComponent extends Component {
     constructor(props) {
@@ -51,8 +51,8 @@ class logInComponent extends Component {
     handleGoogleSignInSubmit = () => {
         this.props.signInWithGoogle(this.props.history);
     }
-    handleFacebookSignInSubmit = () => {
-        this.props.signInWithFacebook(this.props.history);
+    handleGithubSignInSubmit = () => {
+        this.props.signInWithGithub(this.props.history);
     }
     
     render() {
@@ -97,8 +97,8 @@ class logInComponent extends Component {
                             <p className="text-center">Wanna create new account? <Link to="/signup"> Sign up </Link></p>
                             <p className="text-center">OR</p>
                             <div className="icons-position text-center">
-                                <Link onClick={this.handleFacebookSignInSubmit}>
-                                    <i className="fab fa-facebook-f fa-lg" style={{color: "#3e11e4"}}></i>
+                                <Link onClick={this.handleGithubSignInSubmit}>
+                                    <i className="fa fa-github fa-lg"></i>
                                 </Link>
                                 {' '}
                                 <Link onClick={this.handleGoogleSignInSubmit}>
@@ -124,7 +124,7 @@ const mapDispatchToProps = (dispatch) => {
     return {
         LogInPost: (history, userInfo) => dispatch(logInAction(history, userInfo)),
         signInWithGoogle: (history) => dispatch(signInWithGoogleAction(history)),
-        signInWithFacebook: (history) => dispatch(signInWithFacebookAction(history))
+        signInWithGithub: (history) => dispatch(signInWithGithubAction(history))
     }
 }
 

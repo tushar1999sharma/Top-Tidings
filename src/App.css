@@ -68,6 +68,9 @@
     color: #0e092e;
     text-decoration: underline;
 }
+.fa-github {
+    color: black
+}
 /********* NAVBAR COMPONENT *************/
 .navbar-collapse {
     flex-grow: unset;

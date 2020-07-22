@@ -103,7 +103,7 @@ const catSourceDropdownComponent = () => {
             {/* categories */}
             <div className="container dropdown show d-md-none w-100">
                 <button
-                    className="btn dropdown-toggle btn-toggle categories-button w-100 mt-3"
+                    className="btn dropdown-toggle btn-toggle categories-button w-100 mt-3 mb-3"
                     type="button"
                     data-toggle="dropdown"
                     aria-haspopup="true"
