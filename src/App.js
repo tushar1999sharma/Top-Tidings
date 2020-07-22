@@ -16,7 +16,7 @@ import CategoryNews from "./components/dashboard/CategoryNewsComponent";
 import SearchNews from "./components/dashboard/SearchNewsComponent";
 import DropDown from './components/layout/CatSourceDropdownComponent';
 import FlashMsg from './components/layout/FlashMsg';
-import Bookmark from './components/dashboard/BookmarksComponent'
+import Bookmark from './components/dashboard/ShowBookmarkComponent'
 
 class App extends Component {
 	render() {

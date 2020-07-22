@@ -31,7 +31,7 @@ export const registerAction = (data, history) => {
                     title: "Success",
                     icon: "success",
                     closeOnClickOutside: true,
-                    timer: 1000
+                    timer: 1500
                 })
                 history.push("/");
             })
@@ -56,7 +56,7 @@ export const logInAction = (data, history) => {
                     title: "Success",
                     icon: "success",
                     closeOnClickOutside: true,
-                    timer: 1000
+                    timer: 1500
                 })   
                 history.push("/"); 
             })
@@ -97,7 +97,7 @@ export const signInWithGoogleAction = (history) => {
                     title: "Success",
                     icon: "success",
                     closeOnClickOutside: true,
-                    timer: 1000
+                    timer: 1500
                 })
                 history.push('/')
             })
@@ -139,7 +139,7 @@ export const signInWithFacebookAction = (history) => {
                     title: "Success",
                     icon: "success",
                     closeOnClickOutside: true,
-                    timer: 1000
+                    timer: 1500
                 })
                 history.push('/')
             })
@@ -164,7 +164,7 @@ export const logOutAction = (history) => {
                     title: "Success",
                     icon: "success",
                     closeOnClickOutside: true,
-                    timer: 1000
+                    timer: 1500
                 })
                 history.push("/");
             })

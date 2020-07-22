@@ -48,6 +48,34 @@ export const handleBookmarkAction = (currentUser, news) => {
     
 }
 
+export const addBookmarkAction = () => {
+    return (dispatch) => {
+        dispatch({type: "BOOKMARK_SUCCESS", payload: "Bookmark successfully added"});
+        setTimeout(() => {
+            dispatch({type: "CLEAR_BOOKMARK_MSG"});    
+        }, 3000);
+    }
+    
+}
+
+export const removeBookmarkAction = () => {
+    return (dispatch) => {
+        dispatch({type: "BOOKMARK_SUCCESS", payload: "Bookmark successfully removed"});
+        setTimeout(() => {
+            dispatch({type: "CLEAR_BOOKMARK_MSG"});    
+        }, 3000);
+    }
+}
+
+export const bookmarkErrorAction = (err) => {
+    return (dispatch) => {
+        dispatch({type: "BOOKMARK_ERROR", payload: err});
+        setTimeout(() => {
+            dispatch({type: "CLEAR_BOOKMARK_MSG"});    
+        }, 3000);
+    }
+}
+
 export const checkBookmarkAction = () => {
     
 }

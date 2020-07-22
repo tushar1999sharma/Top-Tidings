@@ -2,63 +2,10 @@ import React, { Component } from 'react';
 import { connect } from "react-redux";
 import { withRouter } from 'react-router-dom';
 import Spinner from "../layout/Spinner";
-import swal from 'sweetalert';
-import { firestore } from '../../config/fbConfig';
-import { handleBookmarkAction } from '../../store/actions/bookmarkActions';
+import BookmarkIcon from './BookmarkIconComponent';
 import { handleShareAction } from '../../store/actions/shareAction';
-import {} from '../../store/actions/shareAction';
 
 class showNewsComponent extends Component {
-    checkBookmark = (news) => {
-        if(this.props.currentUser.auth.isEmpty === false) {
-            //find in bookmarks of user if it find in the bookmark or not
-            const userID = this.props.currentUser.auth.uid;
-            let flag = 0;
-            firestore
-                .collection("users")
-                .doc(`/${userID}`)
-                /* .where("bookmark", "array-contains", news) */
-                .get()
-                .then((res) => {
-                    res.data().bookmark.forEach(element => {
-                        console.log(element.url, news.url);
-                        if(element.url === news.url) {
-                            flag = 1;
-                            console.log("found same so bookmarked")
-                        }
-                    });
-                })
-            
-            if(flag) {
-                console.log("Yes found");
-                return true;
-            }
-            else {
-                console.log("Not found");
-                return false;
-            }
-        }
-        else {
-            return false;
-        }
-    }
-
-    handleBookmark = (news) => {
-        if(this.props.currentUser.auth.isEmpty === false) {
-            this.props.bookmarkAction(this.props.currentUser, news);
-        }
-        else {
-            this.props.history.push("/signin");
-            swal({
-                text: 'You first need to log in',
-                title: 'Error',
-                icon: 'error',
-                closeOnClickOutside: true,
-                timer: 700
-            })
-        }
-    }
-
     handleShare = (link) => {
         this.props.shareAction(link);
     }
@@ -75,20 +22,14 @@ class showNewsComponent extends Component {
                     >
                         <div className="card booking-card news-card">
                             <div className="view overlay card-container">
+
                                 {/* SHARE ICON */}
                                 <div className="share-icon" onClick={ () => this.handleShare(headline.url) }>
                                     <i className="fas fa-share-alt"></i>
                                 </div>
+
                                 {/* BOOKMARK ICON */}
-                                {this.checkBookmark(headline) ? (
-                                    <div className="bookmarked-icon" onClick = { () => this.handleBookmark(headline) }>
-                                        <i className="fa fa-bookmark"></i>
-                                    </div>
-                                ) : (
-                                    <div className="bookmark-icon" onClick = { () => this.handleBookmark(headline) }>
-                                        <i className="fa fa-bookmark"></i>
-                                    </div>
-                                )}
+                                <BookmarkIcon news = {headline}/>
                                 
                                 <img
                                     id="indexcardimage"
@@ -139,7 +80,6 @@ class showNewsComponent extends Component {
 
 //take data from redux store to components prop
 const mapStateToProps = (state) => {
-    console.log(state);
 	return {
 		headlines: state.news.headlines,
         isLoading: state.spinner.isLoading,
@@ -149,7 +89,6 @@ const mapStateToProps = (state) => {
 //take data from props to store
 const mapDispatchToProps = (dispatch) => {
     return {
-        bookmarkAction: (currentUser, news) => dispatch(handleBookmarkAction(currentUser, news)),
         shareAction: (link) => dispatch(handleShareAction(link)),
     }
 }
