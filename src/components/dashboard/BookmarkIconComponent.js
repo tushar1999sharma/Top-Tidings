@@ -68,12 +68,12 @@ class BookmarkIconComponent extends Component {
             const userRef = firestore.collection("bookmarks").doc(`${userID}`);
             let flag = 0;
             firestore
-                .collection("users")
+                .collection("bookmarks")
                 .doc(`/${userID}`)
                 .get()
                 .then((res) => {
                     console.log(res.data());
-                    res.data().bookmark.forEach(element => {
+                    res.data().listOfBookmark.forEach(element => {
                         if(element.url === news.url) {
                             flag = 1;
                         }

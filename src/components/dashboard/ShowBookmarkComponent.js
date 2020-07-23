@@ -38,8 +38,8 @@ class bookmarks extends Component {
                 <div className="row mt-1">
                     {(this.props.currentUser.isLoaded === false) ? (
                         <Spinner />
-                    ) : this.props.bookmarks.length ? (
-                        this.props.currentUser.profile.bookmark.map((headline, index) => {
+                    ) : this.props.firestore.ordered.bookmarks[0].listOfBookmark.length ? (
+                        this.props.firestore.ordered.bookmarks[0].listOfBookmark.map((headline, index) => {
                             return (
                                 <div
                                 className="col-xl-4 col-md-6 col-sm-12 d-flex align-items-stretch"
@@ -111,7 +111,7 @@ const mapStateToProps = (state) => {
     //console.log(state);
 	return {
         currentUser: state.firebase,
-        bookmarks: state.firestore.data.bookmarks
+        firestore: state.firestore
 	};
 };
 const mapDispatchToProps = (dispatch) => {
@@ -123,5 +123,7 @@ const mapDispatchToProps = (dispatch) => {
 
 export default compose (
     connect(mapStateToProps, mapDispatchToProps),
-    firestoreConnect((firebase) => [`bookmarks/${firebase.auth.uid}`])
+    firestoreConnect((props) => 
+        [`bookmarks/${props.currentUser.auth.uid}`]
+    )
 ) (withRouter(bookmarks));
