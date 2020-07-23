@@ -13,7 +13,7 @@ export const registerAction = (data, history) => {
             .createUserWithEmailAndPassword(data.email, data.password)
             .then((res) => {
                 console.log(res);
-                //store other user detail in firestore with collection name "user"
+                //store other user detail in firestore with collection name "users"
                 firestore
                     .collection("users")
                     .doc(res.user.uid)
@@ -21,8 +21,14 @@ export const registerAction = (data, history) => {
                         name: data.name,
                         email: data.email,
                         createdAt: Date.now(),
-                        bookmark: []
                     })
+                    //create bookmarks collecttion corresponding to user
+                    firestore
+                        .collection("bookmarks")
+                        .doc(res.user.uid)
+                        .set({
+                            listOfBookmark: []
+                        })  
             })
             .then(() => {
                 dispatch({type: "REGISTER_SUCCESS"});
@@ -79,15 +85,24 @@ export const signInWithGoogleAction = (history) => {
                 console.log(res);
                 var user = res.additionalUserInfo
                 if (user.isNewUser) {
+                    //create user collection to store user info
                     firestore
                         .collection('users')
                         .doc(res.user.uid)
                         .set({
                             name: user.profile.name,
                             email: user.profile.email,
-                            bookmark: [],
                             createdAt: Date.now(),
                             provider: 'google',
+                        })
+                        .then((res) => {
+                            //create bookmarks collecttion corresponding to user
+                            firestore
+                                .collection("bookmarks")
+                                .doc(res.user.uid)
+                                .set({
+                                    listOfBookmark: []
+                                })
                         })
                 }
             })
@@ -121,15 +136,24 @@ export const signInWithGithubAction = (history) => {
                 console.log(res);
                 var user = res.additionalUserInfo
                 if (user.isNewUser) {
+                    //create user collection to store user info
                     firestore
                         .collection('users')
                         .doc(res.user.uid)
                         .set({
                             name: user.profile.name,
                             email: user.profile.email,
-                            bookmark: [],
                             createdAt: Date.now(),
                             provider: 'github',
+                        })
+                        .then((res) => {
+                            //create bookmarks collecttion corresponding to user
+                            firestore
+                                .collection("bookmarks")
+                                .doc(res.user.uid)
+                                .set({
+                                    listOfBookmark: []
+                                })
                         })
                 }
             })

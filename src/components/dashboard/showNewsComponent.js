@@ -80,10 +80,10 @@ class showNewsComponent extends Component {
 
 //take data from redux store to components prop
 const mapStateToProps = (state) => {
+    //console.log(state);
 	return {
 		headlines: state.news.headlines,
         isLoading: state.spinner.isLoading,
-        currentUser: state.firebase
 	};
 };
 //take data from props to store

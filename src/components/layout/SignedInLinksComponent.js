@@ -46,7 +46,7 @@ class SignedInLinksComponent extends Component {
 }
 
 const mapStateToProps = (state) => {
-	console.log(state);
+	//console.log(state);
 	return {
         name: state.firebase.profile.name,
 	};

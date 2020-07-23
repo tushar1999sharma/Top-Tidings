@@ -3,6 +3,9 @@ import { Route, BrowserRouter, Switch } from "react-router-dom";
 import { connect } from "react-redux";
 import "./App.css";
 
+import PrivateRoute from './components/routes/PrivateRoutes';
+import RestrictedRoute from './components/routes/RestrictedRoutes';
+
 import { startSpinnerAction } from './store/actions/spinnerAction';
 
 import Navbar from "./components/layout/NavbarComponent";
@@ -39,14 +42,6 @@ class App extends Component {
             </div>
         )
 
-        const authContainer = () => (
-            <div>
-                <Route path="/signup" component={Register} />
-
-                <Route path="/signin" component={LogIn} />
-            </div>
-        )
-
 		return (
 			<BrowserRouter>
 				<div className="App">
@@ -58,9 +53,9 @@ class App extends Component {
 					<Switch>
 						{/* By using Route, the component has access to this.props.history 
                         so it can redirect the user with this.props.history.push. */}
-						<Route exact path="/signup" component={authContainer} />
-						<Route exact path="/signin" component={authContainer} />
-						<Route exact path="/bookmarks" component={Bookmark} />
+						<RestrictedRoute restricted = {true} exact path="/signup" component={Register} />
+						<RestrictedRoute restricted = {true} exact path="/signin" component={LogIn} />
+						<PrivateRoute exact path="/bookmarks" component={Bookmark} />
                         <Route component={defaultContainer} />
 					</Switch>
 				</div>

@@ -1,4 +1,7 @@
 import axios from 'axios';  
+import moment from 'moment';
+
+const dateFrom = moment().subtract(7,'d').format('YYYY-MM-DD');
 
 export const homeAction = () => {
     return (dispatch) => {
@@ -7,17 +10,20 @@ export const homeAction = () => {
                 dispatch({ type: 'HOME_NEWS', payload: res.data.articles })
                 dispatch({ type: 'STOP_SPINNER' })
             })
+            .catch(err => console.log(err)) 
     }
 }
 
 export const queryAction = (query) => {
     return (dispatch) => {
-        axios.get(`https://newsapi.org/v2/top-headlines?q=${query}&language=en&apiKey=${process.env.REACT_APP_GOOGLE_API_KEY}`)
+        axios.get(`https://newsapi.org/v2/everything?q=${query}&from=${dateFrom}&language=en&sortBy=popularity&apiKey=${process.env.REACT_APP_GOOGLE_API_KEY}`)
             .then(res => { //handle promise
+                console.log(res);
                 dispatch({ type: 'SEARCH_NEWS', payload: res.data.articles })
                 dispatch({ type: 'STOP_SPINNER' })
             })
-    }
+            .catch(err => console.log(err)) 
+        }
 }
 
 export const sourceAction = (srcID) => {
@@ -27,6 +33,7 @@ export const sourceAction = (srcID) => {
                 dispatch({ type: 'SOURCE_NEWS', payload: res.data.articles })
                 dispatch({ type: 'STOP_SPINNER' })
             })
+            .catch(err => console.log(err)) 
     }
 }
 
@@ -37,5 +44,6 @@ export const categoryAction = (ctgName) => {
                 dispatch({ type: 'CATEGORY_NEWS', payload: res.data.articles })
                 dispatch({ type: 'STOP_SPINNER' })
             })
+            .catch(err => console.log(err)) 
     }
 }

@@ -3,6 +3,8 @@ import { withRouter } from 'react-router-dom';
 import { connect } from "react-redux";
 import swal from 'sweetalert';
 import { firebase, firestore } from '../../config/fbConfig';
+import { firestoreConnect } from 'react-redux-firebase';
+import { compose } from 'redux';
 import { addBookmarkAction, 
         removeBookmarkAction, 
         bookmarkErrorAction 
@@ -18,18 +20,17 @@ class BookmarkIconComponent extends Component {
     
     componentDidMount(){
         const news = this.props.news;
-        console.log(news);
         if(this.props.currentUser.auth.isEmpty === false) {
             //find in bookmarks of user if it find in the bookmark or not
             const userID = this.props.currentUser.auth.uid;
             let flag = 0;
             firestore
-                .collection("users")
+                .collection("bookmarks")
                 .doc(`/${userID}`)
                 /* .where("bookmark", "array-contains", news) */
                 .get()
                 .then((res) => {
-                    res.data().bookmark.forEach(element => {
+                    res.data().listOfBookmark.forEach(element => {
                         //console.log(element.url, news.url);
                         if(element.url === news.url) {
                             flag = 1;
@@ -39,13 +40,13 @@ class BookmarkIconComponent extends Component {
                 })
                 .then(() => {
                     if(flag) {
-                        //console.log("Yes found");
+                        console.log("Yes found");
                         this.setState({
                             isBookmark: true
                         })
                     }
                     else {
-                        //console.log("Not found");
+                        console.log("Not found");
                         this.setState({
                             isBookmark: false
                         })
@@ -57,7 +58,6 @@ class BookmarkIconComponent extends Component {
                 isBookmark: false
             })
         }
-        console.log(this.state.isBookmark);
     }
 
     handleBookmark = (news) => {
@@ -65,7 +65,7 @@ class BookmarkIconComponent extends Component {
             //first find if news with url is already present in this
             //if it present then remove it else add it to bookmark
             const userID = this.props.currentUser.auth.uid;
-            const userRef = firestore.collection("users").doc(`${userID}`);
+            const userRef = firestore.collection("bookmarks").doc(`${userID}`);
             let flag = 0;
             firestore
                 .collection("users")
@@ -83,7 +83,7 @@ class BookmarkIconComponent extends Component {
                     if(flag === 1) {
                         console.log("delete bookmark");
                         userRef.update({
-                            bookmark: firebase.firestore.FieldValue.arrayRemove(news)
+                            listOfBookmark: firebase.firestore.FieldValue.arrayRemove(news)
                         })
                         this.setState({
                             isBookmark: false
@@ -94,7 +94,7 @@ class BookmarkIconComponent extends Component {
                         //since not present then add into bookmark array
                         console.log("add bookmark");
                         userRef.update({
-                            bookmark: firebase.firestore.FieldValue.arrayUnion(news)
+                            listOfBookmark: firebase.firestore.FieldValue.arrayUnion(news)
                         })
                         this.setState({
                             isBookmark: true
@@ -120,7 +120,6 @@ class BookmarkIconComponent extends Component {
     }
 
     render() {
-        console.log("re render with ", this.state.isBookmark);
         return (
             <div>
                 {this.state.isBookmark ? (
@@ -140,8 +139,10 @@ class BookmarkIconComponent extends Component {
 
 //take data from redux store to components prop
 const mapStateToProps = (state) => {
+    //console.log(state);
 	return {
-        currentUser: state.firebase
+        currentUser: state.firebase,
+        bookmarks: state.firestore.data.bookmarks
 	};
 };
 //take data from props to store
@@ -153,4 +154,7 @@ const mapDispatchToProps = (dispatch) => {
     }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(withRouter(BookmarkIconComponent));
+export default compose (
+    connect(mapStateToProps, mapDispatchToProps),
+    firestoreConnect(['bookmarks'])
+) (withRouter(BookmarkIconComponent));

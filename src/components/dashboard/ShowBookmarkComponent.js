@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from "react-redux";
 import { withRouter } from 'react-router-dom';
-import Spinner from '../layout/Spinner';
+import { firestoreConnect } from 'react-redux-firebase'
+import { compose } from 'redux';
 import swal from 'sweetalert';
+import Spinner from '../layout/Spinner';
 import { handleBookmarkAction } from '../../store/actions/bookmarkActions';
 import { handleShareAction } from '../../store/actions/shareAction';
 
@@ -36,7 +38,7 @@ class bookmarks extends Component {
                 <div className="row mt-1">
                     {(this.props.currentUser.isLoaded === false) ? (
                         <Spinner />
-                    ) : this.props.currentUser.profile.bookmark.length ? (
+                    ) : this.props.bookmarks.length ? (
                         this.props.currentUser.profile.bookmark.map((headline, index) => {
                             return (
                                 <div
@@ -106,9 +108,10 @@ class bookmarks extends Component {
 
 //take data from redux store to components prop
 const mapStateToProps = (state) => {
-    console.log(state);
+    //console.log(state);
 	return {
-        currentUser: state.firebase
+        currentUser: state.firebase,
+        bookmarks: state.firestore.data.bookmarks
 	};
 };
 const mapDispatchToProps = (dispatch) => {
@@ -118,4 +121,7 @@ const mapDispatchToProps = (dispatch) => {
     }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(withRouter(bookmarks));
+export default compose (
+    connect(mapStateToProps, mapDispatchToProps),
+    firestoreConnect((firebase) => [`bookmarks/${firebase.auth.uid}`])
+) (withRouter(bookmarks));

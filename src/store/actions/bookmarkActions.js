@@ -5,16 +5,16 @@ export const handleBookmarkAction = (currentUser, news) => {
     //if it present then remove it else add it to bookmark
     return (dispatch) => {
         const userID = currentUser.auth.uid;
-        const userRef = firestore.collection("users").doc(`${userID}`);
+        const userRef = firestore.collection("bookmarks").doc(`${userID}`);
         firestore
-            .collection("users")
+            .collection("bookmarks")
             .doc(`/${userID}`)
             /* .where("bookmark", "array-contains", news) */
             .get()
             .then((res) => {
                 console.log(res.data());
                 let flag = 0;
-                res.data().bookmark.forEach(element => {
+                res.data().listOfBookmark.forEach(element => {
                     console.log("bookmark ", element.url, news.url);
                     if(element.url === news.url) {
                         flag = 1;
@@ -23,7 +23,7 @@ export const handleBookmarkAction = (currentUser, news) => {
                 if(flag === 1) {
                     console.log("delete bookmark");
                     userRef.update({
-                        bookmark: firebase.firestore.FieldValue.arrayRemove(news)
+                        listOfBookmark: firebase.firestore.FieldValue.arrayRemove(news)
                     })
                     dispatch({type: "BOOKMARK_SUCCESS", payload: "Bookmark successfully removed"});
                     setTimeout(() => {
@@ -33,7 +33,7 @@ export const handleBookmarkAction = (currentUser, news) => {
                 else {
                     //since not present then add into bookmark array
                     userRef.update({
-                        bookmark: firebase.firestore.FieldValue.arrayUnion(news)
+                        listOfBookmark: firebase.firestore.FieldValue.arrayUnion(news)
                     })
                     dispatch({type: "BOOKMARK_SUCCESS", payload: "Bookmark successfully added"});
                     setTimeout(() => {
@@ -74,8 +74,4 @@ export const bookmarkErrorAction = (err) => {
             dispatch({type: "CLEAR_BOOKMARK_MSG"});    
         }, 3000);
     }
-}
-
-export const checkBookmarkAction = () => {
-    
 }
