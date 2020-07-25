@@ -35,7 +35,7 @@ function AuthIsLoaded({ children }) {
     const auth = useSelector(state => state.firebase.auth);
     if (!isLoaded(auth))
       return (
-        <div className="text-center">
+        <div className="text-center auth-check">
           <div
             className="spinner-grow text-primary"
             style={{ width: "7rem", height: "7rem" }}

@@ -105,4 +105,23 @@ REACT_APP_FB_MEASUREMENT_ID = "from-firebase-config-fb-measurement-id"
 
 ## ScreenShots
 
+> Home Page
+
+![ScreenShot](/screenshots/home.jpeg)
+
+> Search News
+
+![ScreenShot](/screenshots/searchNews.jpeg)
+
+> Register user
+
+![ScreenShot](/screenshots/register.jpeg)
+
+> Login user
+
+![ScreenShot](/screenshots/login.jpeg)
+
+> Users Bookmarks
+
+![ScreenShot](/screenshots/bookmarks.jpeg)
 

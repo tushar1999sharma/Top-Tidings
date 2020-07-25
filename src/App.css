@@ -1,7 +1,13 @@
 /**************Theme decider******************/
+html {
+    background-color: #f7f7f7;
+}
 .App {
     background-color: #f7f7f7;
 	position: relative;
+}
+.auth-check {
+    background-color: #f7f7f7;
 }
 .nav-myClass {
     background-color: #3b5998;
