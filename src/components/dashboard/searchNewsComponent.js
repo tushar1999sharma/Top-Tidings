@@ -20,10 +20,10 @@ class searchNewsComponent extends Component {
 	}
 
 	//if component is already mounted and only route parameter change
-	componentWillReceiveProps(nextProps) {
-		if (this.props.match.params.query !== nextProps.match.params.query) {
+	componentDidUpdate(prevProps) {
+		if (this.props.match.params.query !== prevProps.match.params.query) {
 			this.props.isLoadingNews();
-			const query = nextProps.match.params.query;
+			const query = prevProps.match.params.query;
 			this.props.getQueryNews(query);
 		}
 	}

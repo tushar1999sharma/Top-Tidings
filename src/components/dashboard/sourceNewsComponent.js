@@ -20,10 +20,10 @@ class sourceNewsComponent extends Component {
 	}
 
 	//if component is already mounted and only route parameter change
-	componentWillReceiveProps(nextProps) {
-		if (this.props.match.params.src_id !== nextProps.match.params.src_id) {
+	componentDidUpdate(prevProps) {
+		if (this.props.match.params.src_id !== prevProps.match.params.src_id) {
 			this.props.isLoadingNews();
-			const srcID = nextProps.match.params.src_id;
+			const srcID = prevProps.match.params.src_id;
 			this.props.getSourceNews(srcID);
 		}
 	}

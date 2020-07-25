@@ -20,12 +20,10 @@ class categeoryNewsComponent extends Component {
 	}
 
 	//if component is already mounted and only route parameter change
-	componentWillReceiveProps(nextProps) {
+	componentDidUpdate(prevProps) {
 		this.props.isLoadingNews();
-		if (
-			this.props.match.params.ctg_name !== nextProps.match.params.ctg_name
-		) {
-			const ctgName = nextProps.match.params.ctg_name;
+		if (this.props.match.params.ctg_name !== prevProps.match.params.ctg_name) {
+			const ctgName = prevProps.match.params.ctg_name;
 			this.props.getCategoryNews(ctgName);
 		}
 	}

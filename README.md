@@ -113,6 +113,10 @@ REACT_APP_FB_MEASUREMENT_ID = "from-firebase-config-fb-measurement-id"
 
 ![ScreenShot](/screenshots/searchNews.jpeg)
 
+> Users Bookmarks
+
+![ScreenShot](/screenshots/bookmarks.jpeg)
+
 > Register user
 
 ![ScreenShot](/screenshots/register.jpeg)
@@ -121,7 +125,5 @@ REACT_APP_FB_MEASUREMENT_ID = "from-firebase-config-fb-measurement-id"
 
 ![ScreenShot](/screenshots/login.jpeg)
 
-> Users Bookmarks
 
-![ScreenShot](/screenshots/bookmarks.jpeg)
 

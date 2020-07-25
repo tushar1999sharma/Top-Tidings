@@ -10,7 +10,7 @@ class navBarComponent extends Component {
         return (
             <nav className="navbar navbar-expand-md nav-myClass">
                 <Link to="/">
-                    <i class="fa fa-newspaper-o news-icon my-auto" aria-hidden="true"></i>
+                    <i className="fa fa-newspaper-o news-icon my-auto" aria-hidden="true"></i>
                     <span className="navbar-brand nav-brand-link"> TopTidings</span>
                 </Link>
 
@@ -25,7 +25,7 @@ class navBarComponent extends Component {
                     aria-expanded="false"
                     aria-label="Toggle navigation"
                 >
-                    <span><i class="fa fa-bars my-auto toggle-icon" aria-hidden="true"></i></span>
+                    <span><i className="fa fa-bars my-auto toggle-icon" aria-hidden="true"></i></span>
                 </button>
                 <div
                     className="collapse navbar-collapse navbar-custom-buttons"
