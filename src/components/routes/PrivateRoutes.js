@@ -1,25 +1,29 @@
 import React from 'react';
-import { connect } from 'react-redux';
 import { Route, Redirect } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+import { isLoaded, isEmpty } from 'react-redux-firebase';
 
-const PrivateRoute = ({component: Component, ...rest}) => {
+const PrivateRoute = ({ component: Component, ...rest }) => {
+    const auth = useSelector((state) => state.firebase.auth);
     return (
         // Show the component only when the user is logged in
         // Otherwise, redirect the user to /signin page
         // ...rest destructure the props of route
-        <Route {...rest} render={props => (
-            !props.isLoggedin ?
-                <Component {...props} />
-            : <Redirect to="/signin" />
-        )} />
+        <Route {...rest}
+            render={({ location }) =>
+                isLoaded(auth) && !isEmpty(auth) ? (
+                    <Component />
+                ) : (
+                    <Redirect
+                        to={{
+                        pathname: "/signin",
+                        state: { from: location }
+                        }}
+                    />
+                )
+            }
+        />
     );
-};
+}
 
-const mapStateToProps = (state) => {
-    console.log(!state.firebase.auth.isEmpty);
-    return {
-        isLoggedin: state.firebase.auth.isEmpty
-    }
-} 
-
-export default connect(mapStateToProps, null)(PrivateRoute);
+export default PrivateRoute;

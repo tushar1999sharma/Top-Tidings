@@ -5,17 +5,14 @@ export const handleBookmarkAction = (currentUser, news) => {
     //if it present then remove it else add it to bookmark
     return (dispatch) => {
         const userID = currentUser.auth.uid;
-        const userRef = firestore.collection("bookmarks").doc(`${userID}`);
+        const userRef = firestore.collection("users").doc(`${userID}`);
         firestore
-            .collection("bookmarks")
+            .collection("users")
             .doc(`/${userID}`)
-            /* .where("bookmark", "array-contains", news) */
             .get()
             .then((res) => {
-                console.log(res.data());
                 let flag = 0;
-                res.data().listOfBookmark.forEach(element => {
-                    console.log("bookmark ", element.url, news.url);
+                res.data().listOfBookmarks.forEach(element => {
                     if(element.url === news.url) {
                         flag = 1;
                     }
@@ -23,7 +20,7 @@ export const handleBookmarkAction = (currentUser, news) => {
                 if(flag === 1) {
                     console.log("delete bookmark");
                     userRef.update({
-                        listOfBookmark: firebase.firestore.FieldValue.arrayRemove(news)
+                        listOfBookmarks: firebase.firestore.FieldValue.arrayRemove(news)
                     })
                     dispatch({type: "BOOKMARK_SUCCESS", payload: "Bookmark successfully removed"});
                     setTimeout(() => {
@@ -31,9 +28,10 @@ export const handleBookmarkAction = (currentUser, news) => {
                     }, 3000);
                 }
                 else {
+                    console.log("add bookmark");
                     //since not present then add into bookmark array
                     userRef.update({
-                        listOfBookmark: firebase.firestore.FieldValue.arrayUnion(news)
+                        listOfBookmarks: firebase.firestore.FieldValue.arrayUnion(news)
                     })
                     dispatch({type: "BOOKMARK_SUCCESS", payload: "Bookmark successfully added"});
                     setTimeout(() => {

@@ -3,8 +3,6 @@ import { withRouter } from 'react-router-dom';
 import { connect } from "react-redux";
 import swal from 'sweetalert';
 import { firebase, firestore } from '../../config/fbConfig';
-import { firestoreConnect } from 'react-redux-firebase';
-import { compose } from 'redux';
 import { addBookmarkAction, 
         removeBookmarkAction, 
         bookmarkErrorAction 
@@ -25,12 +23,12 @@ class BookmarkIconComponent extends Component {
             const userID = this.props.currentUser.auth.uid;
             let flag = 0;
             firestore
-                .collection("bookmarks")
+                .collection("users")
                 .doc(`/${userID}`)
                 /* .where("bookmark", "array-contains", news) */
                 .get()
                 .then((res) => {
-                    res.data().listOfBookmark.forEach(element => {
+                    res.data().listOfBookmarks.forEach(element => {
                         //console.log(element.url, news.url);
                         if(element.url === news.url) {
                             flag = 1;
@@ -65,15 +63,15 @@ class BookmarkIconComponent extends Component {
             //first find if news with url is already present in this
             //if it present then remove it else add it to bookmark
             const userID = this.props.currentUser.auth.uid;
-            const userRef = firestore.collection("bookmarks").doc(`${userID}`);
+            const userRef = firestore.collection("users").doc(`${userID}`);
             let flag = 0;
             firestore
-                .collection("bookmarks")
+                .collection("users")
                 .doc(`/${userID}`)
                 .get()
                 .then((res) => {
                     console.log(res.data());
-                    res.data().listOfBookmark.forEach(element => {
+                    res.data().listOfBookmarks.forEach(element => {
                         if(element.url === news.url) {
                             flag = 1;
                         }
@@ -83,7 +81,7 @@ class BookmarkIconComponent extends Component {
                     if(flag === 1) {
                         console.log("delete bookmark");
                         userRef.update({
-                            listOfBookmark: firebase.firestore.FieldValue.arrayRemove(news)
+                            listOfBookmarks: firebase.firestore.FieldValue.arrayRemove(news)
                         })
                         this.setState({
                             isBookmark: false
@@ -94,7 +92,7 @@ class BookmarkIconComponent extends Component {
                         //since not present then add into bookmark array
                         console.log("add bookmark");
                         userRef.update({
-                            listOfBookmark: firebase.firestore.FieldValue.arrayUnion(news)
+                            listOfBookmarks: firebase.firestore.FieldValue.arrayUnion(news)
                         })
                         this.setState({
                             isBookmark: true
@@ -154,7 +152,4 @@ const mapDispatchToProps = (dispatch) => {
     }
 }
 
-export default compose (
-    connect(mapStateToProps, mapDispatchToProps),
-    firestoreConnect(['bookmarks'])
-) (withRouter(BookmarkIconComponent));
+export default connect(mapStateToProps, mapDispatchToProps)(withRouter(BookmarkIconComponent));

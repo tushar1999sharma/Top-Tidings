@@ -20,15 +20,9 @@ export const registerAction = (data, history) => {
                     .set({
                         name: data.name,
                         email: data.email,
+                        listOfBookmarks: [],
                         createdAt: Date.now(),
                     })
-                    //create bookmarks collecttion corresponding to user
-                    firestore
-                        .collection("bookmarks")
-                        .doc(res.user.uid)
-                        .set({
-                            listOfBookmark: []
-                        })  
             })
             .then(() => {
                 dispatch({type: "REGISTER_SUCCESS"});
@@ -92,17 +86,9 @@ export const signInWithGoogleAction = (history) => {
                         .set({
                             name: user.profile.name,
                             email: user.profile.email,
+                            listOfBookmarks: [],
                             createdAt: Date.now(),
                             provider: 'google',
-                        })
-                        .then((res) => {
-                            //create bookmarks collecttion corresponding to user
-                            firestore
-                                .collection("bookmarks")
-                                .doc(res.user.uid)
-                                .set({
-                                    listOfBookmark: []
-                                })
                         })
                 }
             })
@@ -143,17 +129,9 @@ export const signInWithGithubAction = (history) => {
                         .set({
                             name: user.profile.name,
                             email: user.profile.email,
+                            listOfBookmarks: [],
                             createdAt: Date.now(),
                             provider: 'github',
-                        })
-                        .then((res) => {
-                            //create bookmarks collecttion corresponding to user
-                            firestore
-                                .collection("bookmarks")
-                                .doc(res.user.uid)
-                                .set({
-                                    listOfBookmark: []
-                                })
                         })
                 }
             })

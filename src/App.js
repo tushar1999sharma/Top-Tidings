@@ -53,8 +53,8 @@ class App extends Component {
 					<Switch>
 						{/* By using Route, the component has access to this.props.history 
                         so it can redirect the user with this.props.history.push. */}
-						<RestrictedRoute restricted = {true} exact path="/signup" component={Register} />
-						<RestrictedRoute restricted = {true} exact path="/signin" component={LogIn} />
+						<RestrictedRoute exact path="/signup" component={Register} />
+						<RestrictedRoute exact path="/signin" component={LogIn} />
 						<PrivateRoute exact path="/bookmarks" component={Bookmark} />
                         <Route component={defaultContainer} />
 					</Switch>

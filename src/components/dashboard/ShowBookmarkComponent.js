@@ -1,28 +1,13 @@
 import React, { Component } from 'react';
 import { connect } from "react-redux";
 import { withRouter } from 'react-router-dom';
-import { firestoreConnect } from 'react-redux-firebase'
-import { compose } from 'redux';
-import swal from 'sweetalert';
 import Spinner from '../layout/Spinner';
 import { handleBookmarkAction } from '../../store/actions/bookmarkActions';
 import { handleShareAction } from '../../store/actions/shareAction';
 
 class bookmarks extends Component {
     handleBookmark = (news) => {
-        if(this.props.currentUser.auth.isEmpty === false) {
-            this.props.bookmarkAction(this.props.currentUser, news);
-        }
-        else {
-            this.props.history.push("/signin");
-            swal({
-                text: 'You first need to log in',
-                title: 'Error',
-                icon: 'error',
-                closeOnClickOutside: true,
-                timer: 1000
-            })
-        }
+        this.props.bookmarkAction(this.props.currentUser, news);
     }
 
     handleShare = (link) => {
@@ -36,10 +21,10 @@ class bookmarks extends Component {
                     Your Bookmarks
                 </h5>
                 <div className="row mt-1">
-                    {(this.props.currentUser.isLoaded === false) ? (
+                    {(!this.props.currentUser.profile.isLoaded) ? (
                         <Spinner />
-                    ) : this.props.firestore.ordered.bookmarks[0].listOfBookmark.length ? (
-                        this.props.firestore.ordered.bookmarks[0].listOfBookmark.map((headline, index) => {
+                    ) : (!this.props.currentUser.profile.isEmpty) ? (
+                        this.props.bookmarks.map((headline, index) => {
                             return (
                                 <div
                                 className="col-xl-4 col-md-6 col-sm-12 d-flex align-items-stretch"
@@ -108,10 +93,10 @@ class bookmarks extends Component {
 
 //take data from redux store to components prop
 const mapStateToProps = (state) => {
-    //console.log(state);
+    console.log(state);
 	return {
         currentUser: state.firebase,
-        firestore: state.firestore
+        bookmarks: state.firebase.profile.listOfBookmarks
 	};
 };
 const mapDispatchToProps = (dispatch) => {
@@ -121,9 +106,4 @@ const mapDispatchToProps = (dispatch) => {
     }
 }
 
-export default compose (
-    connect(mapStateToProps, mapDispatchToProps),
-    firestoreConnect((props) => 
-        [`bookmarks/${props.currentUser.auth.uid}`]
-    )
-) (withRouter(bookmarks));
+export default connect(mapStateToProps, mapDispatchToProps)(withRouter(bookmarks));

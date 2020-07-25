@@ -1,22 +1,29 @@
 import React from 'react';
-import { connect } from 'react-redux';
 import { Route, Redirect } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+import { isLoaded, isEmpty } from 'react-redux-firebase';
 
-const RestrictedRoute = ({component: Component, restricted, ...rest}) => {
+const RestrictedRoute = ({ component: Component, ...rest }) => {
+    const auth = useSelector((state) => state.firebase.auth);
     return (
-        // restricted = true meaning restricted route
-        <Route {...rest} render={props => (
-            !props.isLoggedin && restricted ?
-                <Redirect to="/" />
-            : <Component {...props} />
-        )} />
+        // Show the component only when the user is logged in
+        // Otherwise, redirect the user to /signin page
+        // ...rest destructure the props of route
+        <Route {...rest}
+            render={({ location }) =>
+                isLoaded(auth) && isEmpty(auth) ? (
+                    <Component />
+                ) : (
+                    <Redirect
+                        to={{
+                        pathname: "/",
+                        state: { from: location }
+                        }}
+                    />
+                )
+            }
+        />
     );
-};
+}
 
-const mapStateToProps = (state) => {
-    return {
-        isLoggedin: state.firebase.auth.isEmpty
-    }
-} 
-
-export default connect(mapStateToProps, null)(RestrictedRoute);
+export default RestrictedRoute;
