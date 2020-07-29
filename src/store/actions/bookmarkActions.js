@@ -18,7 +18,7 @@ export const handleBookmarkAction = (currentUser, news) => {
                     }
                 });
                 if(flag === 1) {
-                    console.log("delete bookmark");
+                    //since present then remove from bookmark array
                     userRef.update({
                         listOfBookmarks: firebase.firestore.FieldValue.arrayRemove(news)
                     })
@@ -34,13 +34,18 @@ export const handleBookmarkAction = (currentUser, news) => {
                         listOfBookmarks: firebase.firestore.FieldValue.arrayUnion(news)
                     })
                     dispatch({type: "BOOKMARK_SUCCESS", payload: "Bookmark successfully added"});
+                    //clear message after 3 seconds
                     setTimeout(() => {
                         dispatch({type: "CLEAR_BOOKMARK_MSG"});    
                     }, 3000);
                 }
             }).catch((err) => {
-                dispatch({type: "BOOKMARK_ERROR", payload: err});
                 console.log(err);
+                dispatch({type: "BOOKMARK_ERROR", payload: err});
+                //clear message after 3 seconds
+                setTimeout(() => {
+                    dispatch({type: "CLEAR_BOOKMARK_MSG"});    
+                }, 3000);
             });
     }
     
@@ -49,6 +54,7 @@ export const handleBookmarkAction = (currentUser, news) => {
 export const addBookmarkAction = () => {
     return (dispatch) => {
         dispatch({type: "BOOKMARK_SUCCESS", payload: "Bookmark successfully added"});
+        //clear message after 3 seconds
         setTimeout(() => {
             dispatch({type: "CLEAR_BOOKMARK_MSG"});    
         }, 3000);
@@ -59,6 +65,7 @@ export const addBookmarkAction = () => {
 export const removeBookmarkAction = () => {
     return (dispatch) => {
         dispatch({type: "BOOKMARK_SUCCESS", payload: "Bookmark successfully removed"});
+        //clear message after 3 seconds
         setTimeout(() => {
             dispatch({type: "CLEAR_BOOKMARK_MSG"});    
         }, 3000);
@@ -68,6 +75,7 @@ export const removeBookmarkAction = () => {
 export const bookmarkErrorAction = (err) => {
     return (dispatch) => {
         dispatch({type: "BOOKMARK_ERROR", payload: err});
+        //clear message after 3 seconds
         setTimeout(() => {
             dispatch({type: "CLEAR_BOOKMARK_MSG"});    
         }, 3000);

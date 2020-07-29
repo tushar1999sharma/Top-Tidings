@@ -7,10 +7,12 @@ import { handleShareAction } from '../../store/actions/shareAction';
 
 class bookmarks extends Component {
     handleBookmark = (news) => {
+        //bookmark action i.e to add or delete bookmark
         this.props.bookmarkAction(this.props.currentUser, news);
     }
 
     handleShare = (link) => {
+        //share data 
         this.props.shareAction(link);
     }
 
@@ -23,7 +25,7 @@ class bookmarks extends Component {
                 <div className="row mt-1">
                     {(!this.props.currentUser.profile.isLoaded) ? (
                         <Spinner />
-                    ) : (!this.props.currentUser.profile.isEmpty) ? (
+                    ) : (this.props.bookmarks.length !== 0) ? (
                         this.props.bookmarks.map((headline, index) => {
                             return (
                                 <div
@@ -84,7 +86,7 @@ class bookmarks extends Component {
                         <div className="center">
                             <h4 className="text-danger">OOPS! You have no bookmark</h4>
                         </div>
-                    )};
+                    )}
                 </div>
             </div>
         )
@@ -99,6 +101,8 @@ const mapStateToProps = (state) => {
         bookmarks: state.firebase.profile.listOfBookmarks
 	};
 };
+
+//dispatch action to change data in store
 const mapDispatchToProps = (dispatch) => {
     return {
         bookmarkAction: (currentUser, news) => dispatch(handleBookmarkAction(currentUser, news)),

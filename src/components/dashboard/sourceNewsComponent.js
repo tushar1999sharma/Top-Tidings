@@ -5,25 +5,23 @@ import { startSpinnerAction } from '../../store/actions/spinnerAction';
 import { sourceAction } from "../../store/actions/getNewsActions";
 
 class sourceNewsComponent extends Component {
-	constructor(props) {
-		super(props);
-		this.state = {
-			headlines: []
-		};
-	}
-
 	//when component rendered this method will be first evoked
 	componentDidMount() {
+        //start spinner so we can get data from api
 		this.props.isLoadingNews();
-		const srcID = this.props.match.params.src_id;
+        const srcID = this.props.match.params.src_id;
+        //get data from api
 		this.props.getSourceNews(srcID);
 	}
 
-	//if component is already mounted and only route parameter change
+	//if component is already mounted and only route parameter changes
 	componentDidUpdate(prevProps) {
+        //re render only if previous parameter is diffrent from current
 		if (this.props.match.params.src_id !== prevProps.match.params.src_id) {
+            //start spinner
 			this.props.isLoadingNews();
-			const srcID = prevProps.match.params.src_id;
+            const srcID = this.props.match.params.src_id;
+            //get data from api
 			this.props.getSourceNews(srcID);
 		}
 	}
@@ -35,7 +33,7 @@ class sourceNewsComponent extends Component {
 					Headlines from {this.props.match.params.src_id}
 				</h5>
 				<div className="row mt-1">
-					<ShowNews headlines={this.state.headlines} />
+					<ShowNews />
 				</div>
 			</div>
 		);

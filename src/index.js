@@ -31,9 +31,11 @@ const rrfProps = {
     createFirestoreInstance: createFirestoreInstance
 }
 
+//check if firebase is loaded or not 
 function AuthIsLoaded({ children }) {
     const auth = useSelector(state => state.firebase.auth);
     if (!isLoaded(auth))
+    //if not loaded then show spinner
       return (
         <div className="text-center auth-check">
           <div

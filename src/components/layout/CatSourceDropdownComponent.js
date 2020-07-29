@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 const catSourceDropdownComponent = () => {
     return (
         <div className="buttons-container container d-md-none">
-            {/* sources */}
+            {/* drop-down for sources */}
             <div className="container dropdown d-md-none d-block w-100">
                 <button
                     className="btn btn-toggle dropdown-toggle sources-button w-100"
@@ -100,7 +100,7 @@ const catSourceDropdownComponent = () => {
 
             <br />
 
-            {/* categories */}
+            {/* drop-down for categories */}
             <div className="container dropdown show d-md-none w-100">
                 <button
                     className="btn dropdown-toggle btn-toggle categories-button w-100 mt-3 mb-3"

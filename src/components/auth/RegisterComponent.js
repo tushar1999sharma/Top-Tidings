@@ -13,6 +13,7 @@ import {
 class registerComponent extends Component {
     constructor(props) {
         super(props);
+        //create state
         this.state = {
             name: '',
             email: '',
@@ -22,7 +23,8 @@ class registerComponent extends Component {
     }
 
     componentDidMount() {
-        // If logged in and user navigates to Login page, should redirect them to dashboard
+        // If logged in and user navigates to Login page, then redirect them to dashboard
+        //we are also checking through RestrictedRoute
         if (this.props.isAuthenticated) {
             swal({
                 text: "You are already logged in",
@@ -38,6 +40,7 @@ class registerComponent extends Component {
     }
 
     handleInputChange = (event) => {
+        //change state data with change in input
         const { value, name } = event.target;
         this.setState({
           [name]: value
@@ -45,25 +48,32 @@ class registerComponent extends Component {
     }
 
     handleSubmit = (event) => {
+        //prevent usual changes in page i.e. refresh on submitting form
         event.preventDefault();
+        //check if both time password match or not
         if(this.state.confirmPass !== this.state.password) {
+            //send action to create message for error
             this.props.unMatchedPassword();
         }
         else {
+            //create object
             const data = {
                 name: this.state.name,
                 email: this.state.email,
                 password: this.state.password,
                 confirmPass: this.state.confirmPass
             };
+            //send action to create user in database with given details
             this.props.registerPost(data, this.props.history);
         }
     }
 
     handleGoogleSignInSubmit = () => {
+        //action to sing in user with google and save in database
         this.props.signInWithGoogle(this.props.history)
     }
     handleGithubSignInSubmit = () => {
+        //action to sing in user with github and save in database
         this.props.signInWithGithub(this.props.history);
     }
     
@@ -152,7 +162,7 @@ const mapStateToProps = (state) => {
         authError: state.auth.authError,
 	};
 };
-//take data to redux store
+//dispatch action to change data in redux store
 const mapDispatchToProps = (dispatch) => {
     return {
         registerPost: (userInfo, history) => dispatch(registerAction(userInfo, history)),

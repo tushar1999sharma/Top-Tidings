@@ -16,8 +16,11 @@ class searchBarComponent extends Component {
 	};
 
 	handleSubmit = (event) => {
-		event.preventDefault(); // prevent native submitting behavior
-		this.props.history.push(`/search/${this.state.query}`); //programmatically redirect to result page
+        // prevent native submitting behavior
+        event.preventDefault(); 
+        //programmatically redirect to result page
+        this.props.history.push(`/search/${this.state.query}`); 
+        //clear state
 		this.setState({
 			query: ""
 		});

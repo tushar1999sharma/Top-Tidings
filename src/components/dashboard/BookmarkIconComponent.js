@@ -18,33 +18,32 @@ class BookmarkIconComponent extends Component {
     
     componentDidMount(){
         const news = this.props.news;
+        //check if news is bookmarked by user or not
         if(this.props.currentUser.auth.isEmpty === false) {
-            //find in bookmarks of user if it find in the bookmark or not
+            //find in bookmarks only if user is authenticated
             const userID = this.props.currentUser.auth.uid;
             let flag = 0;
             firestore
                 .collection("users")
                 .doc(`/${userID}`)
-                /* .where("bookmark", "array-contains", news) */
                 .get()
                 .then((res) => {
+                    //get list of bookmarks of the user logged in
                     res.data().listOfBookmarks.forEach(element => {
-                        //console.log(element.url, news.url);
+                        //compare url of news we are checking with bookmarked news
                         if(element.url === news.url) {
+                            //news found in bookmark
                             flag = 1;
-                            console.log("found same so bookmarked")
                         }
                     });
                 })
                 .then(() => {
                     if(flag) {
-                        console.log("Yes found");
                         this.setState({
                             isBookmark: true
                         })
                     }
                     else {
-                        console.log("Not found");
                         this.setState({
                             isBookmark: false
                         })
@@ -52,6 +51,7 @@ class BookmarkIconComponent extends Component {
                 })
         }
         else {
+            //since user is not authenticated so news can't be bookmarked
             this.setState({
                 isBookmark: false
             })
@@ -59,6 +59,7 @@ class BookmarkIconComponent extends Component {
     }
 
     handleBookmark = (news) => {
+        //on clicking bookmark icon
         if(this.props.currentUser.auth.isEmpty === false) {
             //first find if news with url is already present in this
             //if it present then remove it else add it to bookmark
@@ -70,7 +71,6 @@ class BookmarkIconComponent extends Component {
                 .doc(`/${userID}`)
                 .get()
                 .then((res) => {
-                    console.log(res.data());
                     res.data().listOfBookmarks.forEach(element => {
                         if(element.url === news.url) {
                             flag = 1;
@@ -79,7 +79,7 @@ class BookmarkIconComponent extends Component {
                 })
                 .then(() => {
                     if(flag === 1) {
-                        console.log("delete bookmark");
+                        //since bookmarked so remove it from bookmark  
                         userRef.update({
                             listOfBookmarks: firebase.firestore.FieldValue.arrayRemove(news)
                         })
@@ -90,7 +90,6 @@ class BookmarkIconComponent extends Component {
                     }
                     else {
                         //since not present then add into bookmark array
-                        console.log("add bookmark");
                         userRef.update({
                             listOfBookmarks: firebase.firestore.FieldValue.arrayUnion(news)
                         })
@@ -101,11 +100,12 @@ class BookmarkIconComponent extends Component {
                     }
                 })
                 .catch((err) => {
-                    this.props.bookmarkError(err);
                     console.log(err);
+                    this.props.bookmarkError(err);
                 });
         }
         else {
+            //if user not logged in then redirect to sign in page
             this.props.history.push("/signin");
             swal({
                 text: 'You first need to log in',
@@ -137,13 +137,12 @@ class BookmarkIconComponent extends Component {
 
 //take data from redux store to components prop
 const mapStateToProps = (state) => {
-    //console.log(state);
 	return {
         currentUser: state.firebase,
         bookmarks: state.firestore.data.bookmarks
 	};
 };
-//take data from props to store
+//take data to store
 const mapDispatchToProps = (dispatch) => {
     return {
         addBookmark: () => dispatch(addBookmarkAction()),

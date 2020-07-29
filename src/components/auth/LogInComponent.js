@@ -8,6 +8,7 @@ import { logInAction, signInWithGoogleAction, signInWithGithubAction } from "../
 class logInComponent extends Component {
     constructor(props) {
         super(props);
+        //create state
         this.state = {
             email: '',
             password: ''
@@ -15,7 +16,8 @@ class logInComponent extends Component {
     }
 
     componentDidMount() {
-        // If logged in and user navigates to Login page, should redirect them to dashboard
+        // If logged in and user navigates to Login page, then redirect them to dashboard
+        //we are also checking through RestrictedRoute        
         if (this.props.isAuthenticated) {
             swal({
                 text: "You are already logged in",
@@ -32,26 +34,29 @@ class logInComponent extends Component {
 
     handleInputChange = (event) => {
         const { value, name } = event.target;
+        //change state on change in input field
         this.setState({
           [name]: value
         });
     }
 
     handleSubmit = (event) => {
+        //prevent default action on submitting form i.e. refresh
         event.preventDefault();
         const data = {
             email: this.state.email,
             password: this.state.password
         };
-        console.log(data);
-        console.log(this.props);
+        //action to authenticate user from database
         this.props.LogInPost(data, this.props.history);
     }
 
     handleGoogleSignInSubmit = () => {
+        //google authentication
         this.props.signInWithGoogle(this.props.history);
     }
     handleGithubSignInSubmit = () => {
+        //github authentication
         this.props.signInWithGithub(this.props.history);
     }
     
@@ -119,7 +124,7 @@ const mapStateToProps = (state) => {
         authError: state.auth.authError
 	};
 };
-//take data to redux store
+//dispatch action to change data in redux store
 const mapDispatchToProps = (dispatch) => {
     return {
         LogInPost: (history, userInfo) => dispatch(logInAction(history, userInfo)),

@@ -7,13 +7,17 @@ import { handleShareAction } from '../../store/actions/shareAction';
 
 class showNewsComponent extends Component {
     handleShare = (link) => {
+        //complete share action on clicking share action 
+        //i.e copy link to clipboard
         this.props.shareAction(link);
     }
     
     render() {
         return ( this.props.isLoading) ? (
+            //show spinner if spinner state in store is true
             <Spinner />
         ) : this.props.headlines.length ? (
+            //check length i.e if 0 then show diffrent msg
             this.props.headlines.map((headline, index) => {
                 return (
                     <div
@@ -78,15 +82,15 @@ class showNewsComponent extends Component {
     }
 }
 
-//take data from redux store to components prop
+//take data from redux store to components props
 const mapStateToProps = (state) => {
-    //console.log(state);
 	return {
 		headlines: state.news.headlines,
         isLoading: state.spinner.isLoading,
 	};
 };
-//take data from props to store
+
+//change data in store
 const mapDispatchToProps = (dispatch) => {
     return {
         shareAction: (link) => dispatch(handleShareAction(link)),

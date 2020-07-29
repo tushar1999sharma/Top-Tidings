@@ -3,6 +3,7 @@ import 'firebase/firestore'
 import 'firebase/auth'
 import 'firebase/storage'
 
+//create firebase configuration
 const fbConfig = {
     apiKey: process.env.REACT_APP_FB_API,
     authDomain: process.env.REACT_APP_FB_AUTH_DOMAIN,
@@ -14,13 +15,12 @@ const fbConfig = {
     measurementId: process.env.REACT_APP_FB_MEASUREMENT_ID
 };
 
-// Initialize firebase instance
+// Initialize firebase instance with provided configuration
 firebase.initializeApp(fbConfig);
 
-const firestore = firebase.firestore();
-const auth = firebase.auth();
-const storage = firebase.storage();
-const googleProvider = new firebase.auth.GoogleAuthProvider();
-const githubProvider = new firebase.auth.GithubAuthProvider();
+const firestore = firebase.firestore(); //create firestore instance
+const auth = firebase.auth(); //create auth instance
+const googleProvider = new firebase.auth.GoogleAuthProvider(); //create google provider
+const githubProvider = new firebase.auth.GithubAuthProvider(); //create github provider 
 
-export { firebase, firestore, auth, googleProvider, githubProvider, storage }
+export { firebase, firestore, auth, googleProvider, githubProvider }

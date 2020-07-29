@@ -1,12 +1,11 @@
 import {createStore, applyMiddleware, compose} from 'redux';
 import thunk from 'redux-thunk'; //for async process in redux
-import reducer from './reducer/rootReducer';
-/* import { reduxFirestore, getFirestore } from "redux-firestore";
-import { reactReduxFirebase, getFirebase } from "react-redux-firebase";
-import { fbConfig } from "../config/fbConfig"; */
+import rootReducer from './reducer/rootReducer';
 
-const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose; //use redux dev tool
+//for redux dev tool
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose; 
 
-const store = createStore(reducer, composeEnhancers(applyMiddleware(thunk)));
+//crete store
+const store = createStore(rootReducer, composeEnhancers(applyMiddleware(thunk)));
 
 export default store;

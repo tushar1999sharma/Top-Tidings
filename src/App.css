@@ -58,6 +58,14 @@ html {
     color: white;
     background-color: #1e335e;
 }
+.nav-authName-link {
+    color: #dadaec;
+}
+.nav-authName-link:hover {
+    color: #dadaec;
+    cursor: default;
+}
+
 .dropdown-in {
     color: black;
     background-color: #f7f7f7;

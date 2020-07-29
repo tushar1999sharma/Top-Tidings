@@ -35,16 +35,12 @@ const sourceComponent = () => {
 				<Link to="/source/fox-news">
 					<img className="logo-img" src={FOXlogo} alt="FOX" />
 				</Link>
-				{/* <Link to='/source/time'><img className="logo-img" src={TIMElogo} alt="TIME" /></Link> */}
-				{/* <Link to='/source/fortune'><img className="logo-img" src={Fortunelogo} alt="fortune" /></Link> */}
-				{/* <Link to='/source/cnn'><img className="logo-img" src={CNNlogo} alt="CNN" /></Link> */}
 				<Link to="/source/espn">
 					<img className="logo-img" src={ESPNlogo} alt="espn" />
 				</Link>
 				<Link to="/source/reddit-r-all">
 					<img className="logo-img" src={Redditlogo} alt="reddit" />
 				</Link>
-				{/* <Link to='/source/bloomberg'><img className="logo-img" src={BBlogo} alt="bloomberg" /></Link> */}
 				<Link to="/source/national-geographic">
 					<img className="logo-img" src={NGlogo} alt="natGeo" />
 				</Link>

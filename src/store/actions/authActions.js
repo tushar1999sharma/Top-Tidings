@@ -12,7 +12,6 @@ export const registerAction = (data, history) => {
         auth
             .createUserWithEmailAndPassword(data.email, data.password)
             .then((res) => {
-                console.log(res);
                 //store other user detail in firestore with collection name "users"
                 firestore
                     .collection("users")
@@ -25,6 +24,7 @@ export const registerAction = (data, history) => {
                     })
             })
             .then(() => {
+                //show success message
                 dispatch({type: "REGISTER_SUCCESS"});
                 swal({
                     text: "Successfully registered to Top tidings",
@@ -36,8 +36,10 @@ export const registerAction = (data, history) => {
                 history.push("/");
             })
             .catch(err => {
+                //error in user registration
                 console.log(err);
                 dispatch({type: "REGISTER_ERROR", payload: err}); 
+                //clear message after 3 seconds
                 setTimeout(() => {
                     dispatch({type: "CLEAR_AUTH_MSG"});    
                 }, 3000);                 
@@ -50,6 +52,7 @@ export const logInAction = (data, history) => {
         auth
             .signInWithEmailAndPassword(data.email, data.password)
             .then(() => {
+                //show success message
                 dispatch({type: "LOGIN_SUCCESS"}); 
                 swal({
                     text: "Successfully logged in to Top tidings",
@@ -62,7 +65,9 @@ export const logInAction = (data, history) => {
             })
             .catch(err => {
                 console.log(err);
+                //show eror on log in
                 dispatch({type: "LOGIN_ERROR", payload: err});  
+                //clear message after 3 seconds
                 setTimeout(() => {
                     dispatch({type: "CLEAR_AUTH_MSG"});    
                 }, 3000);    
@@ -93,6 +98,7 @@ export const signInWithGoogleAction = (history) => {
                 }
             })
             .then(() => {
+                //show success message
                 dispatch({ type: 'LOGIN_SUCCESS' });
                 swal({
                     text: "Successfully logged in to Top tidings",
@@ -137,6 +143,7 @@ export const signInWithGithubAction = (history) => {
             })
             .then(() => {
                 dispatch({ type: 'LOGIN_SUCCESS' });
+                //show success message
                 swal({
                     text: "Successfully logged in to Top tidings",
                     title: "Success",
@@ -148,7 +155,8 @@ export const signInWithGithubAction = (history) => {
             })
             .catch(err => {
                 console.log(err);
-                dispatch({type: "LOGIN_ERROR", payload: err});     
+                dispatch({type: "LOGIN_ERROR", payload: err});   
+                //clear message after 3 seconds
                 setTimeout(() => {
                     dispatch({type: "CLEAR_AUTH_MSG"});    
                 }, 3000);    
@@ -162,6 +170,7 @@ export const logOutAction = (history) => {
             .signOut()
             .then(() => {
                 dispatch({type: "LOGOUT_SUCCESS"});
+                //show success message
                 swal({
                     text: "Successfully logged out from Top tidings",
                     title: "Success",
@@ -174,6 +183,7 @@ export const logOutAction = (history) => {
             .catch(err => {  
                 console.log(err);
                 dispatch({type: "LOGOUT_ERROR", payload: err});  
+                //clear message after 3 seconds
                 setTimeout(() => {
                     dispatch({type: "CLEAR_AUTH_MSG"});    
                 }, 3000);                 

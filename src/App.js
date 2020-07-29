@@ -47,14 +47,15 @@ class App extends Component {
 				<div className="App">
                     <Navbar />
                     <FlashMsg />
-
 					{/* Switch tag check route one by one and if matches 
                         then show that component and will not check other route */}
 					<Switch>
 						{/* By using Route, the component has access to this.props.history 
                         so it can redirect the user with this.props.history.push. */}
 						<RestrictedRoute exact path="/signup" component={Register} />
+                        {/* restrict route if useer is logged in */}
 						<RestrictedRoute exact path="/signin" component={LogIn} />
+                        {/* protect route if user is not logged in */}
 						<PrivateRoute exact path="/bookmarks" component={Bookmark} />
                         <Route component={defaultContainer} />
 					</Switch>
@@ -64,10 +65,12 @@ class App extends Component {
 	}
 }
 
+/* dispatch action to change store data */
 const mapDispatchToProps = (dispatch) => {
 	return {
 		isLoading: () => dispatch(startSpinnerAction()),
 	};
 };
 
+/* 'connect' connect react component with redux store */
 export default connect(null, mapDispatchToProps)(App);

@@ -32,8 +32,10 @@ class navBarComponent extends Component {
                     id="navbarSupportedContent"
                 >
                     {this.props.isAuthenticated ? (
+                        //if user is not signed in
                         <SignedOutLinks />
                     ) : (
+                        //if user is signed in
                         <SignedInLinks />
                     )}
                 </div> 

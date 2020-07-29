@@ -5,9 +5,12 @@ import { logOutAction } from '../../store/actions/authActions';
 
 class SignedInLinksComponent extends Component {
     logOutClick = (event) => {
+        //prevent default action i.e. refresh
         event.preventDefault();
+        //action to log out user
         this.props.logOutSubmit(this.props.history);
     }
+
     render() {
         return (
             <ul className="nav navbar-nav ml-auto">
@@ -22,10 +25,10 @@ class SignedInLinksComponent extends Component {
                         ></i>
                     </Link>
                 </li>
-                <li className="nav-item">
+                <li className="nav-item disabled">
                     <Link
                         to=""
-                        className="nav-link nav-auth-link"
+                        className="nav-link nav-authName-link"
                     >
                         {this.props.name}
                     </Link>
@@ -46,7 +49,6 @@ class SignedInLinksComponent extends Component {
 }
 
 const mapStateToProps = (state) => {
-	//console.log(state);
 	return {
         name: state.firebase.profile.name,
 	};

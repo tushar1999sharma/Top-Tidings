@@ -1,7 +1,7 @@
 import React from "react";
 import { Link, withRouter } from "react-router-dom";
 
-const categoriesComponent = (props) => {
+const categoriesComponent = () => {
 	return (
 		<React.Fragment>
 			<h4 className="text-center d-none d-md-block mt-3 mb-0">

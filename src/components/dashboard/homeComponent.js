@@ -5,18 +5,11 @@ import { startSpinnerAction } from '../../store/actions/spinnerAction';
 import { homeAction } from "../../store/actions/getNewsActions";
 
 class homeComponent extends Component {
-	//we can initialize state by using constructor
-	constructor(props) {
-		super(props); //super initialize 'this' keyword
-		//pass props to super to use props in constructor
-
-		this.state = {
-			headlines: []
-		};
-	}
 	// didMount first execute when component created
 	componentDidMount() {
-		this.props.isLoadingNews();
+        //start spinner to load data from api
+        this.props.isLoadingNews();
+        //get data from api meanwhile
 		this.props.getHomeNews();
 	}
 

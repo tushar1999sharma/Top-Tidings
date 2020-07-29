@@ -7,6 +7,7 @@ import bookmarkReducer from './bookmarkReducer';
 import shareReducer from './shareReducer';
 import spinnerReducer from './spinnerReducer';
 
+//combine reducers to create new reducer named rootReducer
 const rootReducer = combineReducers({
     auth: authReducer,
     news: newsReducer,
