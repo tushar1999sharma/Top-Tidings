@@ -19,7 +19,8 @@ import CategoryNews from "./components/dashboard/CategoryNewsComponent";
 import SearchNews from "./components/dashboard/SearchNewsComponent";
 import DropDown from './components/layout/CatSourceDropdownComponent';
 import FlashMsg from './components/layout/FlashMsg';
-import Bookmark from './components/dashboard/ShowBookmarkComponent'
+import Bookmark from './components/dashboard/ShowBookmarkComponent';
+import Page404 from './components/dashboard/Page404';
 
 class App extends Component {
 	render() {
@@ -30,15 +31,18 @@ class App extends Component {
 				<Sources />
 
 				<Categories />
-                
-                <Route exact path="/" component={Home} />
-                {/* exact path is used, otherwise it will also show those pages where sub route matches with their route. 
-                    Eg:- for route /about here both / & /about matches and react open both pages */}
-                <Route path="/search/:query" component={SearchNews} />
+				
+                <Switch>
+                    <Route exact path="/" component={Home} />
+                    {/* exact path is used, otherwise it will also show those pages where sub route matches with their route. 
+                        Eg:- for route /about here both / & /about matches and react open both pages */}
+                    <Route path="/search/:query" component={SearchNews} />
 
-                <Route path="/source/:src_id" component={SourceNews} />
+                    <Route path="/source/:src_id" component={SourceNews} />
 
-                <Route path="/category/:ctg_name" component={CategoryNews} />
+                    <Route path="/category/:ctg_name" component={CategoryNews} />
+                    <Route component={Page404} />
+				</Switch>
             </div>
         )
 
