@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/Top-Tidings/precache-manifest.bdae23641b62439f5d6c971348193e29.js"
+  "/Top-Tidings/precache-manifest.b052cda34be21baf2b92814b16270dae.js"
 );
 
 self.addEventListener('message', (event) => {

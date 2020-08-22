@@ -1,14 +1,14 @@
 {
   "files": {
     "main.css": "/Top-Tidings/static/css/main.78520404.chunk.css",
-    "main.js": "/Top-Tidings/static/js/main.227d4bc4.chunk.js",
-    "main.js.map": "/Top-Tidings/static/js/main.227d4bc4.chunk.js.map",
+    "main.js": "/Top-Tidings/static/js/main.f096312f.chunk.js",
+    "main.js.map": "/Top-Tidings/static/js/main.f096312f.chunk.js.map",
     "runtime-main.js": "/Top-Tidings/static/js/runtime-main.cc3ebd27.js",
     "runtime-main.js.map": "/Top-Tidings/static/js/runtime-main.cc3ebd27.js.map",
     "static/js/2.b59ababa.chunk.js": "/Top-Tidings/static/js/2.b59ababa.chunk.js",
     "static/js/2.b59ababa.chunk.js.map": "/Top-Tidings/static/js/2.b59ababa.chunk.js.map",
     "index.html": "/Top-Tidings/index.html",
-    "precache-manifest.bdae23641b62439f5d6c971348193e29.js": "/Top-Tidings/precache-manifest.bdae23641b62439f5d6c971348193e29.js",
+    "precache-manifest.b052cda34be21baf2b92814b16270dae.js": "/Top-Tidings/precache-manifest.b052cda34be21baf2b92814b16270dae.js",
     "service-worker.js": "/Top-Tidings/service-worker.js",
     "static/css/main.78520404.chunk.css.map": "/Top-Tidings/static/css/main.78520404.chunk.css.map",
     "static/js/2.b59ababa.chunk.js.LICENSE.txt": "/Top-Tidings/static/js/2.b59ababa.chunk.js.LICENSE.txt",
@@ -24,6 +24,6 @@
     "static/js/runtime-main.cc3ebd27.js",
     "static/js/2.b59ababa.chunk.js",
     "static/css/main.78520404.chunk.css",
-    "static/js/main.227d4bc4.chunk.js"
+    "static/js/main.f096312f.chunk.js"
   ]
 }
