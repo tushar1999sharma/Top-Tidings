@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "http://tushar1999sharma.github.io/Top-Tidings/precache-manifest.260573ebf4303306b29a90a71be6b9f7.js"
+  "http://tushar1999sharma.github.io/Top-Tidings/precache-manifest.298f78070a801c2df7b41fde13b01c68.js"
 );
 
 self.addEventListener('message', (event) => {

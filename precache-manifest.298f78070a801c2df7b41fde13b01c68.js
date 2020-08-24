@@ -1,10 +1,10 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "01a2e08fa3d0ef2cec5a58454116eea0",
+    "revision": "71a877696baa288642950a04dc40b9d1",
     "url": "http://tushar1999sharma.github.io/Top-Tidings/index.html"
   },
   {
-    "revision": "e0d5197adea232eae8ba",
+    "revision": "fd358ba8c520caa17ba3",
     "url": "http://tushar1999sharma.github.io/Top-Tidings/static/css/main.78520404.chunk.css"
   },
   {
@@ -16,8 +16,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "http://tushar1999sharma.github.io/Top-Tidings/static/js/2.f4b10db1.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "e0d5197adea232eae8ba",
-    "url": "http://tushar1999sharma.github.io/Top-Tidings/static/js/main.eda051c1.chunk.js"
+    "revision": "fd358ba8c520caa17ba3",
+    "url": "http://tushar1999sharma.github.io/Top-Tidings/static/js/main.42a9bebb.chunk.js"
   },
   {
     "revision": "c696584cff0ed9790ad1",
