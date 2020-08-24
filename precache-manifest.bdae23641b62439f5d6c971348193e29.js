@@ -1,10 +1,10 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "6eefca08006c6d7b527ac6c46b35e47f",
+    "revision": "939a5b905b58b21a09f70311c9e2f4c0",
     "url": "/Top-Tidings/index.html"
   },
   {
-    "revision": "6a0cf3c4e93f81fc8972",
+    "revision": "922ed21c7dbf95c0f860",
     "url": "/Top-Tidings/static/css/main.78520404.chunk.css"
   },
   {
@@ -16,8 +16,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/Top-Tidings/static/js/2.b59ababa.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "6a0cf3c4e93f81fc8972",
-    "url": "/Top-Tidings/static/js/main.f096312f.chunk.js"
+    "revision": "922ed21c7dbf95c0f860",
+    "url": "/Top-Tidings/static/js/main.227d4bc4.chunk.js"
   },
   {
     "revision": "3a9fbdb45f7511acdb3e",
