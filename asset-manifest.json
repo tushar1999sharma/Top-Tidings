@@ -1,29 +1,29 @@
 {
   "files": {
-    "main.css": "http://tushar1999sharma.github.io/Top-Tidings/static/css/main.78520404.chunk.css",
-    "main.js": "http://tushar1999sharma.github.io/Top-Tidings/static/js/main.42a9bebb.chunk.js",
-    "main.js.map": "http://tushar1999sharma.github.io/Top-Tidings/static/js/main.42a9bebb.chunk.js.map",
-    "runtime-main.js": "http://tushar1999sharma.github.io/Top-Tidings/static/js/runtime-main.cc5dbf65.js",
-    "runtime-main.js.map": "http://tushar1999sharma.github.io/Top-Tidings/static/js/runtime-main.cc5dbf65.js.map",
-    "static/js/2.f4b10db1.chunk.js": "http://tushar1999sharma.github.io/Top-Tidings/static/js/2.f4b10db1.chunk.js",
-    "static/js/2.f4b10db1.chunk.js.map": "http://tushar1999sharma.github.io/Top-Tidings/static/js/2.f4b10db1.chunk.js.map",
-    "index.html": "http://tushar1999sharma.github.io/Top-Tidings/index.html",
-    "precache-manifest.298f78070a801c2df7b41fde13b01c68.js": "http://tushar1999sharma.github.io/Top-Tidings/precache-manifest.298f78070a801c2df7b41fde13b01c68.js",
-    "service-worker.js": "http://tushar1999sharma.github.io/Top-Tidings/service-worker.js",
-    "static/css/main.78520404.chunk.css.map": "http://tushar1999sharma.github.io/Top-Tidings/static/css/main.78520404.chunk.css.map",
-    "static/js/2.f4b10db1.chunk.js.LICENSE.txt": "http://tushar1999sharma.github.io/Top-Tidings/static/js/2.f4b10db1.chunk.js.LICENSE.txt",
-    "static/media/ESPN logo.jpg": "http://tushar1999sharma.github.io/Top-Tidings/static/media/ESPN logo.f6e8f9be.jpg",
-    "static/media/Fox-news-logo.png": "http://tushar1999sharma.github.io/Top-Tidings/static/media/Fox-news-logo.ced2a059.png",
-    "static/media/Google-news-logo.webp": "http://tushar1999sharma.github.io/Top-Tidings/static/media/Google-news-logo.a87e20b9.webp",
-    "static/media/bbc logo.png": "http://tushar1999sharma.github.io/Top-Tidings/static/media/bbc logo.fb37a174.png",
-    "static/media/mtv logo.webp": "http://tushar1999sharma.github.io/Top-Tidings/static/media/mtv logo.696592ff.webp",
-    "static/media/national-geographic-logo.jpg": "http://tushar1999sharma.github.io/Top-Tidings/static/media/national-geographic-logo.3c053498.jpg",
-    "static/media/the-hindu-newspaper-logo.jpg": "http://tushar1999sharma.github.io/Top-Tidings/static/media/the-hindu-newspaper-logo.6a5c0066.jpg"
+    "main.css": "Top-Tidings/static/css/main.78520404.chunk.css",
+    "main.js": "Top-Tidings/static/js/main.53f54cc2.chunk.js",
+    "main.js.map": "Top-Tidings/static/js/main.53f54cc2.chunk.js.map",
+    "runtime-main.js": "Top-Tidings/static/js/runtime-main.29baa856.js",
+    "runtime-main.js.map": "Top-Tidings/static/js/runtime-main.29baa856.js.map",
+    "static/js/2.69f63645.chunk.js": "Top-Tidings/static/js/2.69f63645.chunk.js",
+    "static/js/2.69f63645.chunk.js.map": "Top-Tidings/static/js/2.69f63645.chunk.js.map",
+    "index.html": "Top-Tidings/index.html",
+    "precache-manifest.4e1a2bd73b0d487e52ad568dcfcdd00d.js": "Top-Tidings/precache-manifest.4e1a2bd73b0d487e52ad568dcfcdd00d.js",
+    "service-worker.js": "Top-Tidings/service-worker.js",
+    "static/css/main.78520404.chunk.css.map": "Top-Tidings/static/css/main.78520404.chunk.css.map",
+    "static/js/2.69f63645.chunk.js.LICENSE.txt": "Top-Tidings/static/js/2.69f63645.chunk.js.LICENSE.txt",
+    "static/media/ESPN logo.jpg": "Top-Tidings/static/media/ESPN logo.f6e8f9be.jpg",
+    "static/media/Fox-news-logo.png": "Top-Tidings/static/media/Fox-news-logo.ced2a059.png",
+    "static/media/Google-news-logo.webp": "Top-Tidings/static/media/Google-news-logo.a87e20b9.webp",
+    "static/media/bbc logo.png": "Top-Tidings/static/media/bbc logo.fb37a174.png",
+    "static/media/mtv logo.webp": "Top-Tidings/static/media/mtv logo.696592ff.webp",
+    "static/media/national-geographic-logo.jpg": "Top-Tidings/static/media/national-geographic-logo.3c053498.jpg",
+    "static/media/the-hindu-newspaper-logo.jpg": "Top-Tidings/static/media/the-hindu-newspaper-logo.6a5c0066.jpg"
   },
   "entrypoints": [
-    "static/js/runtime-main.cc5dbf65.js",
-    "static/js/2.f4b10db1.chunk.js",
+    "static/js/runtime-main.29baa856.js",
+    "static/js/2.69f63645.chunk.js",
     "static/css/main.78520404.chunk.css",
-    "static/js/main.42a9bebb.chunk.js"
+    "static/js/main.53f54cc2.chunk.js"
   ]
 }
