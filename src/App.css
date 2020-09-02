@@ -237,15 +237,15 @@ html {
     padding: 0.75rem 1.25rem;
 }
 .errorMsg {
-    color: #721c24;
-    background-color: #f8d7da;
+    color: #fff;
+    background-color: #f55145;
     border-color: #f5c6cb;
     border-radius: 0.25rem;
     margin-bottom: 1rem;
 }
 .successMsg {
-    color: #155724;
-    background-color: #d4edda;
+    color: #fff;
+    background-color: #55b559;
     border-color: #c3e6cb;
     border-radius: 0.25rem;
     margin-bottom: 1rem;
