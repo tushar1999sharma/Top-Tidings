@@ -5,6 +5,9 @@ import App from "./App";
 import * as serviceWorker from "./serviceWorker";
 import { Provider } from "react-redux"; //help to interact redux store with react app
 
+//import spinner component
+import Spinner from "./components/layout/Spinner";
+
 //import firebase 
 import { firebase } from './config/fbConfig';
 
@@ -37,14 +40,8 @@ function AuthIsLoaded({ children }) {
     if (!isLoaded(auth))
     //if not loaded then show spinner
       return (
-        <div className="text-center auth-check">
-          <div
-            className="spinner-grow text-primary"
-            style={{ width: "7rem", height: "7rem" }}
-            role="status"
-          >
-            <span className="sr-only">Loading...</span>
-          </div>
+        <div className="auth-check">
+          <Spinner />
         </div>
       );
     return children;

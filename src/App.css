@@ -356,7 +356,7 @@ html {
 
 /************ spinner ****************/
 .loader {
-	color: #60707b;
+	color: #3b5998;
 	font-size: 90px;
 	text-indent: -9999em;
 	overflow: hidden;
@@ -454,3 +454,7 @@ html {
 	}
 }
 
+.auth-check {
+    top: 50%;
+    left: 50%;
+}
