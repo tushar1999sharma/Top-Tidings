@@ -47,24 +47,24 @@ class App extends Component {
         )
 
 		return (
-			<BrowserRouter>
-				<div className="App">
+            <BrowserRouter>
+                <div className="App">
                     <Navbar />
                     <FlashMsg />
-					{/* Switch tag check route one by one and if matches 
+                    {/* Switch tag check route one by one and if matches 
                         then show that component and will not check other route */}
-					<Switch>
-						{/* By using Route, the component has access to this.props.history 
+                    <Switch>
+                        {/* By using Route, the component has access to this.props.history 
                         so it can redirect the user with this.props.history.push. */}
-						<RestrictedRoute exact path="/signup" component={Register} />
+                        <RestrictedRoute exact path="/signup" component={Register} />
                         {/* restrict route if useer is logged in */}
-						<RestrictedRoute exact path="/signin" component={LogIn} />
+                        <RestrictedRoute exact path="/signin" component={LogIn} />
                         {/* protect route if user is not logged in */}
-						<PrivateRoute exact path="/bookmarks" component={Bookmark} />
+                        <PrivateRoute exact path="/bookmarks" component={Bookmark} />
                         <Route component={defaultContainer} />
-					</Switch>
-				</div>
-			</BrowserRouter>
+                    </Switch>
+                </div>
+            </BrowserRouter>
 		);
 	}
 }
