@@ -36,12 +36,11 @@ class App extends Component {
                     <Route exact path="/" component={Home} />
                     {/* exact path is used, otherwise it will also show those pages where sub route matches with their route. 
                         Eg:- for route /about here both / & /about matches and react open both pages */}
-                    <Route path="/search/:query" component={SearchNews} />
+                    <Route exact path="/search/:query" component={SearchNews} />
 
-                    <Route path="/source/:src_id" component={SourceNews} />
+                    <Route exact path="/source/:src_id" component={SourceNews} />
 
-                    <Route path="/category/:ctg_name" component={CategoryNews} />
-                    <Route component={Page404} />
+                    <Route exact path="/category/:ctg_name" component={CategoryNews} />
 				</Switch>
             </div>
         )
@@ -61,7 +60,16 @@ class App extends Component {
                         <RestrictedRoute exact path="/signin" component={LogIn} />
                         {/* protect route if user is not logged in */}
                         <PrivateRoute exact path="/bookmarks" component={Bookmark} />
-                        <Route component={defaultContainer} />
+                        
+                        <Route exact path="/" component={defaultContainer} />
+                        
+                        <Route exact path="/search/:query" component={defaultContainer} />
+                        
+                        <Route exact path="/source/:src_id" component={defaultContainer} />
+                        
+                        <Route exact path="/category/:ctg_name" component={defaultContainer} />
+                                        
+                        <Route component={Page404} />
                     </Switch>
                 </div>
             </BrowserRouter>
