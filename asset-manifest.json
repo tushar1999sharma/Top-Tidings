@@ -1,29 +1,29 @@
 {
   "files": {
-    "main.css": "Top-Tidings/static/css/main.78520404.chunk.css",
-    "main.js": "Top-Tidings/static/js/main.53f54cc2.chunk.js",
-    "main.js.map": "Top-Tidings/static/js/main.53f54cc2.chunk.js.map",
-    "runtime-main.js": "Top-Tidings/static/js/runtime-main.29baa856.js",
-    "runtime-main.js.map": "Top-Tidings/static/js/runtime-main.29baa856.js.map",
-    "static/js/2.69f63645.chunk.js": "Top-Tidings/static/js/2.69f63645.chunk.js",
-    "static/js/2.69f63645.chunk.js.map": "Top-Tidings/static/js/2.69f63645.chunk.js.map",
-    "index.html": "Top-Tidings/index.html",
-    "precache-manifest.4e1a2bd73b0d487e52ad568dcfcdd00d.js": "Top-Tidings/precache-manifest.4e1a2bd73b0d487e52ad568dcfcdd00d.js",
-    "service-worker.js": "Top-Tidings/service-worker.js",
-    "static/css/main.78520404.chunk.css.map": "Top-Tidings/static/css/main.78520404.chunk.css.map",
-    "static/js/2.69f63645.chunk.js.LICENSE.txt": "Top-Tidings/static/js/2.69f63645.chunk.js.LICENSE.txt",
-    "static/media/ESPN logo.jpg": "Top-Tidings/static/media/ESPN logo.f6e8f9be.jpg",
-    "static/media/Fox-news-logo.png": "Top-Tidings/static/media/Fox-news-logo.ced2a059.png",
-    "static/media/Google-news-logo.webp": "Top-Tidings/static/media/Google-news-logo.a87e20b9.webp",
-    "static/media/bbc logo.png": "Top-Tidings/static/media/bbc logo.fb37a174.png",
-    "static/media/mtv logo.webp": "Top-Tidings/static/media/mtv logo.696592ff.webp",
-    "static/media/national-geographic-logo.jpg": "Top-Tidings/static/media/national-geographic-logo.3c053498.jpg",
-    "static/media/the-hindu-newspaper-logo.jpg": "Top-Tidings/static/media/the-hindu-newspaper-logo.6a5c0066.jpg"
+    "main.css": "/Top-Tidings%20/static/css/main.ef0f3be3.chunk.css",
+    "main.js": "/Top-Tidings%20/static/js/main.2bd711fb.chunk.js",
+    "main.js.map": "/Top-Tidings%20/static/js/main.2bd711fb.chunk.js.map",
+    "runtime-main.js": "/Top-Tidings%20/static/js/runtime-main.7b0c633e.js",
+    "runtime-main.js.map": "/Top-Tidings%20/static/js/runtime-main.7b0c633e.js.map",
+    "static/js/2.5c692980.chunk.js": "/Top-Tidings%20/static/js/2.5c692980.chunk.js",
+    "static/js/2.5c692980.chunk.js.map": "/Top-Tidings%20/static/js/2.5c692980.chunk.js.map",
+    "index.html": "/Top-Tidings%20/index.html",
+    "precache-manifest.9e6bff52718118a61b0cc0141636e3c7.js": "/Top-Tidings%20/precache-manifest.9e6bff52718118a61b0cc0141636e3c7.js",
+    "service-worker.js": "/Top-Tidings%20/service-worker.js",
+    "static/css/main.ef0f3be3.chunk.css.map": "/Top-Tidings%20/static/css/main.ef0f3be3.chunk.css.map",
+    "static/js/2.5c692980.chunk.js.LICENSE.txt": "/Top-Tidings%20/static/js/2.5c692980.chunk.js.LICENSE.txt",
+    "static/media/ESPN logo.jpg": "/Top-Tidings%20/static/media/ESPN logo.f6e8f9be.jpg",
+    "static/media/Fox-news-logo.png": "/Top-Tidings%20/static/media/Fox-news-logo.ced2a059.png",
+    "static/media/Google-news-logo.webp": "/Top-Tidings%20/static/media/Google-news-logo.a87e20b9.webp",
+    "static/media/bbc logo.png": "/Top-Tidings%20/static/media/bbc logo.fb37a174.png",
+    "static/media/mtv logo.webp": "/Top-Tidings%20/static/media/mtv logo.696592ff.webp",
+    "static/media/national-geographic-logo.jpg": "/Top-Tidings%20/static/media/national-geographic-logo.3c053498.jpg",
+    "static/media/the-hindu-newspaper-logo.jpg": "/Top-Tidings%20/static/media/the-hindu-newspaper-logo.6a5c0066.jpg"
   },
   "entrypoints": [
-    "static/js/runtime-main.29baa856.js",
-    "static/js/2.69f63645.chunk.js",
-    "static/css/main.78520404.chunk.css",
-    "static/js/main.53f54cc2.chunk.js"
+    "static/js/runtime-main.7b0c633e.js",
+    "static/js/2.5c692980.chunk.js",
+    "static/css/main.ef0f3be3.chunk.css",
+    "static/js/main.2bd711fb.chunk.js"
   ]
 }
