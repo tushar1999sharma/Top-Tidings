@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Route, BrowserRouter, Switch } from "react-router-dom";
+import { Route, HashRouter, Switch } from "react-router-dom";
 import { connect } from "react-redux";
 import "./App.css";
 
@@ -46,7 +46,7 @@ class App extends Component {
         )
 
 		return (
-            <BrowserRouter>
+            <HashRouter basename = "/">
                 <div className="App">
                     <Navbar />
                     <FlashMsg />
@@ -72,7 +72,7 @@ class App extends Component {
                         <Route component={Page404} />
                     </Switch>
                 </div>
-            </BrowserRouter>
+            </HashRouter>
 		);
 	}
 }
